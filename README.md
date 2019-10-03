@@ -6,9 +6,15 @@
 BoldChess-Stockfish-Web-GUI is a web graphical user interface (GUI) that loads the JS compiled version of the Stockfish chess engine. It is a fully functional web app that allows you to play against the Stockfish chess engine.
 
 
-## Live Demo
+## Main Live Demo
 
-https://labinatorsolutions.github.io/BoldChess-Stockfish-Web-GUI
+https://labinatorsolutions.github.io/BoldChess-Stockfish-Web-GUI/
+
+
+## Other Implementations - (Included For Reference)
+
+- https://labinatorsolutions.github.io/BoldChess-Stockfish-Web-GUI/other-implementations/example1/
+- https://labinatorsolutions.github.io/BoldChess-Stockfish-Web-GUI/other-implementations/example2/
 
 
 ## Features
