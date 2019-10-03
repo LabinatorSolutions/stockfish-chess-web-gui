@@ -1,4 +1,4 @@
-# BoldChess-Stockfish-Web-GUI : Play Against Stockfish 10 Online For Free
+# BoldChess-Stockfish-Web-GUI : Play Against Stockfish Online
 
 
 ## Overview
