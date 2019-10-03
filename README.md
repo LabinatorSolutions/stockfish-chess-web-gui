@@ -8,7 +8,7 @@ BoldChess-Stockfish-Web-GUI is a web graphical user interface (GUI) that loads t
 
 ## Live Demo
 
-https://labinatorsolutions.github.io/BoldChess-Stockfish-Web-GUI/
+https://labinatorsolutions.github.io/BoldChess-Stockfish-Web-GUI
 
 
 ## Features
