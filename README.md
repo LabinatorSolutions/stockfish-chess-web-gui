@@ -28,6 +28,11 @@ https://labinatorsolutions.github.io/BoldChess-Stockfish-Web-GUI/
 - LT-PGN-Viewer Version 3.498.
 
 
+## Known Issues
+
+- The chess pieces are not moving on touch devices (tablets and smartphones).
+
+
 ## Online Installation
 
 - Unzip the compressed file.
