@@ -32,7 +32,7 @@ You can find other chess web GUI implementations in the "other-implementations" 
 
 ## Known Issues
 
-- The chessboard is not rotating/flipping on touch devices (tablets and smartphones). This affects the "flip" and the "switch sides" button.
+- The chessboard is not rotating/flipping on touch devices (tablets and smartphones). This affects the "flip" and the "switch sides" buttons.
 - The user can not start a new game with the black pieces if he/she is on touch devices (tablets and smartphones).
 - The "hint" button is loading endlessly on touch devices (tablets and smartphones).
 
