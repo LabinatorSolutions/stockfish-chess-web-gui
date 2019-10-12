@@ -13,6 +13,8 @@ https://labinatorsolutions.github.io/BoldChess-Stockfish-Web-GUI/
 
 ## Other Implementations - (Included For Reference)
 
+You can find other chess web GUI implementations in the "other-implementations" folder. The other implementations are not currently maintained and included for reference only.
+
 - https://labinatorsolutions.github.io/BoldChess-Stockfish-Web-GUI/other-implementations/example1/
 - https://labinatorsolutions.github.io/BoldChess-Stockfish-Web-GUI/other-implementations/example2/
 
@@ -30,7 +32,9 @@ https://labinatorsolutions.github.io/BoldChess-Stockfish-Web-GUI/
 
 ## Known Issues
 
-- The chess pieces are not moving on touch devices (tablets and smartphones).
+- The chessboard is not rotating/flipping on touch devices (tablets and smartphones). This affects the "flip" and the "switch sides" button.
+- The user can not start a new game with the black pieces if he/she is on touch devices (tablets and smartphones).
+- The "hint" button is loading endlessly on touch devices (tablets and smartphones).
 
 
 ## Online Installation
