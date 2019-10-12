@@ -3,18 +3,18 @@ var
   game,                   // chess game control obj
 
   gameTimer,
-  gameStarted = false, 
+  gameStarted = false,
 
   playerSide = 'w',       // manual seetings
   opponentSide = 'b',
-  firstTurn = 'player', 
+  firstTurn = 'player',
 
   promotionPos,
-  moveSource, 
+  moveSource,
   moveTarget,
 
   promotionFigure = 'q',  // promotion figure, Queen as default
-  promotionEvent,         
+  promotionEvent,
 
   engineSkill = 8,       // default engine depth (AI difficulty)
   staticSkill = 16,
@@ -60,12 +60,29 @@ function listMoves() {
   });
 }
 
+function calcFieldNum( fieldCode ) {
+  let letters = ['a','b','c','d','e','f','g','h'];
+  var j   = 0;
+  var num = 0;
+
+  for ( var i = 8; i > 0; i-- ) {
+    letters.map( function( letter ) {
+      if ( letter + i === fieldCode ) {
+        num = j;
+      }
+      j++;
+    });
+  }
+
+  return num;
+}
+
 // Engine response event
 
 stockfish.onmessage = function(event) {
 
   console.log(event.data);
-  
+
   /* dumpLog(event.data); */
 
   var eventStr = event.data;
@@ -78,16 +95,19 @@ stockfish.onmessage = function(event) {
 
       $('#board .square-' + match[1]).css('background', '#696969');
       $('#board .square-'+ match[2]).css('background', '#696969');
+      $('#board_chess_square_'+calcFieldNum(match[1])).css('background', '#696969');
+      $('#board_chess_square_'+calcFieldNum(match[2])).css('background', '#696969');
 
       stateHint = false;
       $('#btn-show-hint').removeClass('loading disabled');
 
-      setTimeout(function() { 
+      setTimeout(function() {
         $('#board .square-55d63').css('background', '');
+        $('.chess_square').css('background', '');
       }, 2500);
 
     }
-    
+
     return;
   }
 
@@ -106,7 +126,7 @@ stockfish.onmessage = function(event) {
       for (var i = 0, len = 5; i < len; i++) {
         stateAnalyzeMatch += (i + 1) + '. ' + moves[i] + ' ';
       }
-      
+
     };
 
     var regex = new RegExp("bestmove .*");
@@ -147,8 +167,8 @@ stockfish.onmessage = function(event) {
       stopTimer();
 
       var move = game.move({
-        from: match[1], 
-        to: match[2], 
+        from: match[1],
+        to: match[2],
         promotion: match[3]
       });
 
