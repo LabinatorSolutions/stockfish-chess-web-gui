@@ -1,4 +1,4 @@
-# BoldChess-Stockfish-Web-GUI : Play Chess Against Stockfish Online
+# BoldChess-Stockfish-Web-GUI : Web GUI For Stockfish Chess
 
 
 ## Overview
