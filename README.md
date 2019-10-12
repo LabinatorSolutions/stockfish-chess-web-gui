@@ -77,7 +77,8 @@ GNU GPLv3: [https://www.gnu.org/licenses/gpl-3.0-standalone.html](https://www.gn
 
 - Stockfish: [https://github.com/mcostalba/Stockfish](https://github.com/mcostalba/Stockfish)
 - Stockfish.js: [https://github.com/nmrugg/stockfish.js](https://github.com/nmrugg/stockfish.js)
-- Chessboard.js: [https://github.com/oakmac/chessboardjs/](https://github.com/oakmac/chessboardjs/)
+- Oakmac Chessboard: [https://github.com/oakmac/chessboardjs/](https://github.com/oakmac/chessboardjs/)
+- Caustique Chessboard: [https://github.com/caustique/chessboard-js](https://github.com/caustique/chessboard-js)
 - LT-PGN-Viewer: [http://www.lutanho.net/pgn/pgnviewer.html](http://www.lutanho.net/pgn/pgnviewer.html)
 - jQuery: [https://github.com/jquery/jquery](https://github.com/jquery/jquery)
 - BoldChess: [https://boldchess.com](https://boldchess.com/)
