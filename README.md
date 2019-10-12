@@ -1,4 +1,4 @@
-# BoldChess-Stockfish-Web-GUI : Play Against Stockfish Online
+# BoldChess-Stockfish-Web-GUI : Play Chess Against Stockfish Online
 
 
 ## Overview
@@ -30,13 +30,6 @@ You can find other chess web GUI implementations in the "other-implementations" 
 - LT-PGN-Viewer Version 3.498.
 
 
-## Known Issues
-
-- The chessboard is not rotating/flipping on touch devices (tablets and smartphones). This affects the "Flip" and the "Switch Sides" buttons.
-- The user can not start a new game with the black pieces if he/she is on touch devices (tablets and smartphones).
-- The "Show Hint" button is loading endlessly on touch devices (tablets and smartphones).
-
-
 ## Online Installation
 
 - Unzip the compressed file.
@@ -50,14 +43,11 @@ You can find other chess web GUI implementations in the "other-implementations" 
 - Copy the unzipped folder to the (htdocs) directory then view its path from your web browser.
 
 
-## Changelog
+## Known Issues
 
-Please check the (CHANGELOG.md) file.
-
-
-## Contribution
-
-We welcome all developers to contribute to this repository by adding features or fixing bugs. It will always be free and open source.
+- The chessboard is not rotating/flipping on touch devices (tablets and smartphones). This affects the "Flip" and the "Switch Sides" buttons.
+- The user can not start a new game with the black pieces if he/she is on touch devices (tablets and smartphones).
+- The "Show Hint" button is loading endlessly on touch devices (tablets and smartphones).
 
 
 ## Ideas For Improvements
@@ -67,6 +57,11 @@ We welcome all developers to contribute to this repository by adding features or
 - Adding an option to set the time for both players.
 - Adding an evaluation meter to show the player what is the engine's evaluation of the current position.
 - Adding support for chess variants.
+
+
+## Contribution
+
+We welcome all developers to contribute to this repository by adding features or fixing bugs. It will always be free and open source.
 
 
 ## License
