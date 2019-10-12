@@ -59,9 +59,13 @@ You can find other chess web GUI implementations in the "other-implementations" 
 - Adding support for chess variants.
 
 
-## Contribution
+## Development & Contribution
 
-We welcome all developers to contribute to this repository by adding features or fixing bugs. It will always be free and open source.
+We welcome all developers to contribute to this repository by adding features or fixing bugs.
+
+**List Of Current Contributors:**
+- https://github.com/LabinatorSolutions
+- https://github.com/sudeshchouhan
 
 
 ## License
