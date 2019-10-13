@@ -51,7 +51,7 @@ You can find other chess web GUI implementations in the "other-implementations" 
 ## Basic Suggested Improvements
 
 - Adding an option to set FEN.
-- Adding an alternative option to move the pieces by clicking instead of dragging.
+- Adding an alternative option to move the pieces by clicking and pointing.
 - Adding a visual evaluation meter to show the player what is the engine's evaluation of the current position.
 
 
