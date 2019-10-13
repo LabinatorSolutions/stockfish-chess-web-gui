@@ -53,8 +53,7 @@ You can find other chess web GUI implementations in the "other-implementations" 
 - Adding an option to set FEN.
 - Integrating a chess opening book.
 - Adding an option to set the time for both players.
-- Adding an evaluation meter to show the player what is the engine's evaluation of the current position.
-- Adding support for chess variants.
+- Adding a visual evaluation meter to show the player what is the engine's evaluation of the current position.
 
 
 ## Development & Contribution
