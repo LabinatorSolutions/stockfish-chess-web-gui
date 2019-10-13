@@ -54,7 +54,7 @@ You can find other chess web GUI implementations in the "other-implementations" 
 
 ## Known Issues
 
-- The "Show Hint" button is suggesting an invalid move for the Black pieces when playing with Black on touch devices (tablets and smartphones).
+- There are no known issues. We always welcome bug reports and suggestions. Special thanks to [@IPetak](https://github.com/IPetak) for dedicating time and fixing the old set of issues.
 
 
 ## Basic Suggested Improvements
