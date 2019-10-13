@@ -48,12 +48,20 @@ You can find other chess web GUI implementations in the "other-implementations" 
 - The "Show Hint" button is suggesting an invalid move for the Black pieces when playing with Black on touch devices (tablets and smartphones).
 
 
-## Ideas For Improvements
+## Basic Suggested Improvements
 
 - Adding an option to set FEN.
-- Integrating a chess opening book.
-- Adding an option to set the time for both players.
+- Adding an alternative option to move the pieces by clicking instead of dragging.
 - Adding a visual evaluation meter to show the player what is the engine's evaluation of the current position.
+
+
+## Advanced Suggested Improvements
+
+- Redesigning the layout to become more intuitive for touch-based devices and PCs.
+- Adding an option to set the chess clock for both players.
+- Adding an option to edit the board visually.
+- Adding an opening book.
+- Adding a visual graph representing the history of the computer's evaluation.
 
 
 ## Development & Contribution
