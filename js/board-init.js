@@ -65,7 +65,7 @@ function calcFieldNum( fieldCode ) {
   var j   = 0;
   var num = 0;
 
-  if (board.orientation() === 'w' ) {
+  if ( board.orientation() === 'w' ) {
     for ( var i = 8; i > 0; i-- ) {
       letters.map( function( letter ) {
         if ( letter + i === fieldCode ) {
@@ -104,8 +104,6 @@ stockfish.onmessage = function(event) {
     var match = eventStr.match(/^bestmove ([a-h][1-8])([a-h][1-8])([qrbk])?/);
 
     if (match) {
-      console.log(match[1]+'-'+calcFieldNum(match[1]));
-      console.log(match[2]+'-'+calcFieldNum(match[2]));
 
       $('#board .square-' + match[1]).css('background', '#696969');
       $('#board .square-'+ match[2]).css('background', '#696969');
