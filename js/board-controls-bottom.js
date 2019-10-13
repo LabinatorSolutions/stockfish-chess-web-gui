@@ -6,7 +6,7 @@ $('#btn-flip-board').click(function() {
   if (typeof board.flip == 'function') {
     board.flip();
   } else {
-    console.log('Board flip is not supported.');
+    board.setOrientation('flip');
   }
 });
 
@@ -16,7 +16,7 @@ $('#btn-switch-sides').click(function() {
   if (typeof board.flip == 'function') {
     board.flip();
   } else {
-    console.log('Board flip is not supported.');
+    board.setOrientation('flip');
   }
 
   if (playerSide == 'w') {
