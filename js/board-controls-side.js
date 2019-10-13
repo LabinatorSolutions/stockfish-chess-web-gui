@@ -10,7 +10,7 @@ $('#btn-new-game').click(function() {
   gameEnd = false;
 
   stopTimer();
-  
+
   $('#game-settings').removeClass('hidden');
   $('#btn-choose-white-side, #btn-choose-black-side').removeClass('locked');
 
@@ -61,7 +61,7 @@ $('#btn-empty-board').click(function() {
 
   $('body').find('img[data-piece="wP"]').remove();
   $(window).unbind();
-  
+
   board.clear();
 
   board = ChessBoard('board', {
@@ -95,7 +95,7 @@ $('#board-load-pgn-area button').click(function() {
 $('#board-load-pgn-area textarea').keydown(function(e) {
   e.preventDefault();
   var code = e.keyCode ? e.keyCode : e.which;
-  if (code == 13) { 
+  if (code == 13) {
     eventLoadPgnData();
     $('#board-load-pgn-area').addClass('hidden');
   }
@@ -172,7 +172,7 @@ $('#board-load-fen-area .close').click(function () {
 
 $('#board-save-pgn-area textarea').keydown(function(e) {
   var code = e.keyCode ? e.keyCode : e.which;
-  if (code == 13) { 
+  if (code == 13) {
     $('#board-save-pgn-area').addClass('hidden');
   }
 });
@@ -212,23 +212,32 @@ $('#btn-settings').click(function() {
 });
 
 $('#btn-choose-white-side').click(function() {
-  if ($(this).hasClass('locked') || playerSide == 'w') return;
+  if ($(this).hasClass('locked')) return;
   $('#game-settings .btn').removeClass('selected');
   $(this).addClass('selected');
   playerSide = 'w';
   opponentSide = 'b';
-  board.flip();
-  checkTurn();
+  if (typeof board.setOrientation == 'function') {
+    board.setOrientation(playerSide);
+  } else {
+    board.orientation('white');
+  }
+  $('#game-settings .btn').addClass('locked');
 });
 
 $('#btn-choose-black-side').click(function() {
-  if ($(this).hasClass('locked') || playerSide == 'b') return;
+  if ($(this).hasClass('locked')) return;
   $('#game-settings .btn').removeClass('selected');
   $(this).addClass('selected');
   playerSide = 'b';
   opponentSide = 'w';
-  board.flip();
+  if (typeof board.setOrientation == 'function') {
+    board.setOrientation(playerSide);
+  } else {
+    board.orientation('black');
+  }
   opponentTurn();
+  $('#game-settings .btn').addClass('locked');
 });
 
 $('#btn-resign').click(function() {
