@@ -65,13 +65,25 @@ function calcFieldNum( fieldCode ) {
   var j   = 0;
   var num = 0;
 
-  for ( var i = 8; i > 0; i-- ) {
-    letters.map( function( letter ) {
-      if ( letter + i === fieldCode ) {
-        num = j;
-      }
-      j++;
-    });
+  if ( board.orientation() === 'w' ) {
+    for ( var i = 8; i > 0; i-- ) {
+      letters.map( function( letter ) {
+        if ( letter + i === fieldCode ) {
+          num = j;
+        }
+        j++;
+      });
+    }
+  } else {
+    letters = letters.reverse();
+    for ( var i = 1; i <= 8; i++ ) {
+      letters.map( function( letter ) {
+        if ( letter + i === fieldCode ) {
+          num = j;
+        }
+        j++;
+      });
+    }
   }
 
   return num;
