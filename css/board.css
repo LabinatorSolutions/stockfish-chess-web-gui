@@ -10,63 +10,63 @@
 /* bottom buttons */
 
 #btn-flip-board {
-  background-image: url('../icons/switch_1.svg');
+  background-image: url('../img/icons/switch-enabled.svg');
 }
 #btn-flip-board.disabled {
-  background-image: url('../icons/switch_2.svg');
+  background-image: url('../img/icons/switch-disabled.svg');
 }
 
 #btn-switch-sides {
-  background-image: url('../icons/switch_sides.svg');
+  background-image: url('../img/icons/switch-sides.svg');
 }
 
 #btn-save-pgn {
-  background-image: url('../icons/icon-save-pgn-active.svg');
+  background-image: url('../img/icons/save-pgn-enabled.svg');
 }
 #btn-save-pgn:hover {
 }
 #btn-save-pgn.disabled {
-  background-image: url('../icons/icon-save-pgn-disabled.svg');
+  background-image: url('../img/icons/save-pgn-disabled.svg');
 }
 
 #btn-show-hint .icon {
-  background-image: url('../icons/horse_1.svg');
+  background-image: url('../img/icons/hint-enabled.svg');
 }
 #btn-show-hint.disabled .icon {
-  background-image: url('../icons/horse_2.svg');
+  background-image: url('../img/icons/hint-disabled.svg');
 }
 #btn-show-hint.loading .icon {
-  background-image: url('../icons/icon-loading.svg');
+  background-image: url('../img/icons/loading.svg');
   animation: spin 5s linear infinite;
 }
 
 #btn-take-back {
-  background-image: url('../icons/back_1.svg');
+  background-image: url('../img/icons/takeback-enabled.svg');
 }
 #btn-take-back.disabled{
-  background-image: url('../icons/back_2.svg');
+  background-image: url('../img/icons/takeback-disabled.svg');
 }
 
 /* side buttons */
 
 #btn-analyze .icon {
-  background-image: url('../icons/analyze_1.svg');
+  background-image: url('../img/icons/analyze.svg');
 }
 #btn-analyze.loading .icon {
-  background-image: url('../icons/icon-loading.svg');
+  background-image: url('../img/icons/loading.svg');
   animation: spin 5s linear infinite;
 }
 
 #btn-new-game .icon {
-  background-image: url('../icons/icon-new-game.svg');
+  background-image: url('../img/icons/new-game.svg');
 }
 
 #btn-resign {
-  background-image: url('../icons/dead_king_1.svg');
+  background-image: url('../img/icons/resign.svg');
 }
 
 #btn-settings {
-  background-image: url('../icons/settings_1.svg');  
+  background-image: url('../img/icons/settings.svg');  
 }
 
 /* main styles */
@@ -210,7 +210,7 @@
   display: block;
   width: 50px;
   height: 50px;
-  margin: 3px 5px 0 0;
+  margin: 3px 5px 0 8px;
   font-family: Arial;
   font-size: 12px;
   font-weight: bold;
@@ -257,7 +257,7 @@
   top: 5px;
   background-color: silver;
   border-radius: 100%;
-  background-image: url('../icons/icon-close.png');
+  background-image: url('../img/icons/close.svg');
   background-repeat: no-repeat;
   background-position: center;
   background-size: 70%;
@@ -306,7 +306,7 @@
 }
 .chess-area .board-settings .apex .label {
   font: normal 16px Arial;
-  color: #084084;
+  color: #666666;
   text-decoration: underline;
   cursor: pointer;
 }
@@ -322,11 +322,11 @@
   width: 31px;
   height: 28px;
   padding: 5px 0 0 0;
-  background-image: url(../icons/monitor.svg);
+  background-image: url(../img/icons/monitor.svg);
   background-repeat: no-repeat;
   background-position: 0px 2px;
   font: bold 13px Arial;
-  color: #084084;
+  color: #666666;
   text-decoration: none;
 }
 .chess-area .board-settings .game-difficulty {
@@ -359,7 +359,7 @@
   background-size: 40%;
   background-position: center;
   background-repeat: no-repeat;
-  background-image: url('../icons/icon-close.png');
+  background-image: url('../img/icons/close.svg');
 }
 .chess-area .board-settings .game-difficulty .close:hover {
   cursor: pointer;
@@ -521,10 +521,10 @@
   cursor: default;
 }
 .chess-area .board-settings .game-menu .game-black-side {
-  background-image: url('../icons/board-black.svg');
+  background-image: url('../img/icons/choose-black.svg');
 }
 .chess-area .board-settings .game-menu .game-white-side {
-  background-image: url('../icons/board-white.svg');
+  background-image: url('../img/icons/choose-white.svg');
 }
 .chess-area .board-settings .tunes {
   width: 100%;

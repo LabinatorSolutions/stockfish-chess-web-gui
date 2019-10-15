@@ -12,7 +12,7 @@ function setDesktopBoard(position = false, sparePieces = false) {
       draggable: true,
       dropOffBoard: 'trash',
       sparePieces: true,
-      pieceTheme: 'pieces/{piece}.png'
+      pieceTheme: 'img/pieces/{piece}.svg'
     });
     return;
   }
@@ -130,7 +130,7 @@ function setDesktopBoard(position = false, sparePieces = false) {
     onMouseoverSquare: onMouseoverSquare,
 
     onSnapEnd: onSnapEnd,
-    pieceTheme: 'pieces/{piece}.png'
+    pieceTheme: 'img/pieces/{piece}.svg'
 
   });
 

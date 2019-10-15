@@ -208,7 +208,7 @@ function checkAnalyzeOption() {
 }
 
 $('#btn-settings').click(function() {
-  $('#game-settings').toggleClass('hidden');
+  $('#game-difficulty-skill-settings').toggleClass('hidden');
 });
 
 $('#btn-choose-white-side').click(function() {
