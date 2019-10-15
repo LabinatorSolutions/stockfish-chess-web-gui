@@ -52,11 +52,6 @@ You can find other chess web GUI implementations in the "other-implementations" 
 - Copy the unzipped folder to the (htdocs) directory then view its path from your web browser.
 
 
-## Known Issues
-
-- There are no known issues. We always welcome bug reports and suggestions. Special thanks to [@IPetak](https://github.com/IPetak) for dedicating time and fixing the old set of issues.
-
-
 ## Basic Suggested Improvements
 
 - Adding an option to set FEN.
@@ -80,8 +75,8 @@ We welcome all developers to contribute to this repository by fixing bugs or add
 This project is lightweight, simple, and beginner friendly. A more advanced project can be found at (https://github.com/LabinatorSolutions/BoldChess-GUI).
 
 **List Of Current Contributors:**
-- https://github.com/IPetak
 - https://github.com/LabinatorSolutions
+- https://github.com/IPetak
 - https://github.com/sudeshchouhan
 
 
