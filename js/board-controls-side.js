@@ -24,6 +24,12 @@ $('#btn-new-game').click(function() {
   $('#btn-undo-move').addClass('hidden');
   $('#game-state').addClass('hidden');
 
+  document.getElementById("btn-switch-sides").disabled = false;
+  $('#btn-switch-sides').removeClass('disabled');
+
+  document.getElementById("btn-show-hint").disabled = false;
+  $('#btn-show-hint').removeClass('disabled');
+
   // setBoard();
 
   game = new Chess('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1');

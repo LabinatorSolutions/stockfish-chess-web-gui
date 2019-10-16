@@ -4,12 +4,7 @@ function setMobileBoard(position = false) {
 
   gameEnd = false;
 
-  // mode to set chess figures in custom position
-  // not supported
-
   // init board with preloaded position (fen)
-  //
-
   if (position == false) {
     position = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1';
   } else {
@@ -17,8 +12,6 @@ function setMobileBoard(position = false) {
   }
 
   // game rules control object
-  // 
-
   game = new Chess(position);
 
   board = new Chessboard('board', {
@@ -53,16 +46,7 @@ function setMobileBoard(position = false) {
           nextPlayer = 'black';
         }
         if (move !== null) {
-          if (game.in_checkmate() === true) {
-            status = 'CHECKMATE! Player ' + nextPlayer + ' lost.';
-          } else if (game.in_draw() === true) {
-            status = 'DRAW!';
-          } else {
-            status = 'Next player is ' + nextPlayer + '.';
-            if (game.in_check() === true) {
-              status = 'CHECK! ' + status;
-            }
-          }
+          checkPositions('computer');
         }
         setTimeout(function() {
           stockfish.postMessage('position fen ' + game.fen());

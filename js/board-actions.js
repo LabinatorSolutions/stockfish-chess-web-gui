@@ -190,44 +190,57 @@ function checkTurn() {
   }
 
   console.log('game turn ' + game.turn());
-
 }
 
 function checkPositions(turn) {
 
-  if (game.in_check()) {
-    console.log('Game in check.');
+  if (game.in_checkmate()) {
+    postEndGame();
+    $('#game-state').text('Checkmate').removeClass('hidden');
+  }
+
+  else if (game.in_draw()) {
+    postEndGame();
+    $('#game-state').text('The game has ended in a draw.').removeClass('hidden');
+  }
+
+  else if (game.in_stalemate()) {
+    postEndGame();
+    $('#game-state').text('The game has ended in a stalemate (draw).').removeClass('hidden');
+  }
+
+  else if (game.in_check()) {
+    $('#board').removeClass('locked');
+    $('#game-turn').addClass('hidden');
     $('#game-state').text('Check!').removeClass('hidden');
   }
 
-  if (game.in_checkmate()) {
-    console.log('Game in checkmate.');
-    $('#game-state').text('Checkmate').removeClass('hidden');
-    $('#game-turn').addClass('hidden');
+  else {
+    if (turn == 'player') {
+      $('#board').removeClass('locked');
+      $('#game-turn').text('It\'s your turn!');
+      $('#game-state').text('It\'s your turn!').removeClass('hidden');
+    }
+
+    if (turn == 'computer') {
+      $('#board').addClass('locked');
+      $('#game-turn').text('It\'s the engine\'s turn...');
+      $('#game-state').text('It\'s the engine\'s turn...').removeClass('hidden');
+    }
+  }
+
+}
+
+function postEndGame() {
     gameEnd = true;
-  }
 
-  if (game.in_draw()) {
-    console.log('Game in draw.');
-    $('#game-state').text('The game has ended in a draw.').removeClass('hidden');
+    document.getElementById("btn-switch-sides").disabled = true;
+    $('#btn-switch-sides').addClass('disabled');
+
+    document.getElementById("btn-show-hint").disabled = true;
+    $('#btn-show-hint').addClass('disabled');
+
     $('#game-turn').addClass('hidden');
-    gameEnd = true;
-  }
 
-  if (game.in_stalemate()) {
-    console.log('Game in stalemate.');
-    $('#game-state').text('The game has ended in a stalemate (draw).').removeClass('hidden');
-    $('#game-turn').addClass('hidden');
-    gameEnd = true;
-  }
-
-  if (turn == 'player') {
-    $('#game-turn').text('It\'s your turn!');
-    $('#board').removeClass('locked');
-  }
-
-  if (turn == 'computer') {
-    $('#game-turn').text('It\'s the engine\'s turn...'); 
-  }
-
+    return;
 }

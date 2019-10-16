@@ -5,8 +5,6 @@ function setDesktopBoard(position = false, sparePieces = false) {
   gameEnd = false;
 
   // mode to set chess figures in custom position
-  //
-
   if (sparePieces) {
     board = ChessBoard('board', {
       draggable: true,
@@ -18,8 +16,6 @@ function setDesktopBoard(position = false, sparePieces = false) {
   }
 
   // init board with preloaded position (fen)
-  //
-
   if (position == false) {
     position = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1';
   } else {
@@ -27,8 +23,6 @@ function setDesktopBoard(position = false, sparePieces = false) {
   }
 
   // game rules control object
-  // 
-
   game = new Chess(position);
 
   var onDragStart = function(source, piece) {
@@ -73,10 +67,6 @@ function setDesktopBoard(position = false, sparePieces = false) {
       console.log('Paused for promotion.');
       return;
     }
-
-    //console.log('Current position FEN:');
-    //console.log('Game: ' + game.fen());
-    //console.log('Board: ' + board.fen());
 
     dumpLog(false);
     
@@ -137,8 +127,6 @@ function setDesktopBoard(position = false, sparePieces = false) {
   gameHistoryClear();
 
   // field highlight functions
-  //
-
   var removeGreySquares = function() {
     $('#board .square-55d63').css('background', '');
   };
