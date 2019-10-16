@@ -44,7 +44,6 @@ function loadBoard(fen, fromHistory = false) {
 
   if (fromHistory) {
     board.position(fen);
-    // block?
     return;
   }
 
@@ -90,7 +89,6 @@ function loadBoard(fen, fromHistory = false) {
       updateEngineSkill();
       stockfish.postMessage('position fen ' + board.fen() + ' ' + game.turn());
       stockfish.postMessage('go depth ' + engineSkill);
-      //stockfish.postMessage('go infinite');
     }
 
     startTimer();
@@ -145,7 +143,6 @@ function opponentTurn() {
   setTimeout(function() {
     stockfish.postMessage('position fen ' + game.fen());
     stockfish.postMessage('go depth ' + engineSkill);
-    //stockfish.postMessage('go infinite');
   }, 500);
 
   startTimer();
@@ -200,37 +197,37 @@ function checkPositions(turn) {
 
   if (game.in_check()) {
     console.log('Game in check.');
-    $('#game-state').text('Check.').removeClass('hidden');
+    $('#game-state').text('Check!').removeClass('hidden');
   }
 
   if (game.in_checkmate()) {
     console.log('Game in checkmate.');
-    $('#game-state').text('Checkmate.').removeClass('hidden');
+    $('#game-state').text('Checkmate').removeClass('hidden');
     $('#game-turn').addClass('hidden');
     gameEnd = true;
   }
 
   if (game.in_draw()) {
     console.log('Game in draw.');
-    $('#game-state').text('Draw.').removeClass('hidden');
+    $('#game-state').text('The game has ended in a draw.').removeClass('hidden');
     $('#game-turn').addClass('hidden');
     gameEnd = true;
   }
 
   if (game.in_stalemate()) {
     console.log('Game in stalemate.');
-    $('#game-state').text('Stalemate (Draw).').removeClass('hidden');
+    $('#game-state').text('The game has ended in a stalemate (draw).').removeClass('hidden');
     $('#game-turn').addClass('hidden');
     gameEnd = true;
   }
 
   if (turn == 'player') {
-    $('#game-turn').text('Your turn.');
+    $('#game-turn').text('It\'s your turn!');
     $('#board').removeClass('locked');
   }
 
   if (turn == 'computer') {
-    $('#game-turn').text('Opponent turn.'); 
+    $('#game-turn').text('It\'s the engine\'s turn...'); 
   }
 
 }
