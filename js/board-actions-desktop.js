@@ -132,8 +132,8 @@ function setDesktopBoard(position = false, sparePieces = false) {
   };
 
   var greySquare = function(square) {
-    var squareEl = $('#board .square-' + square), background = '#a9a9a9';
-    if (squareEl.hasClass('black-3c85d') === true) background = '#696969';
+    var squareEl = $('#board .square-' + square), background = '#fbe3e7';
+    if (squareEl.hasClass('black-3c85d') === true) background = '#f7c5cd';
     squareEl.css('background', background);
   };
 

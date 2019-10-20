@@ -128,7 +128,7 @@
   text-decoration: underline;
 }
 .chess-area .board-table .promotion span.active {
-  background: #f0d9b5;
+  background: #DCDCDC;
 }
 .chess-area .board-table .promotion.hidden {
   display: none;
@@ -141,6 +141,7 @@
   font-family: Arial;
   font-size: 12px;
   text-align: center;
+  color: #ffffff;
 }
 .chess-area .board-table .controls .buttons {
   display: flex;
@@ -550,7 +551,7 @@
   margin: 0 3px 0 2px;
   border: none;
   border-radius: 3px;
-  background: linear-gradient(to bottom, #55a82c 0%, #76ce42 100%);
+  background: #D41C3B;
   font-size: 14px;
   line-height: 100%;
   text-transform: none;

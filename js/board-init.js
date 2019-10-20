@@ -105,10 +105,10 @@ stockfish.onmessage = function(event) {
 
     if (match) {
 
-      $('#board .square-' + match[1]).css('background', '#696969');
-      $('#board .square-'+ match[2]).css('background', '#696969');
-      $('#board_chess_square_'+calcFieldNum(match[1])).css('background', '#696969');
-      $('#board_chess_square_'+calcFieldNum(match[2])).css('background', '#696969');
+      $('#board .square-' + match[1]).css('background', '#f7c5cd');
+      $('#board .square-'+ match[2]).css('background', '#f7c5cd');
+      $('#board_chess_square_'+calcFieldNum(match[1])).css('background', '#f7c5cd');
+      $('#board_chess_square_'+calcFieldNum(match[2])).css('background', '#f7c5cd');
 
       stateHint = false;
       $('#btn-show-hint').removeClass('loading disabled');
