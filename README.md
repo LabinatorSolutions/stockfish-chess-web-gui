@@ -1,5 +1,8 @@
 # BoldChess-Stockfish-Web-GUI : Web GUI For Stockfish Chess
 
+![JavaScript](https://img.shields.io/badge/Language-JS-EFC72C)
+![jQuery](https://img.shields.io/badge/JS_Library-jQuery_3.4.1-0769AD)
+![Stockfish 10 Chess Engine](https://img.shields.io/badge/Chess_Engine-Stockfish_10-43AC6A)
 
 ## Overview
 
