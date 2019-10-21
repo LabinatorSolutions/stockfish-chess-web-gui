@@ -21,7 +21,7 @@ BoldChess-Stockfish-Web-GUI is a web graphical user interface (GUI) that loads t
 
 There are a lot of desktop-based chess GUIs but very few when it comes to web-based chess GUIs. Most chess websites develop their own web chess GUIs and never release the source codes with the exception of (lichess.org).
 
-Our mission from this project is to develop a modern responsive free and open source web-based chess GUI.
+Our mission from this project is to develop a modern responsive free and open source web-based chess GUI and analysis tool in JavaScript.
 
 
 ## Main Live Demo
@@ -35,6 +35,8 @@ You can find other chess web GUI implementations in the "other-implementations" 
 
 - https://labinatorsolutions.github.io/BoldChess-Stockfish-Web-GUI/other-implementations/example1/
 - https://labinatorsolutions.github.io/BoldChess-Stockfish-Web-GUI/other-implementations/example2/
+
+Note: The above implementations will be removed from this repository when the chess clock and the evaluation meter features are implemented. The above examples provide a working sample for beginners to check how such features are implemented.
 
 
 ## Features
