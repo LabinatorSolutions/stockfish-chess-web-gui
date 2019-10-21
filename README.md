@@ -9,7 +9,7 @@
 ![PGN Viewer](https://img.shields.io/badge/LT_PGN_Viewer-3.498-teal)
 
 ![Mobile Support](https://img.shields.io/badge/Touch_Based_Device_Support-Yes-purple)
-![Known Bugs](https://img.shields.io/badge/Known_Bugs-0-red)
+![Known Bugs](https://img.shields.io/badge/Known_Bugs-0-green)
 
 
 ## Overview
