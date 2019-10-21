@@ -2,11 +2,11 @@
 
 ![GUI Type](https://img.shields.io/badge/Type-Web_GUI-orange)
 ![JavaScript](https://img.shields.io/badge/Language-JavaScript-yellow)
-![jQuery](https://img.shields.io/badge/Library-jQuery_3.4.1-blue)
+![jQuery](https://img.shields.io/badge/jQuery-3.4.1-blue)
 
-![Stockfish 10 Chess Engine](https://img.shields.io/badge/Chess_Engine-Stockfish_10-43AC6A)
+![Stockfish 10 Chess Engine](https://img.shields.io/badge/Stockfish_Chess_Engine-10-43AC6A)
 ![Chessboard.JS](https://img.shields.io/badge/Chessboard.JS-1.0.0-brown)
-![PGN Viewer](https://img.shields.io/badge/PGN_Viewer-LT_PGN_3.498-teal)
+![PGN Viewer](https://img.shields.io/badge/LT_PGN_Viewer-3.498-teal)
 
 ![Mobile Support](https://img.shields.io/badge/Touch_Based_Device_Support-Yes-purple)
 ![Known Bugs](https://img.shields.io/badge/Known_Bugs-0-red)
