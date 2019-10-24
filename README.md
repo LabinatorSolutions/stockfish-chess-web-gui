@@ -33,8 +33,8 @@ https://labinatorsolutions.github.io/stockfish-chess-web-gui/
 
 You can find other chess web GUI implementations in the "other-implementations" folder. The other implementations are not currently maintained and included for reference only.
 
-- https://labinatorsolutions.github.io/BoldChess-Stockfish-Web-GUI/other-implementations/example1/
-- https://labinatorsolutions.github.io/BoldChess-Stockfish-Web-GUI/other-implementations/example2/
+- https://labinatorsolutions.github.io/stockfish-chess-web-gui/other-implementations/example1/
+- https://labinatorsolutions.github.io/stockfish-chess-web-gui/other-implementations/example2/
 
 Note: The above implementations will be removed from this repository when the chess clock and the evaluation meter features are implemented. The above examples provide a working sample for beginners to check how such features are implemented.
 
