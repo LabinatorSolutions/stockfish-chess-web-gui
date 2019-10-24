@@ -1,4 +1,4 @@
-# Stockfish-Chess-Web-GUI : Web GUI For Stockfish Chess
+# Web GUI For Stockfish Chess
 
 ![GUI Type](https://img.shields.io/badge/Type-Web_GUI-orange)
 ![JavaScript](https://img.shields.io/badge/Language-JavaScript-yellow)
