@@ -1,4 +1,4 @@
-# BoldChess-Stockfish-Web-GUI : Web GUI For Stockfish Chess
+# Stockfish-Chess-Web-GUI : Web GUI For Stockfish Chess
 
 ![GUI Type](https://img.shields.io/badge/Type-Web_GUI-orange)
 ![JavaScript](https://img.shields.io/badge/Language-JavaScript-yellow)
@@ -14,7 +14,7 @@
 
 ## Overview
 
-BoldChess-Stockfish-Web-GUI is a web graphical user interface (GUI) that loads the JS compiled version of the Stockfish chess engine. It is a fully functional web app that allows you to play against the Stockfish chess engine.
+It is a web graphical user interface (GUI) that loads the JS compiled version of the Stockfish chess engine. It is a fully functional web app that allows you to play against the Stockfish chess engine.
 
 
 ## Mission
@@ -26,7 +26,7 @@ Our mission from this project is to develop a modern responsive free and open so
 
 ## Main Live Demo
 
-https://labinatorsolutions.github.io/BoldChess-Stockfish-Web-GUI/
+https://labinatorsolutions.github.io/stockfish-chess-web-gui/
 
 
 ## Other Implementations - (Included For Reference)
@@ -83,7 +83,7 @@ Note: The above implementations will be removed from this repository when the ch
 
 We welcome all developers to contribute to this repository by fixing bugs or adding features.
 
-This project is lightweight, simple, and beginner friendly. A more advanced project can be found at (https://github.com/LabinatorSolutions/BoldChess-GUI).
+This project is lightweight, simple, and beginner friendly. A more advanced project can be found at (https://github.com/LabinatorSolutions/stockfish-chess-analysis-board/).
 
 **List Of Current Contributors:**
 - https://github.com/LabinatorSolutions
