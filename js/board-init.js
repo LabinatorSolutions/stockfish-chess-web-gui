@@ -16,6 +16,9 @@ var
   promotionFigure = 'q',  // promotion figure, Queen as default
   promotionEvent,
 
+  togglePlayer = false,
+  engineDisabled = false,
+
   engineSkill = 8,       // default engine depth (AI difficulty)
   staticSkill = 16,
 

@@ -86,9 +86,13 @@ function loadBoard(fen, fromHistory = false) {
     }
 
     if (firstTurn == 'computer') {
-      updateEngineSkill();
-      stockfish.postMessage('position fen ' + board.fen() + ' ' + game.turn());
-      stockfish.postMessage('go depth ' + engineSkill);
+      if(engineDisabled) {
+        $('#board').removeClass('locked');
+      } else {
+        updateEngineSkill();
+        stockfish.postMessage('position fen ' + board.fen() + ' ' + game.turn());
+        stockfish.postMessage('go depth ' + engineSkill);
+      }
     }
 
     startTimer();
@@ -125,8 +129,18 @@ function opponentTurn() {
 
   console.log('Game end (1): ' + gameEnd);
 
-  checkPositions('computer');
-
+  if (engineDisabled) {
+    if(togglePlayer) {
+      checkPositions('computer');
+    } else {
+      checkPositions('player');
+    }
+    togglePlayer = !togglePlayer;
+  } else {
+    checkPositions('computer');
+    togglePlayer = true;
+  }
+  
   console.log('Game end (2): ' + gameEnd);
 
   if (gameEnd) {
@@ -138,15 +152,16 @@ function opponentTurn() {
 
   console.log('Engine: position fen ' + game.fen());
 
-  updateEngineSkill();
+  if (!engineDisabled) {
+    updateEngineSkill();
 
-  setTimeout(function() {
-    stockfish.postMessage('position fen ' + game.fen());
-    stockfish.postMessage('go depth ' + engineSkill);
-  }, 500);
-
-  startTimer();
-
+    setTimeout(function() {
+      stockfish.postMessage('position fen ' + game.fen());
+      stockfish.postMessage('go depth ' + engineSkill);
+    }, 500);
+  
+    startTimer();
+  }
 }
 
 // make pawn promotion to queen or whatever
@@ -193,7 +208,7 @@ function checkTurn() {
 }
 
 function checkPositions(turn) {
-
+console.log('Checking positions', turn);
   if (game.in_checkmate()) {
     postEndGame();
     $('#game-state').text('Checkmate').removeClass('hidden');
@@ -223,9 +238,15 @@ function checkPositions(turn) {
     }
 
     if (turn == 'computer') {
-      $('#board').addClass('locked');
-      $('#game-turn').text('It\'s the engine\'s turn...');
-      $('#game-state').text('It\'s the engine\'s turn...').removeClass('hidden');
+      if(engineDisabled) {
+        $('#board').removeClass('locked');
+        $('#game-turn').text('It\'s player 2 turn!');
+        $('#game-state').text('It\'s player 2 turn!').removeClass('hidden');
+      } else {
+        $('#board').addClass('locked');
+        $('#game-turn').text('It\'s the engine\'s turn...');
+        $('#game-state').text('It\'s the engine\'s turn...').removeClass('hidden');
+      }
     }
   }
 
