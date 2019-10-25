@@ -85,6 +85,7 @@ This project is lightweight, simple, and beginner friendly. A more advanced proj
 
 **List Of Current Contributors:**
 - https://github.com/LabinatorSolutions
+- https://github.com/polo123qwe
 - https://github.com/IPetak
 - https://github.com/sudeshchouhan
 
