@@ -45,6 +45,20 @@ $('#btn-save-pgn').click(function() {
   }
 });
 
+// Disable engine
+
+$('#btn-engine-disable').click(function() {
+  if ($('#btn-engine-disable').hasClass('active')) {
+    $('#btn-engine-disable').removeClass('active');
+    $('#btn-engine-disable').text("AI");
+    engineDisabled = false;
+  } else {
+    $('#btn-engine-disable').addClass('active');
+    $('#btn-engine-disable').text("Player");
+    engineDisabled = true;
+  }
+});
+
 // Show hint where to make move
 
 $('#btn-show-hint').click(function() {

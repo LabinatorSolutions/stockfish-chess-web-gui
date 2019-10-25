@@ -40,6 +40,10 @@
   animation: spin 5s linear infinite;
 }
 
+#btn-engine-disable .active {
+  text-decoration: line-through;
+}
+
 #btn-take-back {
   background-image: url('../img/icons/takeback-enabled.svg');
 }
