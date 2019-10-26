@@ -52,6 +52,9 @@ $('#btn-engine-disable').click(function() {
     $('#btn-engine-disable').removeClass('active');
     $('#btn-engine-disable').text("AI");
     engineDisabled = false;
+    if (playerSide != game.turn()) {
+      opponentTurn();
+    }
   } else {
     $('#btn-engine-disable').addClass('active');
     $('#btn-engine-disable').text("Player");

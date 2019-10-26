@@ -72,27 +72,23 @@ function loadBoard(fen, fromHistory = false) {
     $('#game-first-turn .computer').addClass('active');
   }
 
-  $('#board').addClass('locked');
   $('#btn-start-game').removeClass('hidden');
-
+  
   $('#btn-start-game').click(function() {
-
+    
     $('#btn-start-game').addClass('hidden');
-
+    
     console.log('Turn: ' + firstTurn);
-
+    
     if (firstTurn == 'player') {
       $('#board').removeClass('locked');
     }
-
-    if (firstTurn == 'computer') {
-      if(engineDisabled) {
-        $('#board').removeClass('locked');
-      } else {
-        updateEngineSkill();
-        stockfish.postMessage('position fen ' + board.fen() + ' ' + game.turn());
-        stockfish.postMessage('go depth ' + engineSkill);
-      }
+    
+    if (firstTurn == 'computer' && !engineDisabled) {
+      $('#board').addClass('locked');
+      updateEngineSkill();
+      stockfish.postMessage('position fen ' + board.fen() + ' ' + game.turn());
+      stockfish.postMessage('go depth ' + engineSkill);
     }
 
     startTimer();
