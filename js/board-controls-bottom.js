@@ -2,7 +2,7 @@
 
 // Rotate board
 
-$('#btn-flip-board').click(function () {
+$('#btn-flip-board').on('click touchstart', function () {
   if (typeof board.flip == 'function') {
     board.flip();
   } else {
@@ -12,7 +12,7 @@ $('#btn-flip-board').click(function () {
 
 // Switch sides
 
-$('#btn-switch-sides').click(function () {
+$('#btn-switch-sides').on('click touchstart', function () {
   if (typeof board.flip == 'function') {
     board.flip();
   } else {
