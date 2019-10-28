@@ -2,7 +2,7 @@
 
 // Rotate board
 
-$('#btn-flip-board').click(function() {
+$('#btn-flip-board').click(function () {
   if (typeof board.flip == 'function') {
     board.flip();
   } else {
@@ -12,7 +12,7 @@ $('#btn-flip-board').click(function() {
 
 // Switch sides
 
-$('#btn-switch-sides').click(function() {
+$('#btn-switch-sides').click(function () {
   if (typeof board.flip == 'function') {
     board.flip();
   } else {
@@ -25,7 +25,7 @@ $('#btn-switch-sides').click(function() {
   }
 
   else if (playerSide == 'b') {
-    playerSide ='w';
+    playerSide = 'w';
     opponentSide = 'b';
   }
 
@@ -35,7 +35,7 @@ $('#btn-switch-sides').click(function() {
 
 // Save PGN string popup
 
-$('#btn-save-pgn').click(function() {
+$('#btn-save-pgn').click(function () {
   if ($('#board-save-pgn-area').hasClass('hidden')) {
     $('#board-load-fen-area, #board-load-pgn-area').addClass('hidden');
     $('#board-save-pgn-area').removeClass('hidden');
@@ -47,7 +47,7 @@ $('#btn-save-pgn').click(function() {
 
 // Disable engine
 
-$('#btn-engine-disable').click(function() {
+$('#btn-engine-disable').on('click touchstart', function () {
   if ($('#btn-engine-disable').hasClass('active')) {
     $('#btn-engine-disable').removeClass('active');
     $('#btn-engine-disable').text("AI");
@@ -64,7 +64,7 @@ $('#btn-engine-disable').click(function() {
 
 // Show hint where to make move
 
-$('#btn-show-hint').click(function() {
+$('#btn-show-hint').click(function () {
   if ($(this).hasClass('disabled')) {
     console.log('Cannot show hint in opponent turn.');
     return;
@@ -78,7 +78,7 @@ $('#btn-show-hint').click(function() {
 
 // Make one step back
 
-$('#btn-take-back').click(function() {
+$('#btn-take-back').click(function () {
   game.undo();
   board.position(game.fen());
   game.undo();
@@ -90,7 +90,7 @@ $('#btn-take-back').click(function() {
 
 // Promotion popup ui
 
-$('#game-promotion span').click(function() {
+$('#game-promotion span').click(function () {
 
   $('#game-promotion span').removeClass('active');
   $(this).addClass('active');

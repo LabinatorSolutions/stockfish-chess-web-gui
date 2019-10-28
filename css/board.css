@@ -47,7 +47,7 @@
 #btn-take-back {
   background-image: url('../img/icons/takeback-enabled.svg');
 }
-#btn-take-back.disabled{
+#btn-take-back.disabled {
   background-image: url('../img/icons/takeback-disabled.svg');
 }
 
@@ -70,10 +70,14 @@
 }
 
 #btn-settings {
-  background-image: url('../img/icons/settings.svg');  
+  background-image: url('../img/icons/settings.svg');
 }
 
 /* main styles */
+
+.buttons > button {
+  background-color: #ffffff;
+}
 
 .chess-area {
   display: flex;
@@ -132,7 +136,7 @@
   text-decoration: underline;
 }
 .chess-area .board-table .promotion span.active {
-  background: #DCDCDC;
+  background: #dcdcdc;
 }
 .chess-area .board-table .promotion.hidden {
   display: none;
@@ -430,7 +434,7 @@
   padding: 5px;
   font: normal 13px Arial;
 }
-.chess-area .board-settings .turns-history ol li:nth-child(2n+2) {
+.chess-area .board-settings .turns-history ol li:nth-child(2n + 2) {
   background: #f3f3f3;
 }
 
@@ -545,7 +549,7 @@
   background-color: #f5f5f5;
 }
 
-.chess-area .board-settings .btn-new-game { 
+.chess-area .board-settings .btn-new-game {
   display: flex;
   display: -webkit-flex;
   align-items: center;
@@ -555,7 +559,7 @@
   margin: 0 3px 0 2px;
   border: none;
   border-radius: 3px;
-  background: #D41C3B;
+  background: #d41c3b;
   font-size: 14px;
   line-height: 100%;
   text-transform: none;
@@ -683,7 +687,6 @@
   opacity: 0.7;
 }
 .chess-area .board-settings .castling .opts input {
-
 }
 .chess-area .board-settings .buttons {
   width: 100%;
@@ -723,8 +726,7 @@
   padding: 10px 0 0 0;
 }
 
-@media (max-width: 810px)  {
-
+@media (max-width: 810px) {
   .chess-area {
     align-items: center;
     -webkit-align-items: center;
@@ -768,7 +770,6 @@
     font-weight: bold;
     color: #696868;
   }
-
 }
 
 @media (max-width: 768px) {
