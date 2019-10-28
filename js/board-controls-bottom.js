@@ -35,7 +35,7 @@ $('#btn-switch-sides').click(function () {
 
 // Save PGN string popup
 
-$('#btn-save-pgn').click(function () {
+$('#btn-save-pgn').on('click touchstart', function () {
   if ($('#board-save-pgn-area').hasClass('hidden')) {
     $('#board-load-fen-area, #board-load-pgn-area').addClass('hidden');
     $('#board-save-pgn-area').removeClass('hidden');
@@ -64,7 +64,7 @@ $('#btn-engine-disable').on('click touchstart', function () {
 
 // Show hint where to make move
 
-$('#btn-show-hint').click(function () {
+$('#btn-show-hint').on('click touchstart', function () {
   if ($(this).hasClass('disabled')) {
     console.log('Cannot show hint in opponent turn.');
     return;
@@ -78,7 +78,7 @@ $('#btn-show-hint').click(function () {
 
 // Make one step back
 
-$('#btn-take-back').click(function () {
+$('#btn-take-back').on('click touchstart', function () {
   game.undo();
   board.position(game.fen());
   game.undo();
@@ -90,7 +90,7 @@ $('#btn-take-back').click(function () {
 
 // Promotion popup ui
 
-$('#game-promotion span').click(function () {
+$('#game-promotion span').on('click touchstart', function () {
 
   $('#game-promotion span').removeClass('active');
   $(this).addClass('active');
