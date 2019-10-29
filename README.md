@@ -50,15 +50,15 @@ You can find other chess web GUI implementations in the "other-implementations" 
 
 ## Online Installation
 
-- Unzip the compressed file.
-- Upload the unzipped folder to your web server then view its path from your web browser.
+- Download or clone this repository.
+- Upload the unzipped folder of this repository to your web server then view it from your web browser.
 
 
 ## Local Installation
 
-- Install [XAMPP](https://www.apachefriends.org/index.html) or any other alternative localhost stack.
-- Unzip the compressed file.
-- Copy the unzipped folder to the (htdocs) directory then view its path from your web browser.
+- Download or clone this repository.
+- Install a web server locally to test effectively the GUI. A fast approach is download and install [XAMPP](https://www.apachefriends.org/index.html).
+- Copy the folder of the repository to the (htdocs) directory then view it locally from your web browser.
 
 
 ## Basic Suggested Improvements
