@@ -84,11 +84,7 @@ We welcome all developers to contribute to this repository by fixing bugs or add
 This project is lightweight, simple, and beginner friendly. A more advanced project can be found at (https://github.com/LabinatorSolutions/stockfish-chess-analysis-board/).
 
 **List Of Current Contributors:**
-- https://github.com/LabinatorSolutions
-- https://github.com/natehole
-- https://github.com/polo123qwe
-- https://github.com/IPetak
-- https://github.com/sudeshchouhan
+- https://github.com/LabinatorSolutions/stockfish-chess-web-gui/graphs/contributors
 
 
 ## License
