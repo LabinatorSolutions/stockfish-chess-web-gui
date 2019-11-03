@@ -31,10 +31,10 @@ https://labinatorsolutions.github.io/stockfish-chess-web-gui/
 
 You can find other chess web GUI implementations in the "other-implementations" folder. The other implementations are not currently maintained and included for reference only.
 
-- https://labinatorsolutions.github.io/stockfish-chess-web-gui/other-implementations/example1/
-- https://labinatorsolutions.github.io/stockfish-chess-web-gui/other-implementations/example2/
-- https://labinatorsolutions.github.io/stockfish-chess-web-gui/other-implementations/example3/
-- https://labinatorsolutions.github.io/stockfish-chess-web-gui/other-implementations/example4/
+- https://labinatorsolutions.github.io/stockfish-chess-web-gui/other-implementations/example1/index.html
+- https://labinatorsolutions.github.io/stockfish-chess-web-gui/other-implementations/example2/index.html
+- https://labinatorsolutions.github.io/stockfish-chess-web-gui/other-implementations/example3/index.html
+- https://labinatorsolutions.github.io/stockfish-chess-web-gui/other-implementations/example4/index.html
 
 **Note:** The above implementations or examples will be removed from this repository when this GUI improves to the stage where it surpasses all of the above examples in terms of features. In the meantime, we will keep them for educational purposes and a good point of reference. The above examples provide a working example of how some features can be implemented. Please refer to their license and readme files to learn more about each of those examples.
 
