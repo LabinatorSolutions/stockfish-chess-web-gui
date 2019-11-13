@@ -19,7 +19,7 @@ It is a web graphical user interface (GUI) for the Stockfish Chess engine. It is
 
 ## Mission
 
-Our mission from this project is to develop a modern responsive free and open source web-based chess GUI and analysis tool for the Stockfish chess engine.
+Our mission from this project is to develop a modern responsive free and open source web-based chess GUI powered by the Stockfish chess engine.
 
 
 ## Main Live Demo
@@ -83,7 +83,8 @@ You can find other chess web GUI implementations in the "other-implementations" 
 
 We welcome all developers to contribute to this repository by fixing bugs or adding features.
 
-This project is lightweight, simple, and beginner friendly. A more advanced project can be found at (https://github.com/LabinatorSolutions/stockfish-chess-analysis-board/).
+It is also great to check our advanced chess app at:
+- https://github.com/LabinatorSolutions/boldchess-web-app
 
 **List Of Current Contributors:**
 - https://github.com/LabinatorSolutions/stockfish-chess-web-gui/graphs/contributors
