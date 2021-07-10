@@ -59,7 +59,8 @@ function listMoves() {
     console.log('History: show turn ' + $(this).attr('turn'));
     moves = JSON.parse(localStorage.getItem('boardHistory'));
     console.log(moves[turnN-1]);
-    loadBoard(moves[turnN-1], true);
+    /*Deleting the functionality of load the board when click on historical. Only commenting the lines.*/
+    //loadBoard(moves[turnN-1], true);
   });
 }
 

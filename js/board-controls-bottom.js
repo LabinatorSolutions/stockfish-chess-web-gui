@@ -48,7 +48,10 @@ $('#btn-save-pgn').on('click', function () {
 // Disable engine
 
 $('#btn-engine-disable').on('click', function () {
-  if ($('#btn-engine-disable').hasClass('active')) {
+  /*
+    Deleting the functionality of toggle from AI to Player. Only commenting the lines.
+  */
+  /*if ($('#btn-engine-disable').hasClass('active')) {
     $('#btn-engine-disable').removeClass('active');
     $('#btn-engine-disable').text("AI");
     engineDisabled = false;
@@ -59,7 +62,7 @@ $('#btn-engine-disable').on('click', function () {
     $('#btn-engine-disable').addClass('active');
     $('#btn-engine-disable').text("Player");
     engineDisabled = true;
-  }
+  }*/
 });
 
 // Show hint where to make move
