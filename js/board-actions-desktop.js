@@ -69,7 +69,7 @@ function setDesktopBoard(position = false, sparePieces = false) {
     }
 
     dumpLog(false);
-    
+
     listMoves();
     opponentTurn();
 
@@ -103,7 +103,7 @@ function setDesktopBoard(position = false, sparePieces = false) {
   var onSnapEnd = function() {
     board.position(game.fen());
     gameHistoryAddMove(game.fen());
-    if (game.history().length > 0) $('#btn-take-back').removeClass('hidden');
+    if (game.history().length > 0) $('#btn-take-back').removeClass('disabled');
   };
 
   board = ChessBoard('board', {
