@@ -1,9 +1,9 @@
 function updateEngineSkill() {
   if (engineSkill != parseInt($('#game-difficulty-skill-value').text())) {
-    engineSkill = parseInt($('#game-difficulty-skill-value').text());  
+    engineSkill = parseInt($('#game-difficulty-skill-value').text());
     stockfish.postMessage('setoption name skill level value ' + engineSkill);
     console.log('Skill level is ' + engineSkill + ' (setoption name skill level value ' + engineSkill + ')');
-  }  
+  }
 }
 
 function gameHistoryAddMove(position) {
@@ -36,7 +36,7 @@ function loadBoard(fen, fromHistory = false) {
 
   var gameValidation = game.validate_fen(fen);
 
-  if (!gameValidation.valid) { 
+  if (!gameValidation.valid) {
     console.log('Error ' + gameValidation.error_number + ': ' + gameValidation.error);
     alert('Error ' + gameValidation.error_number + ': ' + gameValidation.error);
     return;
@@ -73,17 +73,17 @@ function loadBoard(fen, fromHistory = false) {
   }
 
   $('#btn-start-game').removeClass('hidden');
-  
+
   $('#btn-start-game').click(function() {
-    
+
     $('#btn-start-game').addClass('hidden');
-    
+
     console.log('Turn: ' + firstTurn);
-    
+
     if (firstTurn == 'player') {
       $('#board').removeClass('locked');
     }
-    
+
     if (firstTurn == 'computer' && !engineDisabled) {
       $('#board').addClass('locked');
       updateEngineSkill();
@@ -136,7 +136,7 @@ function opponentTurn() {
     checkPositions('computer');
     togglePlayer = true;
   }
-  
+
   console.log('Game end (2): ' + gameEnd);
 
   if (gameEnd) {
@@ -155,7 +155,7 @@ function opponentTurn() {
       stockfish.postMessage('position fen ' + game.fen());
       stockfish.postMessage('go depth ' + engineSkill);
     }, 500);
-  
+
     startTimer();
   }
 }
