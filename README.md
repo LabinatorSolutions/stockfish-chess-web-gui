@@ -2,7 +2,7 @@
 
 ![GUI Type](https://img.shields.io/badge/Type-Web_GUI-orange)
 ![JavaScript](https://img.shields.io/badge/Language-JavaScript-yellow)
-![jQuery](https://img.shields.io/badge/jQuery-3.4.1-blue)
+![jQuery](https://img.shields.io/badge/jquery-3.6.0-blue)
 
 ![Stockfish 10 Chess Engine](https://img.shields.io/badge/Stockfish_Chess_Engine-10-43AC6A)
 ![Chessboard.JS](https://img.shields.io/badge/Chessboard.JS-1.0.0-brown)
@@ -45,7 +45,7 @@ You can find other chess web GUI implementations in the "other-implementations" 
 - Easy To Install.
 - Fully Responsive.
 - Uses Stockfish Version 10.
-- Uses jQuery 3.4.1.
+- Uses jQuery 3.6.0.
 - Uses Chessboard.js Version 1.0.0.
 - LT-PGN-Viewer Version 3.498.
 
