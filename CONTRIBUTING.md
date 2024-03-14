@@ -1,4 +1,4 @@
-# Contributing to Stockfish-Chess-Web-GUI
+# Contributing
 
 Thank you for your interest in contributing! We value the contributions of our community members and are excited to have you on board.
 Below are the guidelines for contributing to our project. By following these guidelines, you help us maintain the quality of our code and ensure that everyone's contributions can be included.
