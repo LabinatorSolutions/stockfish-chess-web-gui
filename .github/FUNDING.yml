@@ -1,5 +1,6 @@
 # These are supported funding model platforms
 
-- GitHub: LabinatorSolutions
-- Ethereum (ETH): 0xC49FD350c66C46DE6FBEA93fdC013Db4E7503480
-- TRON (TRX): TVjEnXqTfvA5CE2V8HFbDJ4uZ2Dk62eaG3
+github: LabinatorSolutions
+custom: 
+  - 'ETH: 0xC49FD350c66C46DE6FBEA93fdC013Db4E7503480'
+  - 'TRX: TVjEnXqTfvA5CE2V8HFbDJ4uZ2Dk62eaG3'
