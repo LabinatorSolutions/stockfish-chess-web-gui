@@ -10,6 +10,8 @@
 
 It is a web graphical user interface (GUI) for the Stockfish Chess engine. It is a fully functional web-based chess app that allows you to play against the Stockfish chess engine.
 
+This repository contains two different implementations. Explore both and contribute to the one you find most interesting. Ultimately, only one implementation will remain once we reach a stable, bug-free version with sufficient features to be considered professional.
+
 ---
 
 ## Mission
@@ -58,7 +60,7 @@ Our mission from this project is to develop a modern responsive free and open so
 
 3. **Game Analysis**
    - Real-time Analysis
-   - Game Review
+   - Game Review & Evaluation Report
    - Blunder Detection
    - Evaluation Graph
    - Move List
@@ -81,7 +83,6 @@ Our mission from this project is to develop a modern responsive free and open so
 
 7. **Opening Explorer**
    - Opening Database
-   - Opening Repertoire
 
 8. **Stockfish Settings**
    - Skill Level
@@ -89,46 +90,26 @@ Our mission from this project is to develop a modern responsive free and open so
    - Thinking Time
 
 9. **Additional Features**
-	- Move Confirmation
-	- Highlight Best Move
-	- Interactive Lessons
-	- Statistics and Insights
-	- Game Modes and Variants
-	- Multiple Analysis Engines
-	- Engine vs. Engine
-	- Move Sound Effects Customization
-	- Notation Styles
-	- Custom Positions and Scenarios
-	- Position Analysis Report
-	- User Feedback Loop
-	- Visual Customizations
-	- Chess Clock Variants
-	- Post-Game Summary
-	- Educational Content
-	- Interactive Endgame Tablebases
-	- Blindfold Mode
-	- Customizable Time Controls
-	- Piece Animation Speed Control
-	- Coach Mode
-	- Dark/Light Modes
-	- Enhanced Accessibility Features
+   - Highlight Best Move
+   - Multiple Analysis Engines
+   - Engine vs. Engine
+   - Visual Customizations
+   - Coach Mode
+   - Dark/Light Modes
+   - Enhanced Accessibility Features
 
-10. **Keyboard Shortcuts**
-    - Move Pieces
+11. **Keyboard Shortcuts**
     - Board Controls
-    - Engine Commands
     - Interface Navigation
 
-11. **Scores of All Legal Moves**
+12. **Scores of All Legal Moves**
     - Move Evaluation Display
     - Real-time Updates
-    - Color Coding
 
-12. **Analysis Lines**
+13. **Analysis Lines**
     - Multi-Line Display
     - Interactive Analysis
     - Depth and Score
-    - Expandable Lines
 
 ---
 
