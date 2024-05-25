@@ -31,7 +31,7 @@ var
 
 // Init engine
 
-var stockfish = new Worker('js/engine/stockfish-nnue-16.js');
+var stockfish = new Worker('js/engine/stockfish-nnue-16-single.js');
 
 function dumpLog(data) {
   if (!data) {
