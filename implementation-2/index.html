@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BoldChess.com - Stockfish 16 Web GUI</title>
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/chessboard-1.0.0.min.css">
+    <script src="./js/jquery-3.7.1.min.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+    <script src="./js/chessboard-1.0.0.min.js"></script>
+    <script src="./js/chess.min.js"></script>
+    <style>
+        #board {
+            max-width: 600px;
+            position: relative;
+        }
+        .settings-accordion {
+            max-width: 400px;
+            margin-top: -1.25rem; /* Align the top of the accordion with the top of the chessboard */
+        }
+        .full-width-bar {
+            width: 80%;
+            background-color: #f8f9fa;
+        }
+        #score-bar-container {
+            position: absolute;
+            left: 75px;
+            top: 0;
+            width: 10px;
+            height: 100%;
+            background-color: #3b4252ff;
+        }
+        #score-bar {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background-color: #d8dee9ff;
+        }
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 600px; /* Ensure buttons do not surpass the width of the board */
+        }
+        .button-container .btn {
+            flex: 1;
+            margin: 0 5px;
+        }
+        .button-container.second-row .btn {
+            margin-top: 10px; /* Space between button rows */
+        }
+    </style>
+    <div class="container">
+        <a href="https://boldchess.com/">
+            <img src="img/favicon/favicon.svg" width="80" height="80" class="d-block mx-auto mb-3">
+            <h1 class="text-center">BoldChess</h1>
+        </a>
+    </div>
+</head>
+
+<body>
+    <div class="container">
+        <h3 class="text-center my-4">Play Chess Against StockFish 16</h3>
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-7 d-flex flex-column align-items-center mb-4 position-relative">
+                <div id="score-bar-container">
+                    <div id="score-bar"></div>
+                </div>
+                <div id="board" class="w-100"></div>
+                <div class="full-width-bar" id="game-result"><span id="game-score"></span></div>
+                <div class="button-container mt-4">
+                    <button type="button" class="btn btn-primary" id="takeBackBtn">Take Back</button>
+                    <button type="button" class="btn btn-secondary" id="flipBoardBtn">Flip Board</button>
+                    <button type="button" class="btn btn-warning" id="switchBoardBtn">Swap Board</button>
+                    <button type="button" class="btn btn-danger" id="resetGameBtn">Reset Game</button>
+                </div>
+            </div>
+            <div class="col-12 col-md-5 settings-accordion">
+                <div class="accordion my-4" id="accordionOptions">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingOne">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Settings</button>
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionOptions">
+                            <div class="accordion-body">
+                                <div class="mb-3">
+                                    <label for="gameMode" class="form-label">Game Mode</label>
+                                    <select class="form-select" id="gameMode">
+                                        <option value="Player vs Engine" selected>Player vs Engine</option>
+                                        <option value="Player vs Player">Player vs Player</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="skillLevel" class="form-label">Computer Skill Level (0-20)</label>
+                                    <input type="number" class="form-control" id="skillLevel" value="20" min="0" max="20">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="depthLevel" class="form-label">Search Depth (1-30)</label>
+                                    <input type="number" class="form-control" id="depthLevel" value="20" min="1" max="30">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="thinkingTime" class="form-label">Thinking Time (1-30 seconds)</label>
+                                    <input type="number" class="form-control" id="thinkingTime" value="1" min="1" max="30">
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="timeDepthToggle" id="depthToggle" checked>
+                                    <label class="form-check-label" for="depthToggle">
+                                        Use Depth
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="timeDepthToggle" id="timeToggle">
+                                    <label class="form-check-label" for="timeToggle">
+                                        Use Thinking Time
+                                    </label>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="promote" class="form-label">Promote Pawns To</label>
+                                    <select class="form-select" id="promote">
+                                        <option value="q" selected>Queen</option>
+                                        <option value="r">Rook</option>
+                                        <option value="b">Bishop</option>
+                                        <option value="n">Knight</option>
+                                    </select>
+                                </div>
+                                <div class="btn-group mb-3 w-100" role="group" aria-label="Color selection">
+                                    <input type="radio" class="btn-check" name="color" id="color-white" autocomplete="off" checked>
+                                    <label class="btn btn-outline-primary" for="color-white">Play as White</label>
+                                    <input type="radio" class="btn-check" name="color" id="color-black" autocomplete="off">
+                                    <label class="btn btn-outline-primary" for="color-black">Play as Black</label>
+                                </div>
+                                <button type="button" class="btn btn-danger w-100" id="newGameBtn">Start New Game</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingThree">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">Moves</button>
+                        </h2>
+                        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionOptions">
+                            <div class="accordion-body">
+                                <h4>List Of Moves:</h4>
+                                <div id="pgn"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingFour">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">Classical Evaluation</button>
+                        </h2>
+                        <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionOptions">
+                            <div class="accordion-body">
+                                <h4>Evaluation:</h4>
+                                <pre id="evaluation"></pre>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingFive">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">Engine Analysis</button>
+                        </h2>
+                        <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionOptions">
+                            <div class="accordion-body">
+                                <div id="engineAnalysis" class="text-center"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingSix">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">PGN & FEN</button>
+                        </h2>
+                        <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-bs-parent="#accordionOptions">
+                            <div class="accordion-body">
+                                <div class="mb-3">
+                                    <label for="pgnInput" class="form-label">PGN</label>
+                                    <textarea class="form-control" id="pgnInput" rows="3"></textarea>
+                                    <button type="button" class="btn btn-primary mt-2" id="copyPgnBtn">Copy PGN</button>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="fenInput" class="form-label">FEN</label>
+                                    <textarea class="form-control" id="fenInput" rows="2"></textarea>
+                                    <button type="button" class="btn btn-primary mt-2" id="copyFenBtn">Copy FEN</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center py-3 mt-auto">
+        <div class="container">
+            <p class="mb-1">This project is licensed under the <a href="https://www.gnu.org/licenses/agpl-3.0.html" class="text-white text-decoration-underline" target="_blank">AGPLv3 License</a></p>
+            <p class="mb-0">Visit <a href="https://boldchess.com" class="text-white text-decoration-underline" target="_blank">BoldChess.com</a> for more information</p>
+        </div>
+    </footer>
+    <script src="index.js"></script>
+</body>
+
+</html>

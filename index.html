@@ -1,234 +1,72 @@
 <!DOCTYPE html>
-<html>
-
-<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+<html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <title>Play Chess Against Stockfish 10 Online For Free - BoldChess</title>
-    <meta name="description" content="Play chess against Stockfish 10 online for free." />
-
-    <meta property="og:url" content="index.html">
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Play Chess Against Stockfish 10 Online For Free">
-    <meta property="og:description" content="Play chess against Stockfish 10 online for free.">
-
-    <link rel="icon" type="image/svg" href="img/icons/favicon.svg" />
-
-    <link rel="stylesheet" id="chessboard-css" href="css/chessboard.css" />
-    <link rel="stylesheet" href="css/board.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BoldChess Stockfish Web GUIs</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 
-<body bgcolor="#000000">
-    <div class="content">
-    	<span align="center">
-            <a href="https://boldchess.com/" style="color:#ffffff">
-                <img  width="80" height="80" src="img/icons/favicon.svg" style="display: block; margin-left: auto; margin-right: auto">
-                <h1 align="center" style="font-weight:600">BoldChess</h1>
-            </a>
-            <h2 align="center" style="color:#ffffff">Play Chess Against Stockfish 10</h2>
-            <br />
-        </span>
-            <div class="chess-area">
-                <div class="board-table">
-                    <div id="board-top-controls" class="top-controls">
-                        <div id="game-promotion" class="promotion hidden">
-                            <span figure="q">Queen</span>
-                            <span figure="b">Bishop</span>
-                            <span figure="n">Knight</span>
-                            <span figure="r">Rook</span>
+<body>
+    <!-- Header Section -->
+    <header class="bg-dark text-white text-center py-3">
+        <h1>BoldChess Stockfish Web GUIs</h1>
+    </header>
+    <!-- Main Content -->
+    <main class="container my-4">
+        <div class="row">
+            <!-- Implementation #1 Card -->
+            <div class="col-md-6 mb-4">
+                <a href="./implementation-1" class="text-decoration-none" rel="noopener noreferrer">
+                    <div class="card h-100 text-center">
+                        <div class="d-flex justify-content-center align-items-center" style="height: 200px;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="currentColor" class="bi bi-1-square" viewBox="0 0 16 16" aria-label="Implementation #1">
+                                <path d="M9.283 4.002V12H7.971V5.338h-.065L6.072 6.656V5.385l1.899-1.383z" />
+                                <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm15 0a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1z" />
+                            </svg>
                         </div>
-                        <div id="board-save-pgn-area" class="popup hidden">
-                            <span class="close"></span>
-                            <label>Save PGN Notation:</label>
-                            <textarea readonly></textarea>
-                            <button>Close</button>
-                        </div>
-                        <div id="board-load-fen-area" class="popup hidden">
-                            <span class="close"></span>
-                            <label>Load FEN Notation:</label>
-                            <textarea></textarea>
-                            <button>Load</button>
-                        </div>
-                        <div id="board-load-pgn-area" class="popup large hidden">
-                            <span class="close"></span>
-                            <label>Load PGN Notation:</label>
-                            <textarea></textarea>
-                            <button>Load</button>
-                        </div>
-                        <div id="board-resign-game-area" class="popup hidden">
-                            <span class="close"></span>
-                            <label>Do you want to resign?</label>
-                            <button class="yes">Yes</button>
-                            <button class="no">No</button>
+                        <div class="card-body">
+                            <h5 class="card-title">Implementation #1</h5>
                         </div>
                     </div>
-                    <div id="board" class="board"></div>
-                    <div id="board-controls" class="controls">
-                        <div class="buttons">
-                            <button id="btn-switch-sides" title="Switch Sides"><i class="icon"></i></button>
-                            <button id="btn-flip-board" title="Flip Board"><i class="icon"></i></button>
-                            <button id="btn-save-pgn" title="Save PGN"><i class="icon"></i></button>
-                            <button id="btn-engine-disable" title="Engine Toggle (On/Off)">AI</button>
-                            <button id="btn-show-hint" title="Show Hint"><i class="icon"></i></button>
-                            <button id="btn-take-back" class="disabled" title="Take Back"><i class="icon"></i></button>
-                        </div>
-                        <div class="status">
-                            <!-- <span id="game-timer" class="hidden">00:00</span> -->
-                            <span id="game-turn" style="display: none;">It's your turn!</span>
-                            <span id="game-state" class="hidden"></span>
-                        </div>
-                        <div id="board-messages" class="messages hidden" style="display: none !important;"></div>
-                    </div>
-                </div>
-                <div class="board-settings">
-                    <div class="apex">
-                        <span class="label-history">Game History</span>
-                        <div class="game-level" id="game-difficulty-option" title="Choose The Engine's Skill Level">
-                            <span class="label">Level</span>
-                            <span class="value" id="game-difficulty-skill-value">10</span>
-                        </div>
-                    </div>
-                    <div class="game-difficulty hidden" id="game-difficulty-skill-settings">
-                        <span class="label">Select Engine's Level:</span>
-                        <span class="close"></span>
-                        <div class="values">
-                            <span class="1">1</span>
-                            <span class="2">2</span>
-                            <span class="3">3</span>
-                            <span class="4">4</span>
-                            <span class="5">5</span>
-                            <span class="6">6</span>
-                            <span class="7">7</span>
-                            <span class="8">8</span>
-                            <span class="9">9</span>
-                            <span class="10 selected">10</span>
-                            <span class="11">11</span>
-                            <span class="12">12</span>
-                            <span class="13">13</span>
-                            <span class="14">14</span>
-                            <span class="15">15</span>
-                            <span class="16">16</span>
-                            <span class="17">17</span>
-                            <span class="18">18</span>
-                            <span class="19">19</span>
-                            <span class="20">20</span>
-                        </div>
-                    </div>
-                    <div class="turns-history" id="game-turns-history">
-                        <ol></ol>
-                    </div>
-                    <div class="game-analyze hidden" id="game-analyze-string"></div>
-                    <div class="game-menu hidden" id="game-settings">
-                        <span class="label-choose-side">Select Side</span>
-                        <span class="btn game-white-side selected" id="btn-choose-white-side"></span>
-                        <span class="btn game-black-side" id="btn-choose-black-side"></span>
-                    </div>
-                    <div class="tunes">
-                        <span id="btn-new-game" title="Start New Game" class="btn-new-game">
-            <span class="icon"></span>
-                        <span class="label">New Game</span>
-                        </span>
-                        <span id="btn-settings" title="Choose The Engine's Skill Level" class="btn settings"></span>
-                        <span id="btn-resign" title="Resign" class="btn resign"></span>
-                        <span id="btn-analyze" title="Request Engine Evaluation" class="btn analyze">
-            <i class="icon"></i>
-          </span>
-                    </div>
-                    <div class="params">
-                        <div class="cell side" id="game-player-side" style="display: none;">
-                            <label>Your Side:</label>
-                            <span class="white active">White</span>
-                            <span class="black">Black</span>
-                        </div>
-                        <div class="cell first-turn" id="game-first-turn" style="display: none;">
-                            <label>First Turn:</label>
-                            <span class="player active">Player</span>
-                            <span class="computer">Computer</span>
-                        </div>
-                    </div>
-                </div>
+                </a>
             </div>
-            <div class="chess-log"></div>
+            <!-- Implementation #2 Card -->
+            <div class="col-md-6 mb-4">
+                <a href="./implementation-2" class="text-decoration-none" rel="noopener noreferrer">
+                    <div class="card h-100 text-center">
+                        <div class="d-flex justify-content-center align-items-center" style="height: 200px;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="currentColor" class="bi bi-2-square" viewBox="0 0 16 16" aria-label="Implementation #2">
+                                <path d="M6.646 6.24v.07H5.375v-.064c0-1.213.879-2.402 2.637-2.402 1.582 0 2.613.949 2.613 2.215 0 1.002-.6 1.667-1.287 2.43l-.096.107-1.974 2.22v.077h3.498V12H5.422v-.832l2.97-3.293c.434-.475.903-1.008.903-1.705 0-.744-.557-1.236-1.313-1.236-.843 0-1.336.615-1.336 1.306" />
+                                <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm15 0a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1z" />
+                            </svg>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Implementation #2</h5>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </main>
+    <!-- Contribution Alert -->
+    <div class="container mb-4">
+        <div class="alert alert-success d-flex align-items-center justify-content-center text-center" role="alert">
+            Both implementations need significant improvements and updates. Join our contributors and help enhance them!
+        </div>
     </div>
-
-    <script src="js/jquery-3.6.0.min.js"></script>
-    <script src="js/chess.min.js"></script>
-    <script src="js/ltpgnviewer.js"></script>
-
-    <script>
-        function is_touch_device() {
-            return 'ontouchstart' in window || navigator.maxTouchPoints;
-        };
-
-        function loadCss(cssId, cssHref) {
-            $('#' + cssId).attr('href', cssHref);
-        }
-
-        var mobileLibs = 8;
-        var desktopLibs = 8;
-
-        var isMobile = is_touch_device();
-
-        if (isMobile == true) {
-
-            var chess, board;
-
-            loadCss('chessboard-css', 'css/caustique-chessboard.css');
-
-            $.getScript('js/chessboard-caustique-min.js', initGameBoard('mobile'));
-            $.getScript('js/board-controls-side.js', initGameBoard('mobile'));
-            $.getScript('js/board-controls-bottom.js', initGameBoard('mobile'));
-            $.getScript('js/board-sets.js', initGameBoard('mobile'));
-
-            $.getScript('js/board-time.js', initGameBoard('mobile'));
-            $.getScript('js/board-actions.js', initGameBoard('mobile'));
-            $.getScript('js/board-actions-mobile.js', initGameBoard('mobile'));
-            $.getScript('js/board-init.js', initGameBoard('mobile'));
-
-        } else {
-
-            loadCss('chessboard-css', 'css/chessboard.css');
-
-            $.getScript('js/chessboard.min.js', initGameBoard('desktop'));
-            $.getScript('js/board-controls-side.js', initGameBoard('desktop'));
-            $.getScript('js/board-controls-bottom.js', initGameBoard('desktop'));
-            $.getScript('js/board-sets.js', initGameBoard('desktop'));
-
-            $.getScript('js/board-time.js', initGameBoard('desktop'));
-            $.getScript('js/board-actions.js', initGameBoard('desktop'));
-            $.getScript('js/board-actions-desktop.js', initGameBoard('desktop'));
-            $.getScript('js/board-init.js', initGameBoard('desktop'));
-
-        }
-
-        function initGameBoard(lib = false) {
-
-            if (lib == 'mobile') {
-                mobileLibs--;
-                if (mobileLibs == 0) {
-                    console.log('Mobile loaded');
-                    setTimeout(function() {
-                        setMobileBoard();
-                    }, 1000);
-                }
-            }
-
-            if (lib == 'desktop') {
-                desktopLibs--;
-                if (desktopLibs == 0) {
-                    console.log('Desktop loaded');
-                    setTimeout(function() {
-                        setDesktopBoard();
-                    }, 1000);
-                }
-            }
-
-        }
-    </script>
-
+    <div class="container mb-4">
+        <div class="alert alert-primary d-flex align-items-center justify-content-center text-center" role="alert">
+            It is also great to check and contribute to the official&nbsp;<a href="https://github.com/LabinatorSolutions/boldchess-web-app" target="_blank" rel="noopener noreferrer">BoldChess app</a>.
+        </div>
+    </div>
+    <!-- Footer Section -->
+    <footer class="bg-light text-black text-center py-3">
+        <p>Licensed under the <a href="https://www.gnu.org/licenses/agpl-3.0.en.html" target="_blank" rel="noopener noreferrer">AGPLv3</a> license. Powered by <a href="https://boldchess.com" target="_blank" rel="noopener noreferrer">BoldChess.com</a></p>
+    </footer>
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 
 </html>

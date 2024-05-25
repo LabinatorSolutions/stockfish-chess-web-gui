@@ -2,106 +2,155 @@
 
 ![GUI Type](https://img.shields.io/badge/Type-Web_GUI-orange)
 ![JavaScript](https://img.shields.io/badge/Language-JavaScript-yellow)
-![jQuery](https://img.shields.io/badge/jquery-3.6.0-blue)
-
-![Stockfish 10 Chess Engine](https://img.shields.io/badge/Stockfish_Chess_Engine-10-43AC6A)
+![jQuery](https://img.shields.io/badge/jquery-3.7.1-blue)
+![Stockfish 16 Chess Engine](https://img.shields.io/badge/Stockfish_Chess_Engine-16-43AC6A)
 ![Chessboard.JS](https://img.shields.io/badge/Chessboard.JS-1.0.0-brown)
-![PGN Viewer](https://img.shields.io/badge/LT_PGN_Viewer-3.498-teal)
-
-![Mobile Support](https://img.shields.io/badge/Touch_Based_Device_Support-Yes-purple)
-![Known Bugs](https://img.shields.io/badge/Known_Bugs-1-green)
-
 
 ## Overview
 
 It is a web graphical user interface (GUI) for the Stockfish Chess engine. It is a fully functional web-based chess app that allows you to play against the Stockfish chess engine.
 
+---
 
 ## Mission
 
 Our mission from this project is to develop a modern responsive free and open source web-based chess GUI powered by the Stockfish chess engine.
 
+---
 
-## Main Live Demo
+## Live Demo
 
-https://labinatorsolutions.github.io/stockfish-chess-web-gui/
+- https://labinatorsolutions.github.io/stockfish-chess-web-gui/implementation-1/index.html
+- https://labinatorsolutions.github.io/stockfish-chess-web-gui/implementation-2/index.html
 
+**Note:** The above implementations still require lots of work. Your contribution is always appreciated.
 
-## Other Implementations - (Included For Reference)
+---
 
-You can find other chess web GUI implementations in the "other-implementations" folder. The other implementations are not currently maintained and included for reference only.
+## Installation
 
-- https://labinatorsolutions.github.io/stockfish-chess-web-gui/other-implementations/example1/index.html
-- https://labinatorsolutions.github.io/stockfish-chess-web-gui/other-implementations/example2/index.html
-- https://labinatorsolutions.github.io/stockfish-chess-web-gui/other-implementations/example3/index.html
-- https://labinatorsolutions.github.io/stockfish-chess-web-gui/other-implementations/example4/index.html
-
-**Note:** The above implementations or examples will be removed from this repository when this GUI improves to the stage where it surpasses all of the above examples in terms of features. In the meantime, we will keep them for educational purposes and a good point of reference. The above examples provide a working example of how some features can be implemented. Please refer to their license and readme files to learn more about each of those examples.
-
-
-## Features
-
-- Lightweight.
-- Easy To Install.
-- Fully Responsive.
-- Uses Stockfish Version 10.
-- Uses jQuery 3.6.0.
-- Uses Chessboard.js Version 1.0.0.
-- LT-PGN-Viewer Version 3.498.
-
-
-## Online Installation
+### Online Installation
 
 - Download or clone this repository.
 - Upload the unzipped folder of this repository to your web server then view it from your web browser.
 
-
-## Local Installation
+### Local Installation
 
 - Download or clone this repository.
-- Install a web server locally to test effectively the GUI. A fast approach is download and install [XAMPP](https://www.apachefriends.org/index.html).
-- Copy the folder of the repository to the (htdocs) directory then view it locally from your web browser.
+- Install a web server locally to test effectively the GUI.
 
+---
 
-## Basic Suggested Improvements
+## Suggestions For Contributors
 
-- Adding an option to set FEN.
-- Adding an alternative option to move the pieces by clicking and pointing.
-- Adding a visual evaluation meter to show the player what is the engine's evaluation of the current position.
+1. **User Interface**
+   - Responsive Design
+   - Customizable Chessboard
+   - Board Flip
+   - Switch Board
 
+2. **Game Play**
+   - Take Back Moves
+   - Move Hints
+   - Evaluation Bar
+   - Static Evaluation
+   - Legal Move Highlighting
 
-## Advanced Suggested Improvements
+3. **Game Analysis**
+   - Real-time Analysis
+   - Game Review
+   - Blunder Detection
+   - Evaluation Graph
+   - Move List
 
-- Redesigning the layout to become more intuitive for touch-based devices and PCs.
-- Adding an option to set the chess clock for both players.
-- Adding an option to edit the board visually.
-- Adding an opening book.
-- Adding a visual graph representing the history of the computer's evaluation.
+4. **Game Management**
+   - Save and Load Games
+   - PGN Viewer
+   - FEN Viewer
+   - Import/Export PGN and FEN
 
+5. **Board Editor**
+   - Setup Position
+   - Piece Placement
+   - Validate Position
+
+6. **Training Modes**
+   - Tactics Trainer
+   - Endgame Training
+   - Puzzle Rush
+
+7. **Opening Explorer**
+   - Opening Database
+   - Opening Repertoire
+
+8. **Stockfish Settings**
+   - Skill Level
+   - Depth Control
+   - Thinking Time
+
+9. **Additional Features**
+	- Move Confirmation
+	- Highlight Best Move
+	- Interactive Lessons
+	- Statistics and Insights
+	- Game Modes and Variants
+	- Multiple Analysis Engines
+	- Engine vs. Engine
+	- Move Sound Effects Customization
+	- Notation Styles
+	- Custom Positions and Scenarios
+	- Position Analysis Report
+	- User Feedback Loop
+	- Visual Customizations
+	- Chess Clock Variants
+	- Post-Game Summary
+	- Educational Content
+	- Interactive Endgame Tablebases
+	- Blindfold Mode
+	- Customizable Time Controls
+	- Piece Animation Speed Control
+	- Coach Mode
+	- Dark/Light Modes
+	- Enhanced Accessibility Features
+
+10. **Keyboard Shortcuts**
+    - Move Pieces
+    - Board Controls
+    - Engine Commands
+    - Interface Navigation
+
+11. **Scores of All Legal Moves**
+    - Move Evaluation Display
+    - Real-time Updates
+    - Color Coding
+
+12. **Analysis Lines**
+    - Multi-Line Display
+    - Interactive Analysis
+    - Depth and Score
+    - Expandable Lines
+
+---
 
 ## Development & Contribution
 
 We welcome all developers to contribute to this repository by fixing bugs or adding features.
 
 It is also great to check our advanced chess app at:
-- https://github.com/LabinatorSolutions/boldchess-web-app
 
-**List Of Current Contributors:**
-- https://github.com/LabinatorSolutions/stockfish-chess-web-gui/graphs/contributors
+- [https://github.com/LabinatorSolutions/boldchess-web-app](https://github.com/LabinatorSolutions/boldchess-web-app)
 
+---
 
 ## License
 
-GNU GPLv3: [https://www.gnu.org/licenses/gpl-3.0-standalone.html](https://www.gnu.org/licenses/gpl-3.0-standalone.html)
+GNU AGPLv3: [https://www.gnu.org/licenses/agpl-3.0.html](https://www.gnu.org/licenses/agpl-3.0.html)
 
+---
 
 ## Credits
 
 - Stockfish: [https://github.com/mcostalba/Stockfish](https://github.com/mcostalba/Stockfish)
 - Stockfish.js: [https://github.com/nmrugg/stockfish.js](https://github.com/nmrugg/stockfish.js)
-- Oakmac Chessboard: [https://github.com/oakmac/chessboardjs](https://github.com/oakmac/chessboardjs)
-- Caustique Chessboard: [https://github.com/caustique/chessboard-js](https://github.com/caustique/chessboard-js)
-- LT-PGN-Viewer: [http://www.lutanho.net/pgn/pgnviewer.html](http://www.lutanho.net/pgn/pgnviewer.html)
-- jQuery: [https://github.com/jquery/jquery](https://github.com/jquery/jquery)
 - BoldChess: [https://boldchess.com](https://boldchess.com/)
 - Labinator: [https://labinator.com](https://labinator.com/)
