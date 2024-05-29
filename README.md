@@ -131,7 +131,7 @@ GNU AGPLv3: [https://www.gnu.org/licenses/agpl-3.0.html](https://www.gnu.org/lic
 
 ## Credits
 
-- Stockfish: [https://github.com/mcostalba/Stockfish](https://github.com/mcostalba/Stockfish)
+- Stockfish: [https://github.com/official-stockfish/Stockfish](https://github.com/official-stockfish/Stockfish)
 - Stockfish.js: [https://github.com/nmrugg/stockfish.js](https://github.com/nmrugg/stockfish.js)
 - BoldChess: [https://boldchess.com](https://boldchess.com/)
 - Labinator: [https://labinator.com](https://labinator.com/)
