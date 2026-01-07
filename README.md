@@ -24,9 +24,9 @@ Our mission from this project is to develop a modern responsive free and open so
 - https://labinatorsolutions.github.io/stockfish-chess-web-gui/implementation-2/index.html
 
 **Under Construction**:
-- https://labinatorsolutions.github.io/stockfish-chess-web-gui/implementation-3/index.html
+- [https://labinatorsolutions.github.io/stockfish-chess-web-gui/implementation-3/index.html](https://github.com/LabinatorSolutions/stockfish-chess-web-gui/tree/master/implementation-3)
 
-**Note 1:** The above implementations still require lots of work. Your contribution is always appreciated.
+**Note:** The above implementations still require lots of work. Your contribution is always appreciated.
 
 ---
 
