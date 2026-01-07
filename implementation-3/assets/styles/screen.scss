@@ -1,0 +1,15 @@
+@import "../../node_modules/bootstrap/scss/bootstrap";
+$spacer-small: $spacer / 2;
+
+@import "../../node_modules/chess-console/assets/styles/chess-console.scss";
+@import "../../node_modules/cm-chessboard/assets/chessboard.scss";
+@import "../../node_modules/cm-chessboard/assets/extensions/markers/markers.scss";
+@import "../../node_modules/cm-chessboard/assets/extensions/promotion-dialog/promotion-dialog.scss";
+
+html {
+  body {
+    .container-fluid {
+      max-width: 1200px;
+    }
+  }
+}

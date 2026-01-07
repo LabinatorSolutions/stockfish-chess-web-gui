@@ -2,15 +2,13 @@
 
 ![GUI Type](https://img.shields.io/badge/Type-Web_GUI-orange)
 ![JavaScript](https://img.shields.io/badge/Language-JavaScript-yellow)
-![jQuery](https://img.shields.io/badge/jquery-3.7.1-blue)
-![Stockfish 16 Chess Engine](https://img.shields.io/badge/Stockfish_Chess_Engine-16-43AC6A)
-![Chessboard.JS](https://img.shields.io/badge/Chessboard.JS-1.0.0-brown)
+![Stockfish 17.1 Chess Engine](https://img.shields.io/badge/Stockfish_Chess_Engine-17-43AC6A)
 
 ## Overview
 
 It is a web graphical user interface (GUI) for the Stockfish Chess engine. It is a fully functional web-based chess app that allows you to play against the Stockfish chess engine.
 
-This repository contains two different implementations. Explore both and contribute to the one you find most interesting. Ultimately, only one implementation will remain once we reach a stable, bug-free version with sufficient features to be considered professional.
+This repository contains three different implementations. The third one is under construction. Explore both and contribute to the one you find most interesting. Ultimately, the third implementation will remain once we reach a stable, bug-free version with sufficient features to be considered professional.
 
 ---
 
@@ -25,7 +23,10 @@ Our mission from this project is to develop a modern responsive free and open so
 - https://labinatorsolutions.github.io/stockfish-chess-web-gui/implementation-1/index.html
 - https://labinatorsolutions.github.io/stockfish-chess-web-gui/implementation-2/index.html
 
-**Note:** The above implementations still require lots of work. Your contribution is always appreciated.
+**Under Construction**:
+- https://labinatorsolutions.github.io/stockfish-chess-web-gui/implementation-3/index.html
+
+**Note 1:** The above implementations still require lots of work. Your contribution is always appreciated.
 
 ---
 

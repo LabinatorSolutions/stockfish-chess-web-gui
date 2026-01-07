@@ -1,0 +1,24 @@
+{
+  "name": "chess-console-stockfish",
+  "version": "6.2.4",
+  "description": "StockfishPlayer for ChessConsole",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "start": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "serve": "vite preview"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^7.1.0",
+    "bootstrap": "^5.3.8",
+    "chess-console": "^6.13.1",
+    "cm-chessboard": "^8.11.4",
+    "cm-engine-runner": "^1.2.4",
+    "cm-web-modules": "^2.5.1"
+  },
+  "devDependencies": {
+    "vite": "^7.3.1"
+  }
+}

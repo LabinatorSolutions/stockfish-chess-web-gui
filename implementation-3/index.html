@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Stockfish Web GUI - By BoldChess.com</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css" />
+    <link rel="stylesheet" href="./assets/styles/screen.css" />
+    <link rel="stylesheet" href="./node_modules/cm-chessboard/assets/extensions/arrows/arrows.css" />
+    <link rel="stylesheet" href="./node_modules/cm-chessboard/assets/extensions/markers/markers.css" />
+</head>
+
+<body>
+    <div class="container-fluid">
+        <h1>Stockfish Web GUI</h1>
+        <div id="console-container" class="mb-3">
+            <div class="row chess-console">
+                <div class="chess-console-center col-xl-7 order-xl-2 col-lg-8 order-lg-1 order-md-1 col-md-12">
+                    <div class="engine-state mb-2"></div>
+                    <div class="chess-console-board flex-grow-1"></div>
+                    <div class="control-buttons buttons-grid mt-2 d-flex gap-2 flex-wrap justify-content-center"></div>
+                </div>
+                <div
+                    class="chess-console-right chess-console-left col-xl-3 order-xl-3 col-lg-4 order-lg-2 col-md-8 order-md-3">
+                    <div id="analysis-output"></div>
+                    <div class="mb-2">
+                        <strong class="text-dark">Move History</strong>
+                    </div>
+                    <div class="chess-console-history mb-2"></div>
+                    <div class="chess-console-captured mb-2"></div>
+                    <div class="chess-console-notifications mb-4"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js"
+        integrity="sha384-5AkRS45j4ukf+JbWAfHL8P4onPA9p0KwwP7pUdjSQA3ss9edbJUJc/XcYAiheSSz"
+        crossorigin="anonymous"></script>
+    <!-- Import map and shims removed for Vite -->
+    <script type="module">
+
+        import { CONSOLE_MESSAGE_TOPICS } from "chess-console/src/ChessConsole.js"
+        import { ChessConsole } from "chess-console/src/ChessConsole.js"
+        import { LocalPlayer } from "chess-console/src/players/LocalPlayer.js"
+        import { Board } from "chess-console/src/components/Board.js"
+        import { GameStateOutput } from "chess-console/src/components/GameStateOutput.js"
+        import { History } from "chess-console/src/components/History.js"
+        import { CapturedPieces } from "chess-console/src/components/CapturedPieces.js"
+        import { HistoryControl } from "chess-console/src/components/HistoryControl.js"
+        import { Persistence } from "chess-console/src/components/Persistence.js"
+        import { Sound } from "chess-console/src/components/Sound.js"
+
+        import { StockfishGameControl } from "./src/StockfishGameControl.js"
+        import { StockfishPlayer } from "./src/StockfishPlayer.js"
+        import { StockfishStateView } from "./src/StockfishStateView.js"
+        import { I18n } from "cm-web-modules/src/i18n/I18n.js"
+        import { RightClickAnnotator } from "./src/extensions/RightClickAnnotator.js"
+        import { StockfishAnalysis } from "./src/StockfishAnalysis.js"
+
+        import { ENGINE_CONFIG, GAME_CONFIG } from "./src/Config.js"
+
+
+
+        const i18n = new I18n({ locale: "en" })
+        i18n.load({
+            en: {
+                playerName: "Player",
+                analysis: "Analysis"
+            }
+        })
+        const chessConsole = new ChessConsole(
+            document.getElementById("console-container"),
+            { name: i18n.t("playerName"), type: LocalPlayer },
+            {
+                name: "Stockfish 17.1", type: StockfishPlayer, props: {
+                    worker: ENGINE_CONFIG.WORKER_PATH,
+                    book: ENGINE_CONFIG.BOOK_PATH,
+                    skillLevel: ENGINE_CONFIG.DEFAULT_SKILL_LEVEL,
+                    depth: ENGINE_CONFIG.DEFAULT_DEPTH,
+                    debug: ENGINE_CONFIG.DEFAULT_DEBUG,
+                    gameMode: "pve" // Default
+                }
+            })
+        new Board(chessConsole, {
+            assetsUrl: "./node_modules/cm-chessboard/assets/"
+        }).initialized.then((board) => {
+            new Persistence(chessConsole, {
+                savePrefix: GAME_CONFIG.SAVE_PREFIX
+            }).load()
+            board.chessboard.addExtension(RightClickAnnotator)
+
+            const clearAnnotations = () => {
+                board.chessboard.removeArrows()
+                board.chessboard.removeMarkers()
+            }
+
+            // Event Delegation for Buttons (including those created async like Setup/Clear)
+            document.body.addEventListener("click", (e) => {
+                const target = e.target.closest("button")
+                if (!target) return
+
+                if (target.id === "btn-clear-annotations") {
+                    clearAnnotations()
+                } else if (target.id === "btn-setup") {
+                    document.getElementById("fen-text").value = chessConsole.state.chess.fen()
+                    document.getElementById("pgn-text").value = chessConsole.state.chess.renderPgn()
+                    setupModal.show()
+                } else if (target.id === "btn-load-fen") {
+                    const fen = document.getElementById("fen-text").value
+                    chessConsole.initGame({ fen: fen })
+                    setupModal.hide()
+                    showNotification("FEN Loaded Successfully")
+                } else if (target.id === "btn-load-pgn") {
+                    const pgn = document.getElementById("pgn-text").value
+                    chessConsole.initGame({ pgn: pgn })
+                    setupModal.hide()
+                    showNotification("PGN Loaded Successfully")
+                } else if (target.id === "btn-copy-fen") {
+                    navigator.clipboard.writeText(document.getElementById("fen-text").value)
+                    showNotification("FEN Copied to Clipboard!")
+                } else if (target.id === "btn-copy-pgn") {
+                    navigator.clipboard.writeText(document.getElementById("pgn-text").value)
+                    showNotification("PGN Copied to Clipboard!")
+                }
+            })
+
+            // Analysis Engine Setup (Requires board)
+            const analysis = new StockfishAnalysis(document.getElementById("analysis-output"), {
+                board: board.chessboard,
+                i18n: chessConsole.i18n
+            })
+
+            const savedAnalysisDepth = chessConsole.persistence.loadValue("analysisDepth")
+            if (savedAnalysisDepth) analysis.setDepth(savedAnalysisDepth)
+
+            const updateAnalysis = () => {
+                const fen = chessConsole.state.chess.fen()
+                analysis.analyze(fen)
+            }
+
+            chessConsole.messageBroker.subscribe(CONSOLE_MESSAGE_TOPICS.legalMove, updateAnalysis)
+            chessConsole.messageBroker.subscribe(CONSOLE_MESSAGE_TOPICS.moveUndone, updateAnalysis)
+            chessConsole.messageBroker.subscribe(CONSOLE_MESSAGE_TOPICS.load, updateAnalysis)
+            chessConsole.messageBroker.subscribe(CONSOLE_MESSAGE_TOPICS.newGame, updateAnalysis)
+            chessConsole.messageBroker.subscribe(CONSOLE_MESSAGE_TOPICS.initGame, (data) => {
+                if (data.props.analysisDepth) {
+                    analysis.setDepth(data.props.analysisDepth)
+                }
+                updateAnalysis()
+            })
+        })
+
+        // Global UI Logic
+        const setupModal = new bootstrap.Modal(document.getElementById('setupModal'))
+        const showNotification = (message) => {
+            const toastEl = document.getElementById('notificationToast')
+            const toastBody = document.getElementById('toastMessage')
+            toastBody.innerText = message
+            const toast = new bootstrap.Toast(toastEl)
+            toast.show()
+        }
+
+        // Modal focus management for accessibility
+        document.getElementById('setupModal').addEventListener('hidden.bs.modal', () => {
+            if (document.activeElement) {
+                document.activeElement.blur()
+            }
+        })
+
+        const newGameModalEl = document.getElementById('new-game-modal')
+        if (newGameModalEl) {
+            newGameModalEl.addEventListener('hidden.bs.modal', () => {
+                if (document.activeElement) {
+                    document.activeElement.blur()
+                }
+            })
+        }
+
+
+
+
+
+        new History(chessConsole)
+        new HistoryControl(chessConsole)
+        new CapturedPieces(chessConsole)
+        new StockfishGameControl(chessConsole, {
+            player: chessConsole.opponent
+        })
+        new StockfishStateView(chessConsole, chessConsole.opponent)
+        new GameStateOutput(chessConsole)
+        new Sound(chessConsole, {
+            soundSpriteFile: "./assets/sounds/chess_console_sounds.mp3"
+        })
+
+
+
+    </script>
+
+    <!-- Game Setup Modal -->
+    <div class="modal fade" id="setupModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content text-dark">
+                <div class="modal-header">
+                    <h5 class="modal-title">Game Setup & Import</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <ul class="nav nav-tabs mb-3" id="setupTabs">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="fen-tab" data-bs-toggle="tab" data-bs-target="#fen-pane"
+                                type="button" role="tab">FEN</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="pgn-tab" data-bs-toggle="tab" data-bs-target="#pgn-pane"
+                                type="button" role="tab">PGN</button>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <!-- FEN Tab -->
+                        <div class="tab-pane fade show active" id="fen-pane" role="tabpanel">
+                            <label for="fen-text" class="form-label">FEN String</label>
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" id="fen-text" placeholder="Paste FEN here...">
+                                <button class="btn btn-outline-secondary" type="button" id="btn-copy-fen">Copy</button>
+                                <button class="btn btn-primary" type="button" id="btn-load-fen">Load FEN</button>
+                            </div>
+                        </div>
+                        <!-- PGN Tab -->
+                        <div class="tab-pane fade" id="pgn-pane" role="tabpanel">
+                            <label for="pgn-text" class="form-label">PGN</label>
+                            <textarea class="form-control mb-3" id="pgn-text" rows="5"
+                                placeholder="Paste PGN here..."></textarea>
+                            <div class="d-flex justify-content-end gap-2">
+                                <button class="btn btn-outline-secondary" type="button" id="btn-copy-pgn">Copy
+                                    PGN</button>
+                                <button class="btn btn-primary" type="button" id="btn-load-pgn">Load PGN</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Toast Container -->
+        <div class="toast-container position-fixed bottom-0 end-0 p-3">
+            <div id="notificationToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-header">
+                    <strong class="me-auto">Notification</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body" id="toastMessage">
+                    Action successful.
+                </div>
+            </div>
+        </div>
+</body>
+
+</html>

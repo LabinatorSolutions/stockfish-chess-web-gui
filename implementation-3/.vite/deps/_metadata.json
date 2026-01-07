@@ -1,0 +1,181 @@
+{
+  "hash": "ee663d5b",
+  "configHash": "96355f71",
+  "lockfileHash": "3fbf4f99",
+  "browserHash": "885a8d1f",
+  "optimized": {
+    "chess-console/src/ChessConsole.js": {
+      "src": "../../node_modules/chess-console/src/ChessConsole.js",
+      "file": "chess-console_src_ChessConsole__js.js",
+      "fileHash": "f7016a25",
+      "needsInterop": false
+    },
+    "chess-console/src/players/LocalPlayer.js": {
+      "src": "../../node_modules/chess-console/src/players/LocalPlayer.js",
+      "file": "chess-console_src_players_LocalPlayer__js.js",
+      "fileHash": "ff60ecfa",
+      "needsInterop": false
+    },
+    "chess-console/src/components/Board.js": {
+      "src": "../../node_modules/chess-console/src/components/Board.js",
+      "file": "chess-console_src_components_Board__js.js",
+      "fileHash": "144ebaf5",
+      "needsInterop": false
+    },
+    "chess-console/src/components/GameStateOutput.js": {
+      "src": "../../node_modules/chess-console/src/components/GameStateOutput.js",
+      "file": "chess-console_src_components_GameStateOutput__js.js",
+      "fileHash": "8acc361c",
+      "needsInterop": false
+    },
+    "chess-console/src/components/History.js": {
+      "src": "../../node_modules/chess-console/src/components/History.js",
+      "file": "chess-console_src_components_History__js.js",
+      "fileHash": "3bea1fda",
+      "needsInterop": false
+    },
+    "chess-console/src/components/CapturedPieces.js": {
+      "src": "../../node_modules/chess-console/src/components/CapturedPieces.js",
+      "file": "chess-console_src_components_CapturedPieces__js.js",
+      "fileHash": "c88b9d37",
+      "needsInterop": false
+    },
+    "chess-console/src/components/HistoryControl.js": {
+      "src": "../../node_modules/chess-console/src/components/HistoryControl.js",
+      "file": "chess-console_src_components_HistoryControl__js.js",
+      "fileHash": "fcb3f21f",
+      "needsInterop": false
+    },
+    "chess-console/src/components/Persistence.js": {
+      "src": "../../node_modules/chess-console/src/components/Persistence.js",
+      "file": "chess-console_src_components_Persistence__js.js",
+      "fileHash": "76e2b76e",
+      "needsInterop": false
+    },
+    "chess-console/src/components/Sound.js": {
+      "src": "../../node_modules/chess-console/src/components/Sound.js",
+      "file": "chess-console_src_components_Sound__js.js",
+      "fileHash": "b833b082",
+      "needsInterop": false
+    },
+    "cm-web-modules/src/i18n/I18n.js": {
+      "src": "../../node_modules/cm-web-modules/src/i18n/I18n.js",
+      "file": "cm-web-modules_src_i18n_I18n__js.js",
+      "fileHash": "b472a50c",
+      "needsInterop": false
+    },
+    "chess-console/src/components/GameControl/GameControl.js": {
+      "src": "../../node_modules/chess-console/src/components/GameControl/GameControl.js",
+      "file": "chess-console_src_components_GameControl_GameControl__js.js",
+      "fileHash": "937b13f3",
+      "needsInterop": false
+    },
+    "chess-console/src/ChessConsolePlayer.js": {
+      "src": "../../node_modules/chess-console/src/ChessConsolePlayer.js",
+      "file": "chess-console_src_ChessConsolePlayer__js.js",
+      "fileHash": "6d49c69e",
+      "needsInterop": false
+    },
+    "cm-web-modules/src/observe/Observe.js": {
+      "src": "../../node_modules/cm-web-modules/src/observe/Observe.js",
+      "file": "cm-web-modules_src_observe_Observe__js.js",
+      "fileHash": "10027a8e",
+      "needsInterop": false
+    },
+    "cm-engine-runner/src/PolyglotRunner.js": {
+      "src": "../../node_modules/cm-engine-runner/src/PolyglotRunner.js",
+      "file": "cm-engine-runner_src_PolyglotRunner__js.js",
+      "fileHash": "34b75479",
+      "needsInterop": false
+    },
+    "cm-engine-runner/src/EngineRunner.js": {
+      "src": "../../node_modules/cm-engine-runner/src/EngineRunner.js",
+      "file": "cm-engine-runner_src_EngineRunner__js.js",
+      "fileHash": "b786b87f",
+      "needsInterop": false
+    },
+    "cm-chessboard/src/Chessboard.js": {
+      "src": "../../node_modules/cm-chessboard/src/Chessboard.js",
+      "file": "cm-chessboard_src_Chessboard__js.js",
+      "fileHash": "b16aeaad",
+      "needsInterop": false
+    },
+    "chess.mjs/src/Chess.js": {
+      "src": "../../node_modules/chess.mjs/src/Chess.js",
+      "file": "chess__mjs_src_Chess__js.js",
+      "fileHash": "a9d0512b",
+      "needsInterop": false
+    },
+    "cm-web-modules/src/app/Component.js": {
+      "src": "../../node_modules/cm-web-modules/src/app/Component.js",
+      "file": "cm-web-modules_src_app_Component__js.js",
+      "fileHash": "24c5b336",
+      "needsInterop": false
+    },
+    "cm-chessboard/src/model/Extension.js": {
+      "src": "../../node_modules/cm-chessboard/src/model/Extension.js",
+      "file": "cm-chessboard_src_model_Extension__js.js",
+      "fileHash": "752ce50c",
+      "needsInterop": false
+    },
+    "cm-chessboard/src/extensions/arrows/Arrows.js": {
+      "src": "../../node_modules/cm-chessboard/src/extensions/arrows/Arrows.js",
+      "file": "cm-chessboard_src_extensions_arrows_Arrows__js.js",
+      "fileHash": "b0abb122",
+      "needsInterop": false
+    },
+    "cm-chessboard/src/extensions/markers/Markers.js": {
+      "src": "../../node_modules/cm-chessboard/src/extensions/markers/Markers.js",
+      "file": "cm-chessboard_src_extensions_markers_Markers__js.js",
+      "fileHash": "3a1cd533",
+      "needsInterop": false
+    },
+    "cm-engine-runner/src/StockfishRunner.js": {
+      "src": "../../node_modules/cm-engine-runner/src/StockfishRunner.js",
+      "file": "cm-engine-runner_src_StockfishRunner__js.js",
+      "fileHash": "0eca63cd",
+      "needsInterop": false
+    }
+  },
+  "chunks": {
+    "chunk-6GCQ4Y2U": {
+      "file": "chunk-6GCQ4Y2U.js"
+    },
+    "chunk-DLEZQAMD": {
+      "file": "chunk-DLEZQAMD.js"
+    },
+    "chunk-2UUJ4VFT": {
+      "file": "chunk-2UUJ4VFT.js"
+    },
+    "chunk-PMAS7DIH": {
+      "file": "chunk-PMAS7DIH.js"
+    },
+    "chunk-YELVW5X7": {
+      "file": "chunk-YELVW5X7.js"
+    },
+    "chunk-6LVC5MS7": {
+      "file": "chunk-6LVC5MS7.js"
+    },
+    "chunk-TRKBLDR5": {
+      "file": "chunk-TRKBLDR5.js"
+    },
+    "chunk-RHYLFANV": {
+      "file": "chunk-RHYLFANV.js"
+    },
+    "chunk-XZ62UXQF": {
+      "file": "chunk-XZ62UXQF.js"
+    },
+    "chunk-22FRA7I2": {
+      "file": "chunk-22FRA7I2.js"
+    },
+    "chunk-2NUPLSFN": {
+      "file": "chunk-2NUPLSFN.js"
+    },
+    "chunk-WCRIPQW3": {
+      "file": "chunk-WCRIPQW3.js"
+    },
+    "chunk-5KWTC5XK": {
+      "file": "chunk-5KWTC5XK.js"
+    }
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../node_modules/chess-console/src/ChessConsolePlayer.js"],
+  "sourcesContent": ["/**\n * Author and copyright: Stefan Haack (https://shaack.com)\n * Repository: https://github.com/shaack/chess-console\n * License: MIT, see file 'LICENSE'\n */\n\nexport class ChessConsolePlayer {\n\n    constructor(chessConsole, name) {\n        this.chessConsole = chessConsole\n        this.name = name\n    }\n\n    /**\n     * Called, when the Console requests the next Move from a Player.\n     * The Player should answer the moveRequest with a moveResponse.\n     * The moveResponse then returns the move result, if no move result was returned, the move was not legal.\n     * @param fen current position\n     * @param moveResponse a callback function to call as the moveResponse. Parameter is an object,\n     * containing 'from' and `to`. Example: `moveResult = moveResponse({from: \"e2\", to: \"e4\", promotion: null})`.\n     */\n    moveRequest(fen, moveResponse) {\n    }\n\n}\n"],
+  "mappings": ";AAMO,IAAM,qBAAN,MAAyB;AAAA,EAE5B,YAAY,cAAc,MAAM;AAC5B,SAAK,eAAe;AACpB,SAAK,OAAO;AAAA,EAChB;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA,EAUA,YAAY,KAAK,cAAc;AAAA,EAC/B;AAEJ;",
+  "names": []
+}
