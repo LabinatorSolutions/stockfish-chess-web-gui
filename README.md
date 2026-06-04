@@ -167,3 +167,5 @@ This project is licensed under the **GNU AGPLv3**. See the [LICENSE](LICENSE) fi
 ---
 
 *Verified and maintained by [BoldChess.com](https://boldchess.com) | A project by [Labinator.com](https://labinator.com)*
+
+
