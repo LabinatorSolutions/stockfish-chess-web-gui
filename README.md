@@ -13,6 +13,7 @@ A modern, responsive, and fully functional web-based chess application powered b
 ## 📖 Table of Contents
 
 - [Overview](#overview)
+- [Live Demo](#live-demo)
 - [Mission](#mission)
 - [Features](#features)
 - [Tech Stack](#tech-stack)
@@ -29,6 +30,14 @@ A modern, responsive, and fully functional web-based chess application powered b
 ## Overview
 
 It is a web graphical user interface (GUI) for the Stockfish Chess engine. It allows you to play against one of the strongest chess engines in the world directly in your browser, with professional-grade analysis tools and a highly customizable interface.
+
+---
+
+## Live Demo
+
+There's no hosted public demo right now. The app itself is free — Stockfish runs client-side as WebAssembly in your own browser, so we don't pay per-user compute costs. The blocker is bandwidth/hosting: a public demo draws uncontrolled traffic, and serving the app (plus WASM binaries and assets) at scale isn't free for us to host indefinitely.
+
+Run it locally instead — see [Installation & Development](#installation--development) below, it takes two commands.
 
 ---
 
@@ -168,5 +177,3 @@ This project is licensed under the **GNU AGPLv3**. See the [LICENSE](LICENSE) fi
 ---
 
 *Verified and maintained by [BoldChess.com](https://boldchess.com) | A project by [Labinator.com](https://labinator.com)*
-
-
