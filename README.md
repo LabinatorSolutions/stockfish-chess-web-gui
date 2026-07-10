@@ -1,6 +1,5 @@
 # Stockfish Chess Web GUI
 
-![CI](https://www.shieldcn.dev/github/ci/LabinatorSolutions/stockfish-chess-web-gui.svg?variant=secondary&size=sm&mode=light&font=jetbrains-mono)
 ![License](https://www.shieldcn.dev/github/license/LabinatorSolutions/stockfish-chess-web-gui.svg?variant=default&size=sm&mode=light&font=jetbrains-mono)
 ![Package mgr · Bun](https://www.shieldcn.dev/badge/Package_mgr-Bun-000000.svg?logo=bun&variant=branded&size=sm&mode=light&font=jetbrains-mono)
 ![Language · TypeScript](https://www.shieldcn.dev/badge/Language-TypeScript-3178C6.svg?logo=typescript&variant=branded&size=sm&mode=light&font=jetbrains-mono)
