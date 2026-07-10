@@ -301,16 +301,17 @@ export class StockfishPlayer extends ChessConsolePlayer {
 				}
 				let newScore;
 				if (nextMove.score !== undefined) {
-					if (!Number.isNaN(nextMove.score)) {
-						// Standardize to White's Perspective
-						const turn = this.chessConsole.state.chess.turn();
-						if (turn === "w") {
-							newScore = nextMove.score;
-						} else {
-							newScore = -nextMove.score;
-						}
+					// Standardize to White's Perspective
+					const turn = this.chessConsole.state.chess.turn();
+					const isMateScore =
+						typeof nextMove.score === "string" &&
+						nextMove.score.startsWith("#");
+					if (isMateScore) {
+						const mateIn = parseInt(nextMove.score.slice(1), 10);
+						newScore = turn === "w" ? `#${mateIn}` : `#-${mateIn}`;
 					} else {
-						newScore = nextMove.score;
+						const numericScore = parseFloat(nextMove.score);
+						newScore = turn === "w" ? numericScore : -numericScore;
 					}
 					this.state.scoreHistory[this.chessConsole.state.chess.plyCount()] =
 						newScore;

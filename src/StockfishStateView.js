@@ -5,6 +5,7 @@
  * License: MIT, see file 'LICENSE'
  */
 
+import { COLOR } from "cm-chessboard/src/Chessboard.js";
 import { ENGINE_STATE } from "cm-engine-runner/src/EngineRunner.js";
 import { UiComponent } from "cm-web-modules/src/app/Component.js";
 import { Observe } from "cm-web-modules/src/observe/Observe.js";
@@ -104,40 +105,51 @@ export class StockfishStateView extends UiComponent {
 		});
 		Observe.property(this.chessConsole.state, "plyViewed", () => {
 			let score = player.state.scoreHistory[this.chessConsole.state.plyViewed];
-			if (!score && this.chessConsole.state.plyViewed > 0) {
+			if (score === undefined && this.chessConsole.state.plyViewed > 0) {
 				score =
 					player.state.scoreHistory[this.chessConsole.state.plyViewed - 1];
 			}
-			this.updateScoreDisplay(score);
+			// No recorded score for this ply yet (e.g. engine is still thinking
+			// about it) - keep showing the last known eval instead of blanking it.
+			if (score !== undefined) {
+				this.updateScoreDisplay(score);
+			}
 		});
 		this.updatePlayerName();
 	}
 
 	updateScoreDisplay(score) {
 		if (score !== undefined && score !== null) {
+			const isMateScore = typeof score === "string" && score.startsWith("#");
 			let scoreFormatted;
-			if (Number.isNaN(score)) {
-				scoreFormatted = score;
+			let comparableScore;
+			if (isMateScore) {
+				const mateIn = parseInt(score.slice(1), 10);
+				scoreFormatted = mateIn > 0 ? `M${mateIn}` : `-M${Math.abs(mateIn)}`;
+				comparableScore = mateIn > 0 ? Infinity : -Infinity;
 			} else {
 				scoreFormatted =
 					(score > 0 ? "+" : "") + this.numberFormat.format(score);
+				comparableScore = score;
 			}
 			this.scoreBadge.innerHTML = `Score: ${escapeHtml(scoreFormatted)}`;
 
 			// Determine color based on score relative to player color
-			if (!Number.isNaN(score)) {
-				const playerColor = this.chessConsole.props.playerColor;
-				// score > 0 means White lead.
-				const isWinning = playerColor === 0 ? score > 0.5 : score < -0.5; // 0 = white, 1 = black in cm-chessboard
-				const isLosing = playerColor === 0 ? score < -0.5 : score > 0.5;
+			const playerColor = this.chessConsole.props.playerColor;
+			// score > 0 means White lead.
+			const isWinning =
+				playerColor === COLOR.white
+					? comparableScore > 0.5
+					: comparableScore < -0.5;
+			const isLosing =
+				playerColor === COLOR.white
+					? comparableScore < -0.5
+					: comparableScore > 0.5;
 
-				if (isWinning) {
-					this.scoreBadge.className = "badge score-badge bg-success";
-				} else if (isLosing) {
-					this.scoreBadge.className = "badge score-badge bg-danger";
-				} else {
-					this.scoreBadge.className = "badge score-badge bg-secondary";
-				}
+			if (isWinning) {
+				this.scoreBadge.className = "badge score-badge bg-success";
+			} else if (isLosing) {
+				this.scoreBadge.className = "badge score-badge bg-danger";
 			} else {
 				this.scoreBadge.className = "badge score-badge bg-secondary";
 			}
