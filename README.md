@@ -1,9 +1,11 @@
 # Stockfish Chess Web GUI
 
-![GUI Type](https://img.shields.io/badge/Type-Web_GUI-orange)
-![JavaScript](https://img.shields.io/badge/Language-JavaScript-yellow)
-![Stockfish 18 Chess Engine](https://img.shields.io/badge/Stockfish_Chess_Engine-18-43AC6A)
-![License](https://img.shields.io/badge/License-GNU_AGPLv3-blue)
+![CI](https://www.shieldcn.dev/github/ci/LabinatorSolutions/stockfish-chess-web-gui.svg?variant=secondary&size=sm&mode=light&font=jetbrains-mono)
+![License](https://www.shieldcn.dev/github/license/LabinatorSolutions/stockfish-chess-web-gui.svg?variant=default&size=sm&mode=light&font=jetbrains-mono)
+![Package mgr · Bun](https://www.shieldcn.dev/badge/Package_mgr-Bun-000000.svg?logo=bun&variant=branded&size=sm&mode=light&font=jetbrains-mono)
+![Language · TypeScript](https://www.shieldcn.dev/badge/Language-TypeScript-3178C6.svg?logo=typescript&variant=branded&size=sm&mode=light&font=jetbrains-mono)
+![Lint · Biome](https://www.shieldcn.dev/badge/Lint-Biome-60A5FA.svg?logo=biome&variant=branded&size=sm&mode=light&font=jetbrains-mono)
+![Hosting · Netlify](https://www.shieldcn.dev/badge/Hosting-Netlify-00AD9F.svg?logo=netlify&variant=branded&size=sm&mode=light&font=jetbrains-mono)
 
 A modern, responsive, and fully functional web-based chess application powered by the **Stockfish 18** engine.
 
