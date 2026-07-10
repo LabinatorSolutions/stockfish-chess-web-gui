@@ -9,11 +9,18 @@
  * dark-mode CSS variables, making them invisible against a dark background.
  */
 [data-bs-theme="dark"] .text-black {
+	/* biome-ignore lint/complexity/noImportantStyles: Bootstrap's .text-black utility itself sets color with !important, so only !important can override it here. */
 	color: var(--bs-body-color) !important;
 }
 
-[data-bs-theme="dark"] .player.to-move::after {
-	color: var(--bs-body-color) !important;
+/* Specificity ([data-bs-theme] + 3 classes) matches chess-console's own
+   .chess-console .chess-console-board .player.to-move:after rule, so this
+   wins by source order alone without needing !important. */
+[data-bs-theme="dark"]
+	.chess-console
+	.chess-console-board
+	.player.to-move::after {
+	color: var(--bs-body-color);
 }
 
 /* The unchecked switch track otherwise matches the page background exactly. */

@@ -315,9 +315,8 @@ export class StockfishPlayer extends ChessConsolePlayer {
 					this.state.scoreHistory[this.chessConsole.state.chess.plyCount()] =
 						newScore;
 					this.state.score = newScore;
-				} else {
-					this.state.score = undefined;
 				}
+				// else: book move has no search score, keep showing the last known eval
 				this.state.engineState = ENGINE_STATE.READY;
 				moveResponse(nextMove);
 			}

@@ -3,7 +3,9 @@
   "version": "6.2.4",
   "dependencies": {
     "@fortawesome/fontawesome-free": "^7.3.0",
+    "baseline-browser-mapping": "^2.10.42",
     "bootstrap": "^5.3.8",
+    "caniuse-lite": "^1.0.30001803",
     "chess-console": "^6.13.3",
     "cm-chessboard": "^8.12.12",
     "cm-engine-runner": "^2.0.1",
