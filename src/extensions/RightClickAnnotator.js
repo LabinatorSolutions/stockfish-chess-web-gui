@@ -1,3 +1,4 @@
+// @ts-nocheck -- extends cm-chessboard's Extension, which ships no type declarations
 /**
  * Extension: RightClickAnnotator
  * Combines Arrows and Markers to draw/toggle arrows and circle markers with right-click + modifiers.

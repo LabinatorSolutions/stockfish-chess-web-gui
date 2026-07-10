@@ -1,3 +1,4 @@
+// @ts-nocheck -- extends cm-engine-runner's StockfishRunner, which ships no type declarations
 import { ENGINE_STATE } from "cm-engine-runner/src/EngineRunner.js";
 import { StockfishRunner } from "cm-engine-runner/src/StockfishRunner.js";
 

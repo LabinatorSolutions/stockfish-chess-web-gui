@@ -4,20 +4,45 @@ import {
 } from "chess-console/src/ChessConsole.js";
 import { Board } from "chess-console/src/components/Board.js";
 import { CapturedPieces } from "chess-console/src/components/CapturedPieces.js";
-
+import { GameStateOutput } from "chess-console/src/components/GameStateOutput.js";
 import { History } from "chess-console/src/components/History.js";
 import { HistoryControl } from "chess-console/src/components/HistoryControl.js";
 import { Persistence } from "chess-console/src/components/Persistence.js";
-
 import { LocalPlayer } from "chess-console/src/players/LocalPlayer.js";
 import { COLOR } from "cm-chessboard/src/Chessboard.js";
 import { I18n } from "cm-web-modules/src/i18n/I18n.js";
+import { Observe } from "cm-web-modules/src/observe/Observe.js";
+import { bootstrap } from "./bootstrap-global.js";
 import { ENGINE_CONFIG, GAME_CONFIG, STYLING_CONFIG } from "./Config.js";
 import { RightClickAnnotator } from "./extensions/RightClickAnnotator.js";
 import { StockfishAnalysis } from "./StockfishAnalysis.js";
 import { StockfishGameControl } from "./StockfishGameControl.js";
 import { StockfishPlayer } from "./StockfishPlayer.js";
 import { StockfishStateView } from "./StockfishStateView.js";
+
+// Dark Mode
+const THEME_STORAGE_KEY = "stockfish-ui-theme";
+const applyTheme = (theme) => {
+	document.documentElement.setAttribute("data-bs-theme", theme);
+	const icon = document.querySelector("#btn-theme-toggle i");
+	if (icon) {
+		icon.className = theme === "dark" ? "fas fa-sun" : "fas fa-moon";
+	}
+};
+applyTheme(
+	localStorage.getItem(THEME_STORAGE_KEY) ||
+		(window.matchMedia("(prefers-color-scheme: dark)").matches
+			? "dark"
+			: "light"),
+);
+document.getElementById("btn-theme-toggle")?.addEventListener("click", () => {
+	const next =
+		document.documentElement.getAttribute("data-bs-theme") === "dark"
+			? "light"
+			: "dark";
+	localStorage.setItem(THEME_STORAGE_KEY, next);
+	applyTheme(next);
+});
 
 const i18n = new I18n({ locale: "en" });
 
@@ -90,21 +115,23 @@ new Board(chessConsole, {
 		board.chessboard.removeMarkers();
 	};
 
+	/** @param {string} id @returns {HTMLInputElement} */
+	const valueEl = (id) =>
+		/** @type {HTMLInputElement} */ (document.getElementById(id));
+
 	// Event Delegation for Buttons (including those created async like Setup/Clear)
 	document.body.addEventListener("click", (e) => {
-		const target = e.target.closest("button");
+		const target = /** @type {HTMLElement} */ (e.target).closest("button");
 		if (!target) return;
 
 		if (target.id === "btn-clear-annotations") {
 			clearAnnotations();
 		} else if (target.id === "btn-setup") {
-			document.getElementById("fen-text").value =
-				chessConsole.state.chess.fen();
-			document.getElementById("pgn-text").value =
-				chessConsole.state.chess.renderPgn();
+			valueEl("fen-text").value = chessConsole.state.chess.fen();
+			valueEl("pgn-text").value = chessConsole.state.chess.renderPgn();
 			setupModal.show();
 		} else if (target.id === "btn-load-fen") {
-			const fen = document.getElementById("fen-text").value.trim();
+			const fen = valueEl("fen-text").value.trim();
 			if (fen) {
 				// ChessConsole initGame/newGame only supports pgn for custom positions
 				// The parser requires the PGN to be valid, and '*' can sometimes cause issues depending on version
@@ -114,15 +141,15 @@ new Board(chessConsole, {
 				showNotification("FEN Loaded Successfully");
 			}
 		} else if (target.id === "btn-load-pgn") {
-			const pgn = document.getElementById("pgn-text").value;
+			const pgn = valueEl("pgn-text").value;
 			chessConsole.newGame({ pgn: pgn });
 			setupModal.hide();
 			showNotification("PGN Loaded Successfully");
 		} else if (target.id === "btn-copy-fen") {
-			navigator.clipboard.writeText(document.getElementById("fen-text").value);
+			navigator.clipboard.writeText(valueEl("fen-text").value);
 			showNotification("FEN Copied to Clipboard!");
 		} else if (target.id === "btn-copy-pgn") {
-			navigator.clipboard.writeText(document.getElementById("pgn-text").value);
+			navigator.clipboard.writeText(valueEl("pgn-text").value);
 			showNotification("PGN Copied to Clipboard!");
 		} else if (target.id === "btn-hint") {
 			analysis.hint();
@@ -167,9 +194,20 @@ new Board(chessConsole, {
 		analysis.analyze(fen);
 	};
 
+	const moveAnnouncer = document.getElementById("move-announcer");
+	const announceMove = (data) => {
+		if (moveAnnouncer && data.playerMoved && data.moveResult) {
+			moveAnnouncer.textContent = `${data.playerMoved.name} plays ${data.moveResult.san}`;
+		}
+	};
+
 	chessConsole.messageBroker.subscribe(
 		CONSOLE_MESSAGE_TOPICS.legalMove,
 		updateAnalysis,
+	);
+	chessConsole.messageBroker.subscribe(
+		CONSOLE_MESSAGE_TOPICS.legalMove,
+		announceMove,
 	);
 	chessConsole.messageBroker.subscribe(
 		CONSOLE_MESSAGE_TOPICS.moveUndone,
@@ -217,14 +255,31 @@ new Board(chessConsole, {
 		},
 	);
 
-	new History(chessConsole);
-	new HistoryControl(chessConsole);
-	new CapturedPieces(chessConsole);
+	const history = new History(chessConsole);
+	const historyControl = new HistoryControl(chessConsole);
+	const capturedPieces = new CapturedPieces(chessConsole);
+	new GameStateOutput(chessConsole);
 	const gameControl = new StockfishGameControl(chessConsole, {
 		player: chessConsole.opponent,
 	});
 	gameControl.setAnalysis(analysis);
 	new StockfishStateView(chessConsole, chessConsole.opponent);
+
+	// chess-console's own components (Board, HistoryControl, CapturedPieces,
+	// History) each register a plyViewed observer to stay in sync with
+	// history navigation (back/forward/first/last buttons and arrow keys),
+	// but none of them take effect in this build - clicking those controls
+	// changes plyViewed without the board, button states, captured-pieces
+	// panel, or move-list highlighting ever updating. Re-driving their own
+	// public redraw methods from here fixes all four reliably.
+	Observe.property(chessConsole.state, "plyViewed", (props) => {
+		board.setPositionOfPlyViewed(props.oldValue !== undefined);
+		board.markLastMove();
+		historyControl.setButtonStates();
+		capturedPieces.redraw();
+		history.redraw();
+	});
+
 	// Global UI Logic
 	const setupModal = new bootstrap.Modal(document.getElementById("setupModal"));
 

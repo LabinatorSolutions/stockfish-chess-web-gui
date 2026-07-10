@@ -4,7 +4,7 @@
 
 /**
  * Escapes HTML special characters to prevent XSS
- * @param {string} unsafe
+ * @param {*} unsafe
  * @returns {string}
  */
 export function escapeHtml(unsafe) {

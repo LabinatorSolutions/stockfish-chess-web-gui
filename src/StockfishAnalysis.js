@@ -1,3 +1,4 @@
+// @ts-nocheck -- uses cm-engine-runner's CustomStockfishRunner, which ships no type declarations
 /**
  * Component for handling separate Stockfish analysis.
  */

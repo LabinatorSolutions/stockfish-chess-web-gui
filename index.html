@@ -3,20 +3,26 @@
 
 <head>
     <title>Stockfish Web GUI - By BoldChess.com</title>
+    <meta name="description"
+        content="Play and analyze chess against the free, open-source Stockfish 18 engine, running entirely in your browser. Adjustable skill level, Elo, and depth, real-time evaluation, and multiple board themes." />
     <link rel="icon" href="./favicon.png">
+    <meta name="theme-color" content="#1a1a2e" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Stockfish Web GUI - By BoldChess.com" />
+    <meta property="og:description"
+        content="Play and analyze chess against the free, open-source Stockfish 18 engine, running entirely in your browser." />
+    <meta property="og:image" content="./icon-512.png" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Stockfish Web GUI - By BoldChess.com" />
+    <meta name="twitter:description"
+        content="Play and analyze chess against the free, open-source Stockfish 18 engine, running entirely in your browser." />
+    <meta name="twitter:image" content="./icon-512.png" />
     <link rel="stylesheet" href="./src/style.css" />
-    <script>
-        window.coi = {
-            doRegistration: (s) => {
-                const pathParts = window.location.pathname.split('/');
-                const scope = pathParts.slice(0, -1).join('/') + '/';
-                return navigator.serviceWorker.register(s, { scope: scope });
-            }
-        }
-    </script>
+    <script src="./coi-config.js"></script>
     <script src="./coi-serviceworker.js"></script>
 </head>
 
@@ -24,7 +30,13 @@
     <div class="container-fluid">
         <h1>Stockfish Chess Web GUI</h1>
         <p>For <a href="https://boldchess.com" rel="noopener noreferrer">BoldChess.com</a> | Project by <a
-                href="https://labinator.com" rel="noopener noreferrer">Labinator.com</a></p>
+                href="https://labinator.com" rel="noopener noreferrer">Labinator.com</a>
+            <button type="button" id="btn-theme-toggle" class="btn btn-sm btn-outline-secondary ms-2"
+                aria-label="Toggle dark mode" title="Toggle dark mode">
+                <i class="fas fa-moon"></i>
+            </button>
+        </p>
+        <div id="move-announcer" class="visually-hidden" aria-live="polite" aria-atomic="true"></div>
         <div id="console-container" class="mb-3">
             <div class="row chess-console">
                 <div class="chess-console-center col-xl-7 order-xl-2 col-lg-8 order-lg-1 order-md-1 col-md-12">
@@ -48,11 +60,6 @@
         </div>
 
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js"
-        integrity="sha384-5AkRS45j4ukf+JbWAfHL8P4onPA9p0KwwP7pUdjSQA3ss9edbJUJc/XcYAiheSSz"
-        crossorigin="anonymous"></script>
-    <!-- Import map and shims removed for Vite -->
     <script type="module" src="./src/main.js"></script>
 
     <!-- Game Setup Modal -->

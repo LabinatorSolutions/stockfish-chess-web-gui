@@ -1,3 +1,4 @@
+// @ts-nocheck -- extends cm-web-modules' UiComponent, which ships no type declarations
 /**
  * Author and copyright: Stefan Haack (https://shaack.com)
  * Repository: https://github.com/shaack/chess-console-stockfish
@@ -32,7 +33,7 @@ export class StockfishStateView extends UiComponent {
 
 		// Premium Bootstrap-based structure
 		this.element.innerHTML = `
-            <div class="card border-0 shadow-sm bg-light overflow-hidden">
+            <div class="card border-0 shadow-sm bg-body-secondary overflow-hidden">
                 <div class="card-body p-2 d-flex align-items-center gap-3">
                     <div class="flex-shrink-0 d-flex align-items-center">
                         <div class="engine-status-indicator pulse-animation-ready rounded-circle" 
@@ -44,8 +45,9 @@ export class StockfishStateView extends UiComponent {
                             <span class="badge score-badge bg-secondary" style="font-size: 0.75rem;">Score: 0.0</span>
                         </div>
                         <div class="progress" style="height: 6px; background-color: rgba(0,0,0,0.05);">
-                            <div class="progress-bar progress-bar-striped progress-bar-animated bg-primary" 
-                                 role="progressbar" style="width: 0%; transition: width 0.3s ease;"></div>
+                            <div class="progress-bar progress-bar-striped progress-bar-animated bg-primary"
+                                 role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"
+                                 style="width: 0%; transition: width 0.3s ease;"></div>
                         </div>
                     </div>
                     <div class="flex-shrink-0 status-label-container">
@@ -77,18 +79,21 @@ export class StockfishStateView extends UiComponent {
 				this.statusIndicator.classList.add("pulse-animation-thinking");
 				this.statusIndicator.classList.remove("pulse-animation-ready");
 				this.progressBar.style.width = "100%";
+				this.progressBar.setAttribute("aria-valuenow", "100");
 				this.statusBadge.innerText = "Thinking";
 				this.statusBadge.classList.remove("bg-white", "text-dark");
 				this.statusBadge.classList.add("bg-primary", "text-white");
 			} else if (state === ENGINE_STATE.LOADING) {
 				this.statusIndicator.style.backgroundColor = "var(--bs-warning)";
 				this.progressBar.style.width = "30%";
+				this.progressBar.setAttribute("aria-valuenow", "30");
 				this.statusBadge.innerText = "Loading";
 			} else {
 				this.statusIndicator.style.backgroundColor = "var(--bs-success)";
 				this.statusIndicator.classList.add("pulse-animation-ready");
 				this.statusIndicator.classList.remove("pulse-animation-thinking");
 				this.progressBar.style.width = "0%";
+				this.progressBar.setAttribute("aria-valuenow", "0");
 				this.statusBadge.innerText = "Ready";
 				this.statusBadge.classList.add("bg-white", "text-dark");
 				this.statusBadge.classList.remove("bg-primary", "text-white");

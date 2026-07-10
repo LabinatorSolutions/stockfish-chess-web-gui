@@ -1,3 +1,4 @@
+import { bootstrap } from "./bootstrap-global.js";
 import { ENGINE_CONFIG, STYLING_CONFIG } from "./Config.js";
 import { escapeHtml } from "./Utils.js";
 
@@ -185,79 +186,85 @@ export class StockfishNewGameDialog {
 				props.footer = `<button type="button" class="btn btn-link" data-bs-dismiss="modal">${i18n.t("cancel")}</button>
             <button type="submit" class="btn btn-primary">${i18n.t("ok")}</button>`;
 				props.onCreate = (modal) => {
-					const $form = $(modal.element).find(".form");
-					const $gameMode = $form.find("#gameMode");
-					const $searchMode = $form.find("#searchMode");
-					const $skillLevelInput = $form.find("#skillLevel");
-					const $skillLevelValue = $form.find("#skillLevelValue");
-					const $depthInput = $form.find("#depth");
-					const $depthValue = $form.find("#depthValue");
-					const $eloInput = $form.find("#elo");
-					const $eloValue = $form.find("#eloValue");
-					const $moveTimeInput = $form.find("#moveTime");
-					const $moveTimeValue = $form.find("#moveTimeValue");
-					const $analysisDepthInput = $form.find("#analysisDepth");
-					const $analysisDepthValue = $form.find("#analysisDepthValue");
+					const form = modal.element.querySelector(".form");
+					const gameModeEl = form.querySelector("#gameMode");
+					const searchModeEl = form.querySelector("#searchMode");
+					const skillLevelInput = form.querySelector("#skillLevel");
+					const skillLevelValue = form.querySelector("#skillLevelValue");
+					const depthInput = form.querySelector("#depth");
+					const depthValue = form.querySelector("#depthValue");
+					const eloInput = form.querySelector("#elo");
+					const eloValue = form.querySelector("#eloValue");
+					const moveTimeInput = form.querySelector("#moveTime");
+					const moveTimeValue = form.querySelector("#moveTimeValue");
+					const analysisDepthInput = form.querySelector("#analysisDepth");
+					const analysisDepthValue = form.querySelector("#analysisDepthValue");
 
-					const $searchModeRow = $form.find("#searchModeRow");
-					const $skillLevelRow = $form.find("#skillLevelRow");
-					const $depthRow = $form.find("#depthRow");
-					const $eloRow = $form.find("#eloRow");
-					const $moveTimeRow = $form.find("#moveTimeRow");
-					const $colorRow = $form.find("#colorRow");
+					const searchModeRow = form.querySelector("#searchModeRow");
+					const skillLevelRow = form.querySelector("#skillLevelRow");
+					const depthRow = form.querySelector("#depthRow");
+					const eloRow = form.querySelector("#eloRow");
+					const moveTimeRow = form.querySelector("#moveTimeRow");
+					const colorRow = form.querySelector("#colorRow");
+
+					const setRowVisible = (row, visible) => {
+						row.style.display = visible ? "" : "none";
+					};
 
 					const updateVisibility = () => {
-						const gameMode = $gameMode.val();
+						const gameMode = gameModeEl.value;
 						if (gameMode === "analysis" || gameMode === "pvp") {
-							$colorRow.hide();
-							$searchModeRow.hide();
-							$skillLevelRow.hide();
-							$depthRow.hide();
-							$eloRow.hide();
-							$moveTimeRow.hide();
+							setRowVisible(colorRow, false);
+							setRowVisible(searchModeRow, false);
+							setRowVisible(skillLevelRow, false);
+							setRowVisible(depthRow, false);
+							setRowVisible(eloRow, false);
+							setRowVisible(moveTimeRow, false);
 						} else {
-							$colorRow.show();
-							$searchModeRow.show();
-							const searchModeValue = $searchMode.val();
-							$skillLevelRow.toggle(searchModeValue === "skill");
-							$eloRow.toggle(searchModeValue === "elo");
-							$depthRow.toggle(searchModeValue === "depth");
-							$moveTimeRow.toggle(searchModeValue === "time");
+							setRowVisible(colorRow, true);
+							setRowVisible(searchModeRow, true);
+							const searchModeValue = searchModeEl.value;
+							setRowVisible(skillLevelRow, searchModeValue === "skill");
+							setRowVisible(eloRow, searchModeValue === "elo");
+							setRowVisible(depthRow, searchModeValue === "depth");
+							setRowVisible(moveTimeRow, searchModeValue === "time");
 						}
 					};
-					$gameMode.on("change", updateVisibility);
-					$searchMode.on("change", updateVisibility);
+					gameModeEl.addEventListener("change", updateVisibility);
+					searchModeEl.addEventListener("change", updateVisibility);
 					updateVisibility();
 
-					$skillLevelInput.on("input", () => {
-						$skillLevelValue.text($skillLevelInput.val());
+					skillLevelInput.addEventListener("input", () => {
+						skillLevelValue.textContent = skillLevelInput.value;
 					});
-					$depthInput.on("input", () => {
-						$depthValue.text($depthInput.val());
+					depthInput.addEventListener("input", () => {
+						depthValue.textContent = depthInput.value;
 					});
-					$eloInput.on("input", () => {
-						$eloValue.text($eloInput.val());
+					eloInput.addEventListener("input", () => {
+						eloValue.textContent = eloInput.value;
 					});
-					$moveTimeInput.on("input", () => {
-						$moveTimeValue.text($moveTimeInput.val());
+					moveTimeInput.addEventListener("input", () => {
+						moveTimeValue.textContent = moveTimeInput.value;
 					});
-					$analysisDepthInput.on("input", () => {
-						$analysisDepthValue.text($analysisDepthInput.val());
+					analysisDepthInput.addEventListener("input", () => {
+						analysisDepthValue.textContent = analysisDepthInput.value;
 					});
 
-					$(modal.element).on("click", "button[type='submit']", (event) => {
+					modal.element.addEventListener("click", (event) => {
+						const submitBtn = event.target.closest("button[type='submit']");
+						if (!submitBtn || !modal.element.contains(submitBtn)) return;
 						event.preventDefault();
-						const color = $form.find("#color").val();
+						const color = form.querySelector("#color").value;
 						chessConsole.persistence.saveValue("newGameColor", color);
-						const skillLevel = parseInt($skillLevelInput.val(), 10);
-						const depth = parseInt($depthInput.val(), 10);
-						const elo = parseInt($eloInput.val(), 10);
-						const moveTime = parseInt($moveTimeInput.val(), 10);
-						const analysisDepth = parseInt($analysisDepthInput.val(), 10);
-						const gameMode = $gameMode.val();
-						const searchMode = $searchMode.val();
-						const boardTheme = $form.find("#boardTheme").val();
-						const pieceSet = $form.find("#pieceSet").val();
+						const skillLevel = parseInt(skillLevelInput.value, 10);
+						const depth = parseInt(depthInput.value, 10);
+						const elo = parseInt(eloInput.value, 10);
+						const moveTime = parseInt(moveTimeInput.value, 10);
+						const analysisDepth = parseInt(analysisDepthInput.value, 10);
+						const gameMode = gameModeEl.value;
+						const searchMode = searchModeEl.value;
+						const boardTheme = form.querySelector("#boardTheme").value;
+						const pieceSet = form.querySelector("#pieceSet").value;
 
 						chessConsole.persistence.saveValue("elo", elo);
 						chessConsole.persistence.saveValue("moveTime", moveTime);

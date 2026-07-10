@@ -2,3 +2,28 @@
 @import "cm-chessboard/assets/extensions/arrows/arrows.css";
 @import "cm-chessboard/assets/extensions/markers/markers.css";
 @import "../assets/styles/screen.css";
+
+/*
+ * chess-console's HistoryControl buttons and the "to move" indicator use
+ * hardcoded colors (`.text-black`, `#333`) that don't react to Bootstrap's
+ * dark-mode CSS variables, making them invisible against a dark background.
+ */
+[data-bs-theme="dark"] .text-black {
+	color: var(--bs-body-color) !important;
+}
+
+[data-bs-theme="dark"] .player.to-move::after {
+	color: var(--bs-body-color) !important;
+}
+
+/* The unchecked switch track otherwise matches the page background exactly. */
+[data-bs-theme="dark"] .form-check-input {
+	background-color: var(--bs-tertiary-bg);
+	border-color: var(--bs-border-color);
+}
+
+/* btn-outline-secondary's border/icon color is borderline-low-contrast on a dark page. */
+[data-bs-theme="dark"] #btn-theme-toggle {
+	color: var(--bs-body-color);
+	border-color: var(--bs-border-color);
+}

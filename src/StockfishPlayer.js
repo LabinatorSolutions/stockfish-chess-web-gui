@@ -1,3 +1,4 @@
+// @ts-nocheck -- extends chess-console/cm-engine-runner classes, which ship no type declarations
 /**
  * Author and copyright: Stefan Haack (https://shaack.com)
  * Repository: https://github.com/shaack/chess-console-stockfish
