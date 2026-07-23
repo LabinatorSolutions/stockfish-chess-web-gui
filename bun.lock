@@ -5,12 +5,12 @@
     "": {
       "name": "chess-console-stockfish",
       "dependencies": {
-        "@fortawesome/fontawesome-free": "^7.3.0",
-        "baseline-browser-mapping": "^2.10.43",
+        "@fortawesome/fontawesome-free": "^7.3.1",
+        "baseline-browser-mapping": "^2.11.1",
         "bootstrap": "^5.3.8",
-        "caniuse-lite": "^1.0.30001805",
-        "chess-console": "^6.13.3",
-        "cm-chessboard": "^8.12.12",
+        "caniuse-lite": "^1.0.30001806",
+        "chess-console": "^6.14.0",
+        "cm-chessboard": "^8.12.19",
         "cm-engine-runner": "^2.0.1",
         "cm-web-modules": "^2.8.0",
       },
@@ -21,7 +21,7 @@
     },
   },
   "packages": {
-    "@fortawesome/fontawesome-free": ["@fortawesome/fontawesome-free@7.3.0", "", {}, "sha512-Yw4Qa43P6e4Xwh0TwEUkHQNRJInWaqIBo73VJmns3j2AIlZPAvUcR4yGIxCPqPRCgyJ5KIVIalF/I1GxhZ/Kgw=="],
+    "@fortawesome/fontawesome-free": ["@fortawesome/fontawesome-free@7.3.1", "", {}, "sha512-wmglKKPDIkgV3aWlZzWECCPoGIkYCulzBwxG9+w7rc5BGapZ6cPMpoPOT8k36J0Ni7PPX6c/rsoMWfS4d1MUMg=="],
 
     "@popperjs/core": ["@popperjs/core@2.11.8", "", {}, "sha512-P1st0aksCrn9sGZhp8GMYwBnQsbvAWsZAX44oXNNvLHGqAOcoVxmjZiohstwQ7SqKnbR47akdNi+uleWD8+g6A=="],
 
@@ -69,7 +69,7 @@
 
     "@typescript/typescript-win32-x64": ["@typescript/typescript-win32-x64@7.0.2", "", { "os": "win32", "cpu": "x64" }, "sha512-0BQ3HkAHHlKLSp1qRvf3SUhGpGsDuhB/jgFw75guyqbxJqEaS0Cw/VFO8i2nHglJUzQCRtMMR/IBAKE3ETMC4g=="],
 
-    "baseline-browser-mapping": ["baseline-browser-mapping@2.10.43", "", { "bin": { "baseline-browser-mapping": "dist/cli.cjs" } }, "sha512-AjYpR78kDWAY3Efj+cDTFH9t9SCoL7OoTp1BOb0mQV7S+6CiLwnWM3FyxhJtdPufDFKzmCSFoUncKjWgJEZTCQ=="],
+    "baseline-browser-mapping": ["baseline-browser-mapping@2.11.1", "", { "bin": { "baseline-browser-mapping": "dist/cli.cjs" } }, "sha512-HYXq73DDpCtNzOmrFsm9eSwCvWCql0RzqjpDzXN9EadiLJ4DNat0nsZ/Bzmy+Ud12mb4/zKDY0cQ805ZzN+i0A=="],
 
     "bootstrap": ["bootstrap@5.3.8", "", { "peerDependencies": { "@popperjs/core": "^2.11.8" } }, "sha512-HP1SZDqaLDPwsNiqRqi5NcP0SSXciX2s9E+RyqJIIqGo+vJeN5AJVM98CXmW/Wux0nQ5L7jeWUdplCEf0Ee+tg=="],
 
@@ -77,15 +77,15 @@
 
     "bun-types": ["bun-types@1.3.14", "", { "dependencies": { "@types/node": "*" } }, "sha512-4N0ig0fEomHt5R0KCFWjovxow98rIoRwKolrYdCcknNwMekCXRnWEUvgu5soYV8QXtVsrUD8B95MBOZGPvr6KQ=="],
 
-    "caniuse-lite": ["caniuse-lite@1.0.30001805", "", {}, "sha512-52noaS3DubycKSXaU30TwPGIp+POyQSUVa5jBEq3vkRkY0kjyb3LQgvhU6WGyCcyXqVLWO0Cw0Q6BSdD0kUfVA=="],
+    "caniuse-lite": ["caniuse-lite@1.0.30001806", "", {}, "sha512-72Cuvd95zbSYPKq6Fhg8eDJRlzgWDf7/mtoZv6Qe/DYNCEBdNxoA3+rZAU2ZhGCpZlns3EssFavaZomckT5Uuw=="],
 
-    "chess-console": ["chess-console@6.13.3", "", { "dependencies": { "bootstrap-show-modal": "^6.0.10", "chess.mjs": "^2.3.2", "cm-chess": "^3.6.3", "cm-chessboard": "^8.11.5", "cm-pgn": "^4.0.6", "cm-web-modules": "^2.6.0", "patch": "^0.0.1" } }, "sha512-dqAteLF8LQUwRy1i0AOhIM1RWcuBZCF01B2rRmY8eUBSlkluax9yNX3szgHGrIcMEJYPrysHVdHQPu16MdTXqg=="],
+    "chess-console": ["chess-console@6.14.0", "", { "dependencies": { "bootstrap-show-modal": "^6.1.0", "chess.mjs": "^2.3.2", "cm-chess": "^3.6.3", "cm-chessboard": "^8.12.19", "cm-pgn": "^4.1.2", "cm-web-modules": "^2.8.0", "patch": "^0.0.1" } }, "sha512-DSpHiCMV8KA8XQE2iE59Ta7pSpdaJD+U46MogYQK/05u71Fbk4vncPS6DQc6YJD6Paraa77qxHYOmAOmLlKYvw=="],
 
     "chess.mjs": ["chess.mjs@2.3.2", "", {}, "sha512-ZNerNDt1CkKbwxscG38zBegIgcQ5MCyUdupRnUsKXz6f3lvhz+jo/7VumE8h+mobmJ0xJpnSURKspNso4J5pzQ=="],
 
     "cm-chess": ["cm-chess@3.6.3", "", { "dependencies": { "chess.mjs": "^2.3.2", "cm-pgn": "4.0.6" } }, "sha512-78ffmdsUbb+pOTf6lgTKuLvaPxrQh47xdhuGo4O00GpdgkWOiIjgpvG8vmWCDwu2MJkHHcte0oNxqbd8F9FfhA=="],
 
-    "cm-chessboard": ["cm-chessboard@8.12.12", "", {}, "sha512-AQ68/xn5FpIBTI7ySLQ0S/bKbzPRFZTCgNs8gG8fuxvg3DQ+R3kVUX7hWQUm1KrVyUoPuxTx1BuAqhVJoDtvoQ=="],
+    "cm-chessboard": ["cm-chessboard@8.12.19", "", {}, "sha512-HyX/HE4MH+zF4h+uTTe8c1dpPzb66/i8R/QbYEnxNSFM5xZi/n1LW2Ip2Vv+0lXfEptcV5VTT6gLldmuyMjjaQ=="],
 
     "cm-engine-runner": ["cm-engine-runner@2.0.1", "", { "dependencies": { "cm-polyglot": "^1.1.0", "stockfish": "^18.0.5" } }, "sha512-P39Vom3awcHIu1PN9TpJCh7TZomDlm0ejLfS57ubY2qsxoI0eG3cIpWKZsc9ik7D437Jv2wg0ZPPhEJr1F2mNA=="],
 
