@@ -1,34 +1,34 @@
 {
-  "name": "chess-console-stockfish",
-  "version": "6.2.4",
-  "dependencies": {
-    "@fortawesome/fontawesome-free": "^7.3.1",
-    "baseline-browser-mapping": "^2.11.1",
-    "bootstrap": "^5.3.8",
-    "caniuse-lite": "^1.0.30001806",
-    "chess-console": "^6.14.0",
-    "cm-chessboard": "^8.12.19",
-    "cm-engine-runner": "^2.0.1",
-    "cm-web-modules": "^2.8.0"
-  },
-  "description": "StockfishPlayer for ChessConsole",
-  "scripts": {
-    "ci": "biome ci .",
-    "dev": "bun build ./index.html --outdir ./dist --watch & bun run copy-assets --watch & bun server.js",
-    "start": "bun run dev",
-    "build": "rm -rf dist && bun build ./index.html --outdir ./dist --minify && bun run copy-assets && bun run inject-static-tags",
-    "inject-static-tags": "sed -i 's#</head>#<link rel=\"apple-touch-icon\" href=\"./icon-192.png\"><link rel=\"manifest\" href=\"./manifest.json\"><script src=\"./coi-config.js\"></script><script src=\"./coi-serviceworker.js\"></script></head>#' dist/index.html",
-    "copy-assets": "mkdir -p dist/assets/books && cp -r assets/books/* dist/assets/books/ 2>/dev/null || true && mkdir -p dist/assets/cm-chessboard/pieces && cp -r node_modules/cm-chessboard/assets/pieces/* dist/assets/cm-chessboard/pieces/ 2>/dev/null || true && mkdir -p dist/assets/cm-chessboard/extensions/markers dist/assets/cm-chessboard/extensions/arrows && cp node_modules/cm-chessboard/assets/extensions/markers/markers.svg dist/assets/cm-chessboard/extensions/markers/ 2>/dev/null || true && cp node_modules/cm-chessboard/assets/extensions/arrows/arrows.svg dist/assets/cm-chessboard/extensions/arrows/ 2>/dev/null || true && cp -r public/* dist/ 2>/dev/null || true",
-    "preview": "bun server.js",
-    "serve": "bun run preview",
-    "test": "bun test",
-    "lint": "biome check src server.js",
-    "lint:fix": "biome check --write src server.js",
-    "typecheck": "tsc --noEmit"
-  },
-  "type": "module",
-  "devDependencies": {
-    "@types/bun": "^1.3.14",
-    "typescript": "^7.0.2"
-  }
+	"name": "chess-console-stockfish",
+	"version": "6.2.4",
+	"dependencies": {
+		"@fortawesome/fontawesome-free": "^7.3.1",
+		"baseline-browser-mapping": "^2.11.1",
+		"bootstrap": "^5.3.8",
+		"caniuse-lite": "^1.0.30001806",
+		"chess-console": "^6.14.0",
+		"cm-chessboard": "^8.12.19",
+		"cm-engine-runner": "^2.0.1",
+		"cm-web-modules": "^2.8.0"
+	},
+	"description": "StockfishPlayer for ChessConsole",
+	"scripts": {
+		"ci": "biome ci .",
+		"dev": "bun build ./index.html --outdir ./dist --watch & bun run copy-assets --watch & bun server.js",
+		"start": "bun run dev",
+		"build": "rm -rf dist && bun build ./index.html --outdir ./dist --minify && bun run copy-assets && bun run inject-static-tags",
+		"inject-static-tags": "sed -i 's#</head>#<link rel=\"apple-touch-icon\" href=\"./icon-192.png\"><link rel=\"manifest\" href=\"./manifest.json\"><script src=\"./coi-config.js\"></script><script src=\"./coi-serviceworker.js\"></script></head>#' dist/index.html",
+		"copy-assets": "mkdir -p dist/assets/books && cp -r assets/books/* dist/assets/books/ 2>/dev/null || true && mkdir -p dist/assets/cm-chessboard/pieces && cp -r node_modules/cm-chessboard/assets/pieces/* dist/assets/cm-chessboard/pieces/ 2>/dev/null || true && mkdir -p dist/assets/cm-chessboard/extensions/markers dist/assets/cm-chessboard/extensions/arrows && cp node_modules/cm-chessboard/assets/extensions/markers/markers.svg dist/assets/cm-chessboard/extensions/markers/ 2>/dev/null || true && cp node_modules/cm-chessboard/assets/extensions/arrows/arrows.svg dist/assets/cm-chessboard/extensions/arrows/ 2>/dev/null || true && cp -r public/* dist/ 2>/dev/null || true",
+		"preview": "bun server.js",
+		"serve": "bun run preview",
+		"test": "bun test",
+		"lint": "biome check src server.js",
+		"lint:fix": "biome check --write src server.js",
+		"typecheck": "tsc --noEmit"
+	},
+	"type": "module",
+	"devDependencies": {
+		"@types/bun": "^1.3.14",
+		"typescript": "^7.0.2"
+	}
 }
