@@ -1,5 +1,5 @@
 {
-  "lockfileVersion": 1,
+  "lockfileVersion": 2,
   "configVersion": 1,
   "workspaces": {
     "": {
@@ -8,12 +8,12 @@
         "@fortawesome/fontawesome-free": "^7.3.1",
         "bootstrap": "^5.3.8",
         "chess-console": "^6.14.0",
-        "cm-chessboard": "^8.12.19",
+        "cm-chessboard": "^8.13.0",
         "cm-engine-runner": "^2.0.1",
-        "cm-web-modules": "^2.8.0",
+        "cm-web-modules": "^2.8.1",
       },
       "devDependencies": {
-        "@types/bun": "^1.3.14",
+        "@types/bun": "^1.4.0",
         "typescript": "^7.0.2",
       },
     },
@@ -23,7 +23,7 @@
 
     "@popperjs/core": ["@popperjs/core@2.11.8", "", {}, "sha512-P1st0aksCrn9sGZhp8GMYwBnQsbvAWsZAX44oXNNvLHGqAOcoVxmjZiohstwQ7SqKnbR47akdNi+uleWD8+g6A=="],
 
-    "@types/bun": ["@types/bun@1.3.14", "", { "dependencies": { "bun-types": "1.3.14" } }, "sha512-h1hFqFVcvAvD9j9K7ZW7vd82aSA+rTdznZa+5bwvCwqSB1jmmfLcbIWhOLx1/+boy/xmjgCs/OMUL8hRJSmnPw=="],
+    "@types/bun": ["@types/bun@1.4.0", "", { "dependencies": { "bun-types": "1.4.0" } }, "sha512-K+lZULY23vRgK/CfTjFIV+tyifaNdSMlPh9j+6mQ/cLfpOznLyAuzgV/JQysyECpkBQLVMSyvjlr2fBUSA9wFQ=="],
 
     "@types/node": ["@types/node@26.2.0", "", { "dependencies": { "undici-types": "~8.3.0" } }, "sha512-5IviulTZeRNp2vAJ514cc/HUlY5nZ9fCbq9DMyC52BrhFZACo3nI0R7qBxhQmo/d27NFe96ur/b7Wwxklda+kg=="],
 
@@ -71,7 +71,7 @@
 
     "bootstrap-show-modal": ["bootstrap-show-modal@6.1.0", "", {}, "sha512-bsumuZ3zK4i2cy5tTogsGD3sABfTn+x7A9t1A0ST7V9xgcZzaUeuXpnMxQaA5NBpyNr0ZlEon90HdPdoj5Eb5w=="],
 
-    "bun-types": ["bun-types@1.3.14", "", { "dependencies": { "@types/node": "*" } }, "sha512-4N0ig0fEomHt5R0KCFWjovxow98rIoRwKolrYdCcknNwMekCXRnWEUvgu5soYV8QXtVsrUD8B95MBOZGPvr6KQ=="],
+    "bun-types": ["bun-types@1.4.0", "", { "dependencies": { "@types/node": "*" } }, "sha512-iIKw23BspnQQYd3prITOBxeUsxBHnwzX6YJfGMuNOZzeNcMmVqzIIVGRm1l69ogaPQmb4wB6BN8mA5bE9YuC5Q=="],
 
     "chess-console": ["chess-console@6.14.0", "", { "dependencies": { "bootstrap-show-modal": "^6.1.0", "chess.mjs": "^2.3.2", "cm-chess": "^3.6.3", "cm-chessboard": "^8.12.19", "cm-pgn": "^4.1.2", "cm-web-modules": "^2.8.0", "patch": "^0.0.1" } }, "sha512-DSpHiCMV8KA8XQE2iE59Ta7pSpdaJD+U46MogYQK/05u71Fbk4vncPS6DQc6YJD6Paraa77qxHYOmAOmLlKYvw=="],
 
@@ -79,7 +79,7 @@
 
     "cm-chess": ["cm-chess@3.6.3", "", { "dependencies": { "chess.mjs": "^2.3.2", "cm-pgn": "4.0.6" } }, "sha512-78ffmdsUbb+pOTf6lgTKuLvaPxrQh47xdhuGo4O00GpdgkWOiIjgpvG8vmWCDwu2MJkHHcte0oNxqbd8F9FfhA=="],
 
-    "cm-chessboard": ["cm-chessboard@8.12.19", "", {}, "sha512-HyX/HE4MH+zF4h+uTTe8c1dpPzb66/i8R/QbYEnxNSFM5xZi/n1LW2Ip2Vv+0lXfEptcV5VTT6gLldmuyMjjaQ=="],
+    "cm-chessboard": ["cm-chessboard@8.13.0", "", {}, "sha512-/MhE+zyoQOtWTcayMQv0lLPbiZaGeCZdI+t/tIZZZCKO1gsfr4vr9PpX5iPcI9LGgQJRTpq4JHNu4bD9xN4Ftg=="],
 
     "cm-engine-runner": ["cm-engine-runner@2.0.1", "", { "dependencies": { "cm-polyglot": "^1.1.0", "stockfish": "^18.0.5" } }, "sha512-P39Vom3awcHIu1PN9TpJCh7TZomDlm0ejLfS57ubY2qsxoI0eG3cIpWKZsc9ik7D437Jv2wg0ZPPhEJr1F2mNA=="],
 
@@ -87,7 +87,7 @@
 
     "cm-polyglot": ["cm-polyglot@1.1.0", "", {}, "sha512-yKclnR2WHNgtMViYnxUJzqfR9/iTLfG0PYNVmHNbGiZrYoc7tTrGQHutzgUISFpiQ8ArbqaZKcBzZ2S2CE4/Gg=="],
 
-    "cm-web-modules": ["cm-web-modules@2.8.0", "", {}, "sha512-hocQZRbYXuglLtPB486mhMRjDp2CK/UNWiwhsB/vFkHcqWhsIU9Xk1J++jMz45Qt6ebDPz4tBoQb1nAgcEjDJA=="],
+    "cm-web-modules": ["cm-web-modules@2.8.1", "", {}, "sha512-Ztkd6XYmCynHJOi62gRjk4fzTDwGZzUxXvkIoR4uOKmRSh/euvgJqrmnN+4mkb7/9wq3wr/yyNiNEJY9dZ5sSw=="],
 
     "patch": ["patch@0.0.1", "", {}, "sha512-+SXEoPuYhe44vUXCGAOjEISqgoo26pcSj65xK3zbKGt87CeUoIZ4cHwIkdloHHxGAEIOzMiYmRbj+t0T9pBPXw=="],
 
