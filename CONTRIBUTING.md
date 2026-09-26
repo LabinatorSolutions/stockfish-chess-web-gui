@@ -29,11 +29,11 @@ We welcome suggestions for enhancements! If you have an idea to improve the app:
 
 We actively welcome your pull requests:
 
-1. Fork the repo and create your branch from `main`.
+1. Fork the repo and create your branch from `master`.
 2. If you've added code, write clear, commented code and adhere to our coding conventions.
 3. If you've changed APIs, update the documentation.
-4. Ensure your code lints (no compile errors).
-5. Issue your pull request to the `main` branch.
+4. Ensure `bun run lint`, `bun run typecheck` and `bun run test` pass.
+5. Issue your pull request to the `master` branch.
 6. Provide a clear description of the changes in the pull request. Include the purpose of the change and any relevant issues it addresses.
 
 ## Coding Standards

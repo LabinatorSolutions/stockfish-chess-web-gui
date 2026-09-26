@@ -2,7 +2,7 @@
 
 ![License](https://www.shieldcn.dev/github/license/LabinatorSolutions/stockfish-chess-web-gui.svg?variant=default&size=sm&mode=light&font=jetbrains-mono)
 ![Package mgr · Bun](https://www.shieldcn.dev/badge/Package_mgr-Bun-000000.svg?logo=bun&variant=branded&size=sm&mode=light&font=jetbrains-mono)
-![Language · TypeScript](https://www.shieldcn.dev/badge/Language-TypeScript-3178C6.svg?logo=typescript&variant=branded&size=sm&mode=light&font=jetbrains-mono)
+![Language · JavaScript](https://www.shieldcn.dev/badge/Language-JavaScript-F7DF1E.svg?logo=javascript&variant=branded&size=sm&mode=light&font=jetbrains-mono)
 ![Lint · Biome](https://www.shieldcn.dev/badge/Lint-Biome-60A5FA.svg?logo=biome&variant=branded&size=sm&mode=light&font=jetbrains-mono)
 ![Hosting · Netlify](https://www.shieldcn.dev/badge/Hosting-Netlify-00AD9F.svg?logo=netlify&variant=branded&size=sm&mode=light&font=jetbrains-mono)
 
@@ -85,15 +85,18 @@ Our mission is to develop a modern, responsive, free, and open-source web-based 
 ```text
 ├── src/
 │   ├── Config.js                # Core app and engine configuration
-│   ├── CustomStockfishRunner.js # Engine communication layer
-│   ├── StockfishAnalysis.js     # Analysis mode logic
-│   ├── StockfishGameControl.js  # UI-to-engine bridge
+│   ├── CustomStockfishRunner.js # Engine communication layer (UCI options, info-line parsing)
+│   ├── GameImport.js            # FEN/PGN validation for Setup / Import
+│   ├── StockfishAnalysis.js     # Analysis panel (second engine instance, MultiPV)
+│   ├── StockfishGameControl.js  # Extra toolbar buttons
 │   ├── StockfishNewGameDialog.js# Game setup modal
 │   ├── StockfishPlayer.js       # Engine move generation logic
-│   ├── StockfishStateView.js    # Performance and evaluation UI
-│   ├── main.js                  # App initialization
-│   └── extensions/              # Extra features (e.g., Markers, Arrows)
-├── server.js                    # Local dev server with security headers
+│   ├── StockfishStateView.js    # Engine status and evaluation UI
+│   ├── main.js                  # App initialization and wiring
+│   ├── *.test.js                # Unit tests (bun test)
+│   └── extensions/              # RightClickAnnotator: right-click arrows and markers
+├── public/                      # Copied to dist/ as-is (engine worker + .wasm, manifest, icons, _headers)
+├── server.js                    # Local server for dist/ with security headers
 ├── index.html                   # Main entry point
 └── assets/                      # Styles, sounds, and opening books
 ```
@@ -114,15 +117,24 @@ bun install
 bun run dev
 ```
 
-Open `http://localhost:3000`. This runs the Bun bundler in watch mode and serves the app via `server.js` to ensure the required security headers are present.
+Open `http://localhost:3000`. This runs the Bun bundler in watch mode and serves the app via `server.js` to ensure the required security headers are present. Set `PORT` to use another port, e.g. `PORT=4000 bun run dev`.
 
 ### 3. Build for Production
 
 ```bash
 bun run build
+bun run preview   # serve dist/ locally
 ```
 
 The optimized output will be in the `dist` directory.
+
+### 4. Checks
+
+```bash
+bun run lint        # Biome lint + format check (lint:fix to apply)
+bun run typecheck   # tsc over the JS sources (checkJs)
+bun run test        # unit tests
+```
 
 ---
 
@@ -132,6 +144,7 @@ Core constants and default settings are located in `src/Config.js`.
 
 | Setting | Default | Description |
 | :--- | :--- | :--- |
+| `NAME` | `Stockfish 19` | Engine display name; keep in sync with the worker file |
 | `DEFAULT_SKILL_LEVEL` | 20 | Engine strength (1-20) |
 | `DEFAULT_DEPTH` | 16 | Default thinking depth |
 | `WORKER_PATH` | `/engine/...js` | Path to the Stockfish Web Worker |
