@@ -14,7 +14,7 @@ export class StockfishNewGameDialog {
 					white: "White",
 					black: "Black",
 					skillLevel: "Skill Level",
-					depth: "Fixed Depth",
+					fixedDepth: "Fixed Depth",
 					elo: "Elo Rating",
 					moveTime: "Thinking Time",
 					searchMode: "Search Mode",
@@ -25,7 +25,7 @@ export class StockfishNewGameDialog {
 					gameMode: "Game Mode",
 					pve: "vs. Stockfish (Engine)",
 					pvp: "Local PvP (Pass-and-Play)",
-					analysis: "Analysis Mode",
+					analysisMode: "Analysis Mode",
 					styling: "Styling",
 					gameSettings: "Game Settings",
 					boardTheme: "Board Theme",
@@ -98,7 +98,7 @@ export class StockfishNewGameDialog {
                                         <select id="gameMode" class="form-select">
                                             <option value="pve" ${savedMode === "pve" ? "selected" : ""}>${i18n.t("pve")}</option>
                                             <option value="pvp" ${savedMode === "pvp" ? "selected" : ""}>${i18n.t("pvp")}</option>
-                                            <option value="analysis" ${savedMode === "analysis" ? "selected" : ""}>${i18n.t("analysis")}</option>
+                                            <option value="analysis" ${savedMode === "analysis" ? "selected" : ""}>${i18n.t("analysisMode")}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -139,7 +139,7 @@ export class StockfishNewGameDialog {
                                     </div>
                                 </div>
                                 <div class="row mb-3" id="depthRow">
-                                    <label for="depth" class="col-sm-4 col-form-label">${i18n.t("depth")} (${ENGINE_CONFIG.MIN_DEPTH}-${ENGINE_CONFIG.MAX_DEPTH})</label>
+                                    <label for="depth" class="col-sm-4 col-form-label">${i18n.t("fixedDepth")} (${ENGINE_CONFIG.MIN_DEPTH}-${ENGINE_CONFIG.MAX_DEPTH})</label>
                                     <div class="col-sm-8">
                                         <input type="range" class="form-range" id="depth" min="${ENGINE_CONFIG.MIN_DEPTH}" max="${ENGINE_CONFIG.MAX_DEPTH}" value="${savedDepth}">
                                         <div class="text-muted small">Value: <span id="depthValue">${savedDepth}</span></div>
@@ -250,7 +250,9 @@ export class StockfishNewGameDialog {
 						analysisDepthValue.textContent = analysisDepthInput.value;
 					});
 
-					modal.element.addEventListener("click", (event) => {
+					// The modal element is reused across openings, so assign (not add)
+					// the handler; addEventListener stacked one newGame() per opening.
+					modal.element.onclick = (event) => {
 						const submitBtn = event.target.closest("button[type='submit']");
 						if (!submitBtn || !modal.element.contains(submitBtn)) return;
 						event.preventDefault();
@@ -287,7 +289,7 @@ export class StockfishNewGameDialog {
 							boardTheme: boardTheme,
 							pieceSet: pieceSet,
 						});
-					});
+					};
 				};
 				const modalId = "new-game-modal";
 				let modalElement = document.getElementById(modalId);
@@ -327,10 +329,8 @@ export class StockfishNewGameDialog {
 				modalElement.addEventListener(
 					"hidden.bs.modal",
 					() => {
-						// Focus the board or something to avoid aria-hidden issues on the triggering button
-						if (chessConsole.components?.board?.elements?.chessboard) {
-							chessConsole.components.board.elements.chessboard.focus();
-						}
+						// Return focus to the board, avoiding aria-hidden issues on the triggering button
+						chessConsole.components?.board?.chessboard?.view?.svg?.focus();
 					},
 					{ once: true },
 				);

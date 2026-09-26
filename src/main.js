@@ -10,11 +10,13 @@ import { HistoryControl } from "chess-console/src/components/HistoryControl.js";
 import { Persistence } from "chess-console/src/components/Persistence.js";
 import { LocalPlayer } from "chess-console/src/players/LocalPlayer.js";
 import { COLOR } from "cm-chessboard/src/Chessboard.js";
+import { ENGINE_STATE } from "cm-engine-runner/src/EngineRunner.js";
 import { I18n } from "cm-web-modules/src/i18n/I18n.js";
 import { Observe } from "cm-web-modules/src/observe/Observe.js";
 import { bootstrap } from "./bootstrap-global.js";
 import { ENGINE_CONFIG, GAME_CONFIG, STYLING_CONFIG } from "./Config.js";
 import { RightClickAnnotator } from "./extensions/RightClickAnnotator.js";
+import { checkPgn, fenToPgn, parseFen } from "./GameImport.js";
 import { StockfishAnalysis } from "./StockfishAnalysis.js";
 import { StockfishGameControl } from "./StockfishGameControl.js";
 import { StockfishPlayer } from "./StockfishPlayer.js";
@@ -29,12 +31,13 @@ const applyTheme = (theme) => {
 		icon.className = theme === "dark" ? "fas fa-sun" : "fas fa-moon";
 	}
 };
-applyTheme(
-	localStorage.getItem(THEME_STORAGE_KEY) ||
-		(window.matchMedia("(prefers-color-scheme: dark)").matches
-			? "dark"
-			: "light"),
-);
+const darkQuery = window.matchMedia("(prefers-color-scheme: dark)");
+const osTheme = () => (darkQuery.matches ? "dark" : "light");
+applyTheme(localStorage.getItem(THEME_STORAGE_KEY) || osTheme());
+// Follow OS theme changes until the user picks a theme explicitly
+darkQuery.addEventListener("change", () => {
+	if (!localStorage.getItem(THEME_STORAGE_KEY)) applyTheme(osTheme());
+});
 document.getElementById("btn-theme-toggle")?.addEventListener("click", () => {
 	const next =
 		document.documentElement.getAttribute("data-bs-theme") === "dark"
@@ -57,14 +60,13 @@ if (isMobile) {
 i18n.load({
 	en: {
 		playerName: "Player",
-		analysis: "Analysis",
 	},
 });
 const chessConsole = new ChessConsole(
 	document.getElementById("console-container"),
 	{ name: i18n.t("playerName"), type: LocalPlayer },
 	{
-		name: "Stockfish 19",
+		name: ENGINE_CONFIG.NAME,
 		type: StockfishPlayer,
 		props: {
 			worker: ENGINE_CONFIG.WORKER_PATH,
@@ -131,30 +133,48 @@ new Board(chessConsole, {
 			valueEl("pgn-text").value = chessConsole.state.chess.renderPgn();
 			setupModal.show();
 		} else if (target.id === "btn-load-fen") {
-			const fen = valueEl("fen-text").value.trim();
-			if (fen) {
+			const input = valueEl("fen-text").value.trim();
+			if (input) {
+				const { fen, error } = parseFen(input);
+				if (error) {
+					showNotification(`Invalid FEN: ${error}`);
+					return;
+				}
 				// ChessConsole initGame/newGame only supports pgn for custom positions
-				// The parser requires the PGN to be valid, and '*' can sometimes cause issues depending on version
-				const pgn = `[FEN "${fen}"]\n[SetUp "1"]\n\n `;
-				chessConsole.newGame({ pgn: pgn });
+				chessConsole.newGame({ pgn: fenToPgn(fen) });
 				setupModal.hide();
 				showNotification("FEN Loaded Successfully");
 			}
 		} else if (target.id === "btn-load-pgn") {
 			const pgn = valueEl("pgn-text").value;
+			const error = checkPgn(pgn);
+			if (error) {
+				showNotification(`Invalid PGN: ${error}`);
+				return;
+			}
 			chessConsole.newGame({ pgn: pgn });
 			setupModal.hide();
 			showNotification("PGN Loaded Successfully");
 		} else if (target.id === "btn-copy-fen") {
-			navigator.clipboard.writeText(valueEl("fen-text").value);
-			showNotification("FEN Copied to Clipboard!");
+			copyToClipboard(valueEl("fen-text").value, "FEN");
 		} else if (target.id === "btn-copy-pgn") {
-			navigator.clipboard.writeText(valueEl("pgn-text").value);
-			showNotification("PGN Copied to Clipboard!");
+			copyToClipboard(valueEl("pgn-text").value, "PGN");
 		} else if (target.id === "btn-hint") {
-			analysis.hint();
+			if (!analysis.hint()) {
+				showNotification(
+					"No hint yet - the analysis engine is still thinking.",
+				);
+			}
 		} else if (target.id === "btn-swap-sides") {
-			if (chessConsole.opponent.state.gameMode === "pve") {
+			if (chessConsole.opponent.state.gameMode !== "pve") {
+				showNotification("Swap only available in vs. Engine mode.");
+			} else if (
+				chessConsole.opponent.state.engineState === ENGINE_STATE.THINKING
+			) {
+				// The running search would still play its move for the side the
+				// user just took over
+				showNotification("Wait for the engine to finish its move first.");
+			} else {
 				// 1. Disable current move input to prevent stale state
 				board.chessboard.disableMoveInput();
 
@@ -170,8 +190,6 @@ new Board(chessConsole, {
 				chessConsole.nextMove();
 
 				showNotification("Sides Swapped!");
-			} else {
-				showNotification("Swap only available in vs. Engine mode.");
 			}
 		}
 	});
@@ -265,6 +283,10 @@ new Board(chessConsole, {
 	gameControl.setAnalysis(analysis);
 	new StockfishStateView(chessConsole, chessConsole.opponent);
 
+	// persistence.load() above published "load" before these subscriptions
+	// existed, so analyze the restored position explicitly.
+	updateAnalysis();
+
 	// chess-console's own components (Board, HistoryControl, CapturedPieces,
 	// History) each register a plyViewed observer to stay in sync with
 	// history navigation (back/forward/first/last buttons and arrow keys),
@@ -289,18 +311,21 @@ new Board(chessConsole, {
 		}
 	};
 
-	// Modal focus management for accessibility
+	// Modal focus management for accessibility (the new-game dialog, created
+	// lazily, handles its own in StockfishNewGameDialog)
 	document
 		.getElementById("setupModal")
 		.addEventListener("hidden.bs.modal", focusBoard);
-
-	const newGameModalEl = document.getElementById("new-game-modal");
-	if (newGameModalEl) {
-		newGameModalEl.addEventListener("hidden.bs.modal", focusBoard);
-	}
 });
 
 // Utility UI Logic
+const copyToClipboard = (text, label) => {
+	navigator.clipboard.writeText(text).then(
+		() => showNotification(`${label} Copied to Clipboard!`),
+		() => showNotification(`Could not copy ${label}: clipboard access denied.`),
+	);
+};
+
 const showNotification = (message) => {
 	const toastEl = document.getElementById("notificationToast");
 	const toastBody = document.getElementById("toastMessage");

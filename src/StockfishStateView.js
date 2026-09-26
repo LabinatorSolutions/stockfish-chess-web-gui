@@ -10,6 +10,7 @@ import { ENGINE_STATE } from "cm-engine-runner/src/EngineRunner.js";
 import { UiComponent } from "cm-web-modules/src/app/Component.js";
 import { Observe } from "cm-web-modules/src/observe/Observe.js";
 
+import { ENGINE_CONFIG } from "./Config.js";
 import { escapeHtml } from "./Utils.js";
 
 export class StockfishStateView extends UiComponent {
@@ -47,12 +48,12 @@ export class StockfishStateView extends UiComponent {
                         </div>
                         <div class="progress" style="height: 6px; background-color: rgba(0,0,0,0.05);">
                             <div class="progress-bar progress-bar-striped progress-bar-animated bg-primary"
-                                 role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"
+                                 role="progressbar" aria-label="Engine activity" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"
                                  style="width: 0%; transition: width 0.3s ease;"></div>
                         </div>
                     </div>
                     <div class="flex-shrink-0 status-label-container">
-                        <span class="badge status-badge rounded-pill bg-white text-dark border fw-medium" 
+                        <span class="badge status-badge rounded-pill bg-body text-body border fw-medium" 
                               style="font-size: 0.7rem; min-width: 70px;">Ready</span>
                     </div>
                 </div>
@@ -67,12 +68,21 @@ export class StockfishStateView extends UiComponent {
 		this.statusBadge = this.element.querySelector(".status-badge");
 		this.nameLabel = this.element.querySelector(".engine-name-label");
 
-		Observe.property(player.state, "skillLevel", () => {
-			this.updatePlayerName();
+		i18n.load({
+			en: { pvpOpponent: "Player 2", analysisBoard: "Analysis Board" },
 		});
-		Observe.property(player.state, "depth", () => {
-			this.updatePlayerName();
-		});
+		for (const key of [
+			"gameMode",
+			"searchMode",
+			"skillLevel",
+			"depth",
+			"elo",
+			"moveTime",
+		]) {
+			Observe.property(player.state, key, () => {
+				this.updatePlayerName();
+			});
+		}
 		Observe.property(player.state, "engineState", () => {
 			const state = player.state.engineState;
 			if (state === ENGINE_STATE.THINKING) {
@@ -82,7 +92,7 @@ export class StockfishStateView extends UiComponent {
 				this.progressBar.style.width = "100%";
 				this.progressBar.setAttribute("aria-valuenow", "100");
 				this.statusBadge.innerText = "Thinking";
-				this.statusBadge.classList.remove("bg-white", "text-dark");
+				this.statusBadge.classList.remove("bg-body", "text-body");
 				this.statusBadge.classList.add("bg-primary", "text-white");
 			} else if (state === ENGINE_STATE.LOADING) {
 				this.statusIndicator.style.backgroundColor = "var(--bs-warning)";
@@ -96,7 +106,7 @@ export class StockfishStateView extends UiComponent {
 				this.progressBar.style.width = "0%";
 				this.progressBar.setAttribute("aria-valuenow", "0");
 				this.statusBadge.innerText = "Ready";
-				this.statusBadge.classList.add("bg-white", "text-dark");
+				this.statusBadge.classList.add("bg-body", "text-body");
 				this.statusBadge.classList.remove("bg-primary", "text-white");
 			}
 		});
@@ -160,6 +170,28 @@ export class StockfishStateView extends UiComponent {
 	}
 
 	updatePlayerName() {
-		this.player.name = `Stockfish 19 (${this.chessConsole.i18n.t("skillLevel")} ${this.player.state.skillLevel}, ${this.chessConsole.i18n.t("depth")} ${this.player.state.depth})`;
+		const { gameMode, searchMode, skillLevel, depth, elo, moveTime } =
+			this.player.state;
+		const t = (key) => this.chessConsole.i18n.t(key);
+		// In these modes a human plays both sides; the engine does not move
+		if (gameMode === "pvp") {
+			this.player.name = t("pvpOpponent");
+			return;
+		}
+		if (gameMode === "analysis") {
+			this.player.name = t("analysisBoard");
+			return;
+		}
+		let setting;
+		if (searchMode === "elo") {
+			setting = `Elo ${elo}`;
+		} else if (searchMode === "depth") {
+			setting = `${t("depth")} ${depth}`;
+		} else if (searchMode === "time") {
+			setting = `${moveTime} ms`;
+		} else {
+			setting = `${t("skillLevel")} ${skillLevel}`;
+		}
+		this.player.name = `${ENGINE_CONFIG.NAME} (${setting})`;
 	}
 }

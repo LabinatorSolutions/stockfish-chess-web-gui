@@ -48,4 +48,70 @@ describe("CustomStockfishRunner.parseInfoLine", () => {
 		expect(result.pv).toBe("e2e4 e7e5 g1f3 g8f6 f1c4");
 		expect(result.pvArray).toHaveLength(8);
 	});
+
+	test("returns an empty pvArray when the line has no pv", () => {
+		const result = CustomStockfishRunner.parseInfoLine(
+			"info depth 0 score mate 0",
+		);
+		expect(result.pvArray).toEqual([]);
+		expect(result.pv).toBe("");
+	});
+
+	test("reads depth, not seldepth", () => {
+		const result = CustomStockfishRunner.parseInfoLine(
+			"info seldepth 30 depth 12 score cp 5 pv e2e4",
+		);
+		expect(result.depth).toBe("12");
+	});
+});
+
+describe("CustomStockfishRunner.calculateMove", () => {
+	// Bypass the constructor, which would spawn a real engine Worker.
+	const makeRunner = () => {
+		const runner = Object.create(CustomStockfishRunner.prototype);
+		runner.props = { responseDelay: 0 };
+		runner.initialized = Promise.resolve();
+		runner.sent = [];
+		runner.uciCmd = (cmd) => runner.sent.push(cmd);
+		return runner;
+	};
+	const search = async (runner, props) => {
+		runner.sent = [];
+		const move = runner.calculateMove("startpos-fen", props);
+		await new Promise((resolve) => setTimeout(resolve, 5));
+		runner.moveResponse({ from: "e2", to: "e4" });
+		await move;
+		return runner.sent;
+	};
+
+	test("elo mode limits strength and sets UCI_Elo", async () => {
+		const sent = await search(makeRunner(), { elo: 1500 });
+		expect(sent).toContain("setoption name UCI_LimitStrength value true");
+		expect(sent).toContain("setoption name UCI_Elo value 1500");
+		expect(sent.at(-1)).toBe("go depth 16");
+	});
+
+	test("depth and time modes reset Skill Level to full strength", async () => {
+		const runner = makeRunner();
+		await search(runner, { skillLevel: 3 });
+		const depthSent = await search(runner, { depth: 12 });
+		expect(depthSent).toContain("setoption name Skill Level value 20");
+		expect(depthSent.at(-1)).toBe("go depth 12");
+		const timeSent = await search(runner, { moveTime: 500 });
+		expect(timeSent).toContain("setoption name Skill Level value 20");
+		expect(timeSent.at(-1)).toBe("go movetime 500");
+	});
+
+	test("sends Threads only when it changes", async () => {
+		const runner = makeRunner();
+		expect(await search(runner, { threads: 4 })).toContain(
+			"setoption name Threads value 4",
+		);
+		expect(
+			(await search(runner, { threads: 4 })).some((c) => c.includes("Threads")),
+		).toBe(false);
+		expect(await search(runner, { threads: 2 })).toContain(
+			"setoption name Threads value 2",
+		);
+	});
 });

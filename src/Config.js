@@ -3,6 +3,9 @@
  */
 
 export const ENGINE_CONFIG = {
+	// Display name; keep in sync with the binary in public/engine/
+	NAME: "Stockfish 19",
+
 	// Engine static files
 	WORKER_PATH: "./engine/stockfish-19-lite.js",
 	BOOK_PATH: "./assets/books/openings.bin",
@@ -10,7 +13,7 @@ export const ENGINE_CONFIG = {
 	// Default Engine Settings
 	DEFAULT_SKILL_LEVEL: 20,
 	DEFAULT_DEPTH: 16,
-	DEFAULT_DEBUG: true,
+	DEFAULT_DEBUG: false, // true logs every UCI command and engine line to the console
 	DEFAULT_ANALYSIS_DEPTH: 18,
 	ANALYSIS_SKILL_LEVEL: 20,
 	DEFAULT_ELO: 1320,

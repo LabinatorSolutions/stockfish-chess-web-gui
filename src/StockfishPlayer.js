@@ -43,9 +43,9 @@ export class StockfishPlayer extends ChessConsolePlayer {
 			score: null,
 			skillLevel: parseInt(props.skillLevel, 10),
 			depth: parseInt(props.depth, 10),
-			elo: props.elo !== undefined ? parseInt(props.elo, 10) : undefined,
-			moveTime:
-				props.moveTime !== undefined ? parseInt(props.moveTime, 10) : undefined,
+			// this.props (not props) so elo/time mode always has a value to send
+			elo: parseInt(this.props.elo, 10),
+			moveTime: parseInt(this.props.moveTime, 10),
 			threads:
 				props.threads ||
 				chessConsole.persistence.loadValue("threads") ||
@@ -86,6 +86,18 @@ export class StockfishPlayer extends ChessConsolePlayer {
 				if (this.chessConsole.persistence.loadValue("depth")) {
 					this.state.depth = parseInt(
 						this.chessConsole.persistence.loadValue("depth"),
+						10,
+					);
+				}
+				if (this.chessConsole.persistence.loadValue("elo")) {
+					this.state.elo = parseInt(
+						this.chessConsole.persistence.loadValue("elo"),
+						10,
+					);
+				}
+				if (this.chessConsole.persistence.loadValue("moveTime")) {
+					this.state.moveTime = parseInt(
+						this.chessConsole.persistence.loadValue("moveTime"),
 						10,
 					);
 				}

@@ -2,14 +2,13 @@
 <html lang="en">
 
 <head>
+    <meta charset="UTF-8" />
     <title>Stockfish Web GUI - By BoldChess.com</title>
     <meta name="description"
         content="Play and analyze chess against the free, open-source Stockfish 19 engine, running entirely in your browser. Adjustable skill level, Elo, and depth, real-time evaluation, and multiple board themes." />
     <link rel="icon" href="./favicon.png">
     <meta name="theme-color" content="#1a1a2e" />
-    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Stockfish Web GUI - By BoldChess.com" />
@@ -27,7 +26,7 @@
 </head>
 
 <body>
-    <div class="container-fluid">
+    <main class="container-fluid">
         <h1>Stockfish Chess Web GUI</h1>
         <p>For <a href="https://boldchess.com" rel="noopener noreferrer">BoldChess.com</a> | Project by <a
                 href="https://labinator.com" rel="noopener noreferrer">Labinator.com</a>
@@ -42,7 +41,7 @@
                 <div class="chess-console-center col-xl-7 order-xl-2 col-lg-8 order-lg-1 order-md-1 col-md-12">
                     <div class="chess-console-board flex-grow-1"></div>
                     <div
-                        class="control-buttons buttons-grid mt-2 d-flex gap-1 flex-nowrap justify-content-center overflow-x-auto">
+                        class="control-buttons buttons-grid mt-2 d-flex gap-1 flex-wrap justify-content-center">
                     </div>
                 </div>
                 <div
@@ -50,7 +49,7 @@
                     <div class="engine-state mb-2"></div>
                     <div id="analysis-output"></div>
                     <div class="mb-2">
-                        <strong class="text-dark">Move History</strong>
+                        <strong>Move History</strong>
                     </div>
                     <div class="chess-console-history mb-2"></div>
                     <div class="chess-console-captured mb-2"></div>
@@ -59,13 +58,13 @@
             </div>
         </div>
 
-    </div>
+    </main>
     <script type="module" src="./src/main.js"></script>
 
     <!-- Game Setup Modal -->
     <div class="modal fade" id="setupModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-lg">
-            <div class="modal-content text-dark">
+            <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Game Setup & Import</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>

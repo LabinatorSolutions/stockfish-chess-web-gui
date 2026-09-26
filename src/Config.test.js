@@ -1,4 +1,5 @@
 import { describe, expect, test } from "bun:test";
+import { existsSync } from "node:fs";
 import { ENGINE_CONFIG, GAME_CONFIG, STYLING_CONFIG } from "./Config.js";
 
 describe("ENGINE_CONFIG", () => {
@@ -33,6 +34,25 @@ describe("ENGINE_CONFIG", () => {
 		expect(ENGINE_CONFIG.DEFAULT_MOVE_TIME).toBeLessThanOrEqual(
 			ENGINE_CONFIG.MAX_MOVE_TIME,
 		);
+	});
+
+	test("WORKER_PATH and its .wasm exist in public/", () => {
+		const worker = new URL(
+			`../public/${ENGINE_CONFIG.WORKER_PATH}`,
+			import.meta.url,
+		);
+		expect(existsSync(worker)).toBe(true);
+		expect(existsSync(new URL(worker.href.replace(/\.js$/, ".wasm")))).toBe(
+			true,
+		);
+	});
+
+	test("NAME carries the same major version as the worker file", () => {
+		const nameVersion = ENGINE_CONFIG.NAME.match(/\d+/)?.[0];
+		const workerVersion =
+			ENGINE_CONFIG.WORKER_PATH.match(/stockfish-(\d+)/)?.[1];
+		expect(nameVersion).toBeDefined();
+		expect(nameVersion).toBe(workerVersion);
 	});
 });
 

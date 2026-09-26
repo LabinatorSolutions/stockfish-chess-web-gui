@@ -29,13 +29,17 @@ export class StockfishAnalysis {
 		this.showArrows = false; // Default off
 
 		// i18n support
-		this.i18n = props.i18n || { t: (key) => key }; // Fallback if no i18n provided
+		// Fallback if no i18n provided
+		this.i18n = props.i18n || {
+			t: (key) => key,
+			load: () => Promise.resolve(),
+		};
 		this.i18n.load({
 			en: {
-				analysis: "Analysis",
-				eval: "Eval",
-				depth: "D",
-				line: "Line",
+				analysis_title: "Analysis",
+				analysis_eval: "Eval",
+				analysis_depth: "D",
+				analysis_line: "Line",
 			},
 		});
 
@@ -46,10 +50,24 @@ export class StockfishAnalysis {
 		// Create UI elements
 		this.renderUI();
 
+		// A new search is only started once the previous one has confirmed its
+		// stop with "bestmove"; until then its late "info" lines describe the old
+		// position and must not be drawn against the new one.
+		this.searching = false;
+		this.pendingFen = null;
+
 		// Bind worker listener
 		this.workerListener = (e) => {
 			const line = e.data;
-			if (line.startsWith("info") && line.includes("pv")) {
+			if (typeof line !== "string") return;
+			if (line.startsWith("bestmove")) {
+				this.searching = false;
+				if (this.pendingFen) this.startSearch();
+			} else if (
+				!this.pendingFen &&
+				line.startsWith("info") &&
+				line.includes(" pv ")
+			) {
 				this.updateDisplay(line);
 			}
 		};
@@ -64,7 +82,7 @@ export class StockfishAnalysis {
 			"d-flex justify-content-between align-items-center mb-2";
 
 		const title = document.createElement("strong");
-		title.innerText = this.i18n.t("analysis");
+		title.innerText = this.i18n.t("analysis_title");
 		controls.appendChild(title);
 
 		// Arrow Toggle
@@ -78,13 +96,7 @@ export class StockfishAnalysis {
 		toggleInput.checked = this.showArrows;
 		toggleInput.addEventListener("change", (e) => {
 			this.showArrows = e.target.checked;
-			if (!this.showArrows) {
-				this.board.removeArrows(ARROW_TYPE.danger);
-				this.board.removeArrows(ARROW_TYPE.info);
-			} else {
-				// Immediately draw if we have data
-				this.drawAnalysisArrows();
-			}
+			this.setShowArrows(e.target.checked);
 		});
 		controls.appendChild(toggleContainer);
 
@@ -92,15 +104,14 @@ export class StockfishAnalysis {
 
 		// Output Area (Table)
 		this.outputTable = document.createElement("table");
-		this.outputTable.className =
-			"table table-sm table-light table-striped mt-1";
+		this.outputTable.className = "table table-sm table-striped mt-1";
 		this.outputTable.style.fontSize = "0.85em";
 		this.outputTable.innerHTML = `
             <thead>
                 <tr>
-                    <th style="width: 20%">${this.i18n.t("eval")}</th>
-                    <th style="width: 15%">${this.i18n.t("depth")}</th>
-                    <th>${this.i18n.t("line")}</th>
+                    <th style="width: 20%">${this.i18n.t("analysis_eval")}</th>
+                    <th style="width: 15%">${this.i18n.t("analysis_depth")}</th>
+                    <th>${this.i18n.t("analysis_line")}</th>
                 </tr>
             </thead>
             <tbody id="analysis-lines"></tbody>
@@ -120,41 +131,60 @@ export class StockfishAnalysis {
 			toggleInput.checked = this.showArrows;
 		}
 		if (!this.showArrows) {
-			this.board.removeArrows(ARROW_TYPE.danger);
-			this.board.removeArrows(ARROW_TYPE.info);
+			this.clearAnalysisArrows();
 		} else {
 			this.drawAnalysisArrows();
 		}
 	}
 
 	async analyze(fen) {
-		this.lastFen = fen;
+		this.pendingFen = fen;
 
 		// Ensure runner is initialized
 		await this.runner.initialized;
+		if (this.pendingFen !== fen) return; // superseded while waiting
 
-		// Clear previous lines to avoid "ghost lines"
+		// Hook into worker messages before the first search starts
+		if (!this.loggerAttached && this.runner.engineWorker) {
+			this.runner.engineWorker.addEventListener("message", this.workerListener);
+			this.loggerAttached = true;
+		}
+
+		// Clear previous lines and arrows to avoid "ghost lines"
 		this.lines = {};
 		this.renderLines();
+		this.clearAnalysisArrows();
 		this.tbody.classList.add("text-muted"); // Indicate thinking
 
-		// Define a dummy moveResponse
+		if (this.searching) {
+			// startSearch() runs when the engine answers with "bestmove"
+			this.runner.uciCmd("stop");
+		} else {
+			this.startSearch();
+		}
+	}
+
+	startSearch() {
+		const fen = this.pendingFen;
+		this.pendingFen = null;
+		this.lastFen = fen;
+		this.searching = true;
+
+		// The runner's own bestmove handler calls this; analysis ignores it
 		this.runner.moveResponse = () => {};
 
-		// Send UCI commands
-		this.runner.uciCmd(`stop`); // Stop previous analysis first
 		this.runner.uciCmd(
 			`setoption name Skill Level value ${this.props.skillLevel}`,
 		);
 		this.runner.uciCmd(`setoption name MultiPV value ${this.props.multiPV}`);
 		this.runner.uciCmd(`position fen ${fen}`);
 		this.runner.uciCmd(`go depth ${this.props.depth}`);
+	}
 
-		// Hook into worker messages
-		if (!this.loggerAttached && this.runner.engineWorker) {
-			this.runner.engineWorker.addEventListener("message", this.workerListener);
-			this.loggerAttached = true;
-		}
+	clearAnalysisArrows() {
+		if (!this.board) return;
+		this.board.removeArrows(ARROW_TYPE.danger);
+		this.board.removeArrows(ARROW_TYPE.info);
 	}
 
 	updateDisplay(infoLine) {
@@ -171,13 +201,12 @@ export class StockfishAnalysis {
 		// Perspective Fix: Standardize to White's perspective
 		// Stockfish normally returns scores relative to side-to-move
 		const turn = new Chess(this.lastFen).turn();
-		if (turn === "b") {
+		if (turn === "b" && data.score !== "n/a") {
 			data.scoreRaw = -data.scoreRaw;
-			if (typeof data.score === "string" && !data.score.startsWith("M")) {
-				let val = parseFloat(data.score);
-				val = -val;
+			if (!data.score.startsWith("M")) {
+				const val = -parseFloat(data.score);
 				data.score = (val > 0 ? "+" : "") + val.toFixed(2);
-			} else if (data.score.startsWith("M")) {
+			} else {
 				const mateIn = parseInt(data.score.substring(1), 10);
 				data.score = `M${-mateIn}`;
 			}
@@ -197,10 +226,7 @@ export class StockfishAnalysis {
 
 	drawAnalysisArrows() {
 		if (!this.board) return;
-
-		// Clear existing analysis arrows
-		this.board.removeArrows(ARROW_TYPE.danger);
-		this.board.removeArrows(ARROW_TYPE.info);
+		this.clearAnalysisArrows();
 
 		// Line 1 (Red)
 		if (this.lines[1]) {
@@ -222,16 +248,17 @@ export class StockfishAnalysis {
 		}
 	}
 
+	/** @returns {boolean} false when there is no analysis line to show yet */
 	hint() {
-		if (this.lines[1]) {
-			this.drawArrowForPV(this.lines[1], ARROW_TYPE.danger);
-			// If showArrows is false, remove after a timeout
-			if (!this.showArrows) {
-				setTimeout(() => {
-					this.board.removeArrows(ARROW_TYPE.danger);
-				}, 3000);
-			}
+		if (!this.lines[1]) return false;
+		this.drawArrowForPV(this.lines[1], ARROW_TYPE.danger);
+		// If showArrows is false, remove after a timeout
+		if (!this.showArrows) {
+			setTimeout(() => {
+				if (!this.showArrows) this.board.removeArrows(ARROW_TYPE.danger);
+			}, 3000);
 		}
+		return true;
 	}
 
 	renderLines() {
@@ -242,13 +269,10 @@ export class StockfishAnalysis {
 			.forEach((key) => {
 				const line = this.lines[key];
 				const tr = document.createElement("tr");
-
-				// Score Formatting
-				const scoreClass = "text-dark";
 				tr.innerHTML = `
-                <td class="${scoreClass} font-weight-bold">${escapeHtml(line.score)}</td>
+                <td class="fw-bold">${escapeHtml(line.score)}</td>
                 <td>${escapeHtml(line.depth)}</td>
-                <td class="text-dark" style="word-break: break-word;">${escapeHtml(line.pv)}</td>
+                <td style="word-break: break-word;">${escapeHtml(line.pv)}</td>
             `;
 				this.tbody.appendChild(tr);
 			});

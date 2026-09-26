@@ -8,17 +8,22 @@ export class CustomStockfishRunner extends StockfishRunner {
 		return new Promise((resolve) => {
 			setTimeout(async () => {
 				await this.initialized;
-				if (props.threads !== undefined) {
+				// Resizing the thread pool is not free, so only send Threads on change
+				if (props.threads !== undefined && props.threads !== this.threads) {
 					this.uciCmd(`setoption name Threads value ${props.threads}`);
+					this.threads = props.threads;
 				}
 				if (props.elo !== undefined) {
 					this.uciCmd("setoption name UCI_LimitStrength value true");
 					this.uciCmd(`setoption name UCI_Elo value ${props.elo}`);
 				} else {
 					this.uciCmd("setoption name UCI_LimitStrength value false");
-					if (props.skillLevel !== undefined) {
-						this.uciCmd(`setoption name Skill Level value ${props.skillLevel}`);
-					}
+					// Engine options persist in the worker, so always set Skill Level:
+					// depth/time searches must not inherit a weakened level from an
+					// earlier skill-mode game.
+					this.uciCmd(
+						`setoption name Skill Level value ${props.skillLevel ?? 20}`,
+					);
 				}
 				this.uciCmd(`position fen ${fen}`);
 				if (props.moveTime !== undefined) {
@@ -54,13 +59,13 @@ export class CustomStockfishRunner extends StockfishRunner {
 		}
 
 		// Extract Depth
-		const depthMatch = line.match(/depth (\d+)/);
+		const depthMatch = line.match(/\bdepth (\d+)/);
 		const depth = depthMatch ? depthMatch[1] : "?";
 
 		// Extract PV
 		const pvIndex = line.indexOf(" pv ");
-		const pvRaw = pvIndex !== -1 ? line.substring(pvIndex + 4) : "";
-		const pvArray = pvRaw.split(" ");
+		const pvRaw = pvIndex !== -1 ? line.substring(pvIndex + 4).trim() : "";
+		const pvArray = pvRaw ? pvRaw.split(/\s+/) : [];
 		const pvtruncated = pvArray.slice(0, 5).join(" ");
 
 		return {
