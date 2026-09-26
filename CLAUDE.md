@@ -13,10 +13,10 @@ bun install
 bun run dev          # bun build --watch into dist/ + copy-assets + server.js on http://localhost:3000
 bun run build        # clean production build into dist/ (minify, copy-assets, inject-static-tags)
 bun run preview      # serve an existing dist/ with server.js
-bun run lint         # biome check src server.js   (lint:fix to apply)
-bun run ci           # biome ci . — whole repo, stricter than lint
-bun run typecheck    # tsc --noEmit
-bun run test         # bun test (src/*.test.js)
+bun run lint         # biome check .   (lint:fix to apply)
+bun run ci           # biome ci . — same scope, no writes
+bun run typecheck    # tsc --noEmit (src, scripts, server.js, headers.js)
+bun run test         # bun test (src/*.test.js, headers.test.js)
 bun test src/Config.test.js          # one file
 bun test -t "parses a negative"      # tests matching a name
 ```
@@ -73,20 +73,23 @@ Anything `src/` imports directly (including `chess.mjs` and `cm-chess`) must be 
 
 ## Build and deployment details
 
-- Output is `dist/`. `copy-assets` copies opening books, cm-chessboard piece/marker/arrow SVGs from
-  `node_modules`, and everything in `public/` (engine worker + `.wasm`, manifest, icons, `_headers`,
-  COI files) into `dist/`. A new static file must be added under `public/` or to `copy-assets`.
-- `inject-static-tags` uses `sed` to insert the manifest, apple-touch-icon and the
-  `coi-config.js` / `coi-serviceworker.js` script tags into `dist/index.html` after bundling.
+- Output is `dist/`. `scripts/copy-assets.js` copies opening books, cm-chessboard piece/marker/arrow
+  SVGs from `node_modules`, and everything in `public/` (engine worker + `.wasm`, manifest, icons,
+  `_headers`, `theme-init.js`, `coi-serviceworker.js`) into `dist/`, and fails the build on a missing
+  source. A new static file goes under `public/` or into that script's list.
+- Bun's HTML bundler folds classic `<script>` tags from `index.html` into the deferred module bundle,
+  so scripts that must run as classic scripts before first paint (`theme-init.js`,
+  `coi-serviceworker.js`, which needs `document.currentScript`) are not in `index.html`:
+  `scripts/inject-static-tags.js` adds them, plus the manifest and apple-touch-icon, to
+  `dist/index.html`. `bun run dev` skips that step, so dev has no theme-init and no COI fallback.
 - Multi-threaded Stockfish needs `SharedArrayBuffer`, i.e. `Cross-Origin-Opener-Policy: same-origin`
-  and `Cross-Origin-Embedder-Policy: require-corp`. `coi-serviceworker.js` is the fallback for hosts
-  that cannot set headers.
-- The COOP/COEP headers and the CSP are defined in three places that must stay in sync:
-  `server.js`, `netlify.toml` and `public/_headers`. The CSP allows only `'self'` plus
-  `'wasm-unsafe-eval'`, so no CDN scripts, fonts or styles — bundle everything.
-- `coi-config.js` and `coi-serviceworker.js` exist both at the repo root and in `public/` (identical).
+  and `Cross-Origin-Embedder-Policy: require-corp`. `public/coi-serviceworker.js` (third-party,
+  minified, excluded from Biome) is the fallback for hosts that cannot set headers.
+- `public/_headers` is the single source for COOP/COEP and the CSP: Netlify serves it from `dist/`,
+  and `server.js` reads it through `headers.js`. Do not add headers to `netlify.toml`. The CSP allows
+  only `'self'` plus `'wasm-unsafe-eval'` (no inline scripts, no CDNs) — bundle everything.
 - `assets/styles/screen.css` is compiled from `screen.scss` (no build step for it in this repo) and,
-  like `public/engine/` and `coi-serviceworker.js`, is excluded from Biome.
+  like `public/engine/`, is excluded from Biome.
 
 ## Engine version bumps
 

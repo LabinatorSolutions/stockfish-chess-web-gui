@@ -95,8 +95,11 @@ Our mission is to develop a modern, responsive, free, and open-source web-based 
 │   ├── main.js                  # App initialization and wiring
 │   ├── *.test.js                # Unit tests (bun test)
 │   └── extensions/              # RightClickAnnotator: right-click arrows and markers
-├── public/                      # Copied to dist/ as-is (engine worker + .wasm, manifest, icons, _headers)
+├── public/                      # Copied to dist/ as-is (engine worker + .wasm, manifest, icons)
+│   └── _headers                 # Security headers: the single source for Netlify and server.js
+├── scripts/                     # Build steps: copy-assets, inject-static-tags
 ├── server.js                    # Local server for dist/ with security headers
+├── headers.js                   # Reads public/_headers for server.js
 ├── index.html                   # Main entry point
 └── assets/                      # Styles, sounds, and opening books
 ```
@@ -161,7 +164,9 @@ The following headers MUST be present in your hosting environment:
 - `Cross-Origin-Opener-Policy: same-origin`
 - `Cross-Origin-Embedder-Policy: require-corp`
 
-If these headers are missing, the engine will either fail to initialize or fall back to a slower, single-threaded mode.
+They are defined once, in `public/_headers` (with the Content Security Policy). Netlify and Cloudflare Pages read that file from `dist/`; `server.js` reads it too. On other hosts, set the same headers in the server config.
+
+If these headers are missing, the engine will either fail to initialize or fall back to a slower, single-threaded mode. The bundled `coi-serviceworker.js` tries to add them client-side as a fallback.
 
 ---
 
