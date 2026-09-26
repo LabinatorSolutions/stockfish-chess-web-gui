@@ -39,11 +39,11 @@ export class StockfishStateView extends UiComponent {
 		this.element.innerHTML = `
             <div class="card border-0 shadow-sm bg-body-secondary overflow-hidden">
                 <div class="card-body p-2 d-flex align-items-center gap-3">
-                    <div class="flex-shrink-0 d-flex align-items-center">
+                    <div class="shrink-0 d-flex align-items-center">
                         <div class="engine-status-indicator pulse-animation-ready rounded-circle" 
                              style="width: 12px; height: 12px; background-color: var(--bs-success);"></div>
                     </div>
-                    <div class="flex-grow-1">
+                    <div class="grow">
                         <div class="d-flex justify-content-between align-items-center mb-1">
                             <small class="text-muted fw-bold text-uppercase engine-name-label" style="font-size: 0.65rem;">Engine Status</small>
                             <span class="badge score-badge bg-secondary" style="font-size: 0.75rem;">Score: 0.00</span>
@@ -54,7 +54,7 @@ export class StockfishStateView extends UiComponent {
                                  style="width: 0%; transition: width 0.3s ease;"></div>
                         </div>
                     </div>
-                    <div class="flex-shrink-0 status-label-container">
+                    <div class="shrink-0 status-label-container">
                         <span class="badge status-badge rounded-pill bg-body text-body border fw-medium" 
                               style="font-size: 0.7rem; min-width: 70px;">Ready</span>
                     </div>
