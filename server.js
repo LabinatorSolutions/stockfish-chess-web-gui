@@ -1,28 +1,11 @@
 import { statSync } from "node:fs";
 import { resolve, sep } from "node:path";
 import { file, serve } from "bun";
+// COOP/COEP + CSP, read from public/_headers (the same file Netlify serves)
+import { SECURITY_HEADERS } from "./headers.js";
 
 const PORT = Number(process.env.PORT) || 3000;
 const DIST_DIR = resolve(import.meta.dir, "dist");
-
-const CSP = [
-	"default-src 'self'",
-	"script-src 'self' 'wasm-unsafe-eval'",
-	"style-src 'self' 'unsafe-inline'",
-	"img-src 'self' data:",
-	"font-src 'self' data:",
-	"connect-src 'self'",
-	"worker-src 'self' blob:",
-	"object-src 'none'",
-	"base-uri 'self'",
-	"frame-ancestors 'none'",
-].join("; ");
-
-const SECURITY_HEADERS = {
-	"Cross-Origin-Opener-Policy": "same-origin",
-	"Cross-Origin-Embedder-Policy": "require-corp",
-	"Content-Security-Policy": CSP,
-};
 
 const MIME_TYPES = {
 	html: "text/html; charset=utf-8",
