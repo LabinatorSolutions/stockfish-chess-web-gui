@@ -112,6 +112,21 @@ new Board(chessConsole, {
 
 	board.chessboard.addExtension(RightClickAnnotator);
 
+	// cm-chessboard describes the position in the SVG's `alt` attribute, which
+	// is not valid on <svg> and gives it no accessible name; mirror it to
+	// aria-label and keep it in sync as the position changes.
+	const boardSvg = board.chessboard.view.svg;
+	const syncBoardLabel = () => {
+		boardSvg.setAttribute(
+			"aria-label",
+			boardSvg.getAttribute("alt") || "Chess board",
+		);
+	};
+	syncBoardLabel();
+	new MutationObserver(syncBoardLabel).observe(boardSvg, {
+		attributeFilter: ["alt"],
+	});
+
 	const clearAnnotations = () => {
 		board.chessboard.removeArrows();
 		board.chessboard.removeMarkers();

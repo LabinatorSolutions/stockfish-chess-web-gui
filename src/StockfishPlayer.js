@@ -15,6 +15,9 @@ import { Observe } from "cm-web-modules/src/observe/Observe.js";
 import { ENGINE_CONFIG } from "./Config.js";
 import { CustomStockfishRunner } from "./CustomStockfishRunner.js";
 
+/** Score placeholder recorded for opening-book moves */
+export const BOOK_SCORE = "book";
+
 export class StockfishPlayer extends ChessConsolePlayer {
 	constructor(chessConsole, name, props) {
 		super(chessConsole, name);
@@ -328,8 +331,13 @@ export class StockfishPlayer extends ChessConsolePlayer {
 					this.state.scoreHistory[this.chessConsole.state.chess.plyCount()] =
 						newScore;
 					this.state.score = newScore;
+				} else if (this.state.currentRunner === this.openingRunner) {
+					// Book moves have no search score; say so instead of showing
+					// a stale eval from an earlier position
+					this.state.scoreHistory[this.chessConsole.state.chess.plyCount()] =
+						BOOK_SCORE;
+					this.state.score = BOOK_SCORE;
 				}
-				// else: book move has no search score, keep showing the last known eval
 				this.state.engineState = ENGINE_STATE.READY;
 				moveResponse(nextMove);
 			}

@@ -11,6 +11,7 @@ import { UiComponent } from "cm-web-modules/src/app/Component.js";
 import { Observe } from "cm-web-modules/src/observe/Observe.js";
 
 import { ENGINE_CONFIG } from "./Config.js";
+import { BOOK_SCORE } from "./StockfishPlayer.js";
 import { escapeHtml } from "./Utils.js";
 
 export class StockfishStateView extends UiComponent {
@@ -27,9 +28,10 @@ export class StockfishStateView extends UiComponent {
 		if (!this.props.spinnerIcon) {
 			this.props.spinnerIcon = "spinner";
 		}
+		// Two decimals, matching the analysis panel
 		this.numberFormat = new Intl.NumberFormat(i18n.locale, {
-			minimumFractionDigits: 1,
-			maximumFractionDigits: 1,
+			minimumFractionDigits: 2,
+			maximumFractionDigits: 2,
 		});
 		this.element = this.chessConsole.context.querySelector(".engine-state");
 
@@ -44,7 +46,7 @@ export class StockfishStateView extends UiComponent {
                     <div class="flex-grow-1">
                         <div class="d-flex justify-content-between align-items-center mb-1">
                             <small class="text-muted fw-bold text-uppercase engine-name-label" style="font-size: 0.65rem;">Engine Status</small>
-                            <span class="badge score-badge bg-secondary" style="font-size: 0.75rem;">Score: 0.0</span>
+                            <span class="badge score-badge bg-secondary" style="font-size: 0.75rem;">Score: 0.00</span>
                         </div>
                         <div class="progress" style="height: 6px; background-color: rgba(0,0,0,0.05);">
                             <div class="progress-bar progress-bar-striped progress-bar-animated bg-primary"
@@ -133,7 +135,10 @@ export class StockfishStateView extends UiComponent {
 			const isMateScore = typeof score === "string" && score.startsWith("#");
 			let scoreFormatted;
 			let comparableScore;
-			if (isMateScore) {
+			if (score === BOOK_SCORE) {
+				scoreFormatted = "Book";
+				comparableScore = 0;
+			} else if (isMateScore) {
 				const mateIn = parseInt(score.slice(1), 10);
 				scoreFormatted = mateIn > 0 ? `M${mateIn}` : `-M${Math.abs(mateIn)}`;
 				comparableScore = mateIn > 0 ? Infinity : -Infinity;
@@ -164,7 +169,7 @@ export class StockfishStateView extends UiComponent {
 				this.scoreBadge.className = "badge score-badge bg-secondary";
 			}
 		} else {
-			this.scoreBadge.innerHTML = "Score: 0.0";
+			this.scoreBadge.innerHTML = "Score: 0.00";
 			this.scoreBadge.className = "badge score-badge bg-secondary";
 		}
 	}
