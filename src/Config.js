@@ -4,7 +4,7 @@
 
 export const ENGINE_CONFIG = {
 	// Engine static files
-	WORKER_PATH: "./engine/stockfish-18-lite.js",
+	WORKER_PATH: "./engine/stockfish-19-lite.js",
 	BOOK_PATH: "./assets/books/openings.bin",
 
 	// Default Engine Settings

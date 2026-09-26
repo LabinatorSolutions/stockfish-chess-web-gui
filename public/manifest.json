@@ -1,7 +1,7 @@
 {
 	"name": "Stockfish Chess Web GUI",
 	"short_name": "Stockfish Chess",
-	"description": "Play and analyze chess against the Stockfish 18 engine, running entirely in your browser.",
+	"description": "Play and analyze chess against the Stockfish 19 engine, running entirely in your browser.",
 	"start_url": "./",
 	"scope": "./",
 	"display": "standalone",

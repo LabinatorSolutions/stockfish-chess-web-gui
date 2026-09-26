@@ -160,6 +160,6 @@ export class StockfishStateView extends UiComponent {
 	}
 
 	updatePlayerName() {
-		this.player.name = `Stockfish 18 (${this.chessConsole.i18n.t("skillLevel")} ${this.player.state.skillLevel}, ${this.chessConsole.i18n.t("depth")} ${this.player.state.depth})`;
+		this.player.name = `Stockfish 19 (${this.chessConsole.i18n.t("skillLevel")} ${this.player.state.skillLevel}, ${this.chessConsole.i18n.t("depth")} ${this.player.state.depth})`;
 	}
 }

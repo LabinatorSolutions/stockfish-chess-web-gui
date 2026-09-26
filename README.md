@@ -6,7 +6,7 @@
 ![Lint · Biome](https://www.shieldcn.dev/badge/Lint-Biome-60A5FA.svg?logo=biome&variant=branded&size=sm&mode=light&font=jetbrains-mono)
 ![Hosting · Netlify](https://www.shieldcn.dev/badge/Hosting-Netlify-00AD9F.svg?logo=netlify&variant=branded&size=sm&mode=light&font=jetbrains-mono)
 
-A modern, responsive, and fully functional web-based chess application powered by the **Stockfish 18** engine.
+A modern, responsive, and fully functional web-based chess application powered by the **Stockfish 19** engine.
 
 ---
 
@@ -141,7 +141,7 @@ Core constants and default settings are located in `src/Config.js`.
 
 ## Security Requirements
 
-Stockfish 18 utilizes multi-threaded WebAssembly, which depends on **SharedArrayBuffer**. For security reasons (Spectre/Meltdown mitigation), modern browsers only enable this feature if the page is cross-origin isolated.
+Stockfish 19 utilizes multi-threaded WebAssembly, which depends on **SharedArrayBuffer**. For security reasons (Spectre/Meltdown mitigation), modern browsers only enable this feature if the page is cross-origin isolated.
 
 The following headers MUST be present in your hosting environment:
 

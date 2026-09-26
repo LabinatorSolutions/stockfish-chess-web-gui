@@ -8,7 +8,7 @@
         "@fortawesome/fontawesome-free": "^7.3.1",
         "bootstrap": "^5.3.8",
         "chess-console": "^6.14.1",
-        "cm-chessboard": "^8.14.1",
+        "cm-chessboard": "^8.14.2",
         "cm-engine-runner": "^2.1.0",
         "cm-web-modules": "^2.8.1",
       },
@@ -79,7 +79,7 @@
 
     "cm-chess": ["cm-chess@3.6.3", "", { "dependencies": { "chess.mjs": "^2.3.2", "cm-pgn": "4.0.6" } }, "sha512-78ffmdsUbb+pOTf6lgTKuLvaPxrQh47xdhuGo4O00GpdgkWOiIjgpvG8vmWCDwu2MJkHHcte0oNxqbd8F9FfhA=="],
 
-    "cm-chessboard": ["cm-chessboard@8.14.1", "", {}, "sha512-BSdc8MIDzOF3aZnr3hYfUxtcFbDmqiFluG8pPXmyh1usQhrEy/XiOXlGOd6YimApqJjYETu5tcWLClJmaiUjcQ=="],
+    "cm-chessboard": ["cm-chessboard@8.14.2", "", {}, "sha512-AAHxN/BVy+USRHHAdTaz7Wz+eE1cAdAkw0OkJ7bQyeoAGrJdBBt412XIoqieppsfo3P27HDaB78YMsSQa9P5Xw=="],
 
     "cm-engine-runner": ["cm-engine-runner@2.1.0", "", { "dependencies": { "cm-polyglot": "^1.1.0", "stockfish": "^18.0.5" } }, "sha512-x+JrPLF9Bt4Z2w43kQdFiKatJqoZBtpraHl1mdDaexCZDCLDS4LToEMBsGc0KRO24XN2pduc1H0e2T79in8haQ=="],
 

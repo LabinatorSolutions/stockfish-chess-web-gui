@@ -20,7 +20,7 @@ Given that, the practical attack surface is narrow:
 - **Cross-origin isolation** — multi-threaded Stockfish (WASM + `SharedArrayBuffer`) requires `Cross-Origin-Opener-Policy: same-origin` and `Cross-Origin-Embedder-Policy: require-corp`. These are set as real HTTP response headers by [`server.js`](server.js), `netlify.toml`, and `public/_headers`. [`coi-serviceworker.js`](coi-serviceworker.js) is a fallback that injects the same headers via a Service Worker on static hosts that can't set custom response headers.
 - **Content Security Policy** — a strict CSP (`script-src 'self' 'wasm-unsafe-eval'`, no third-party script origins) is enforced via the same header mechanisms, restricting script execution to same-origin code and blocking arbitrary inline/external script injection.
 - **Third-party supply chain** — all JS dependencies (Bootstrap, Font Awesome, chess-console, cm-chessboard, etc.) are installed via npm and bundled at build time; nothing is loaded from a third-party CDN at runtime. [Dependabot](.github/dependabot.yml) opens weekly PRs for dependency updates.
-- **Stockfish engine binary** — the bundled `stockfish-18-lite.js`/`.wasm` in `public/engine/` is a WASM build of the official [Stockfish](https://stockfishchess.org/) engine; it runs in an isolated Web Worker and communicates only via the UCI text protocol.
+- **Stockfish engine binary** — the bundled `stockfish-19-lite.js`/`.wasm` in `public/engine/` is a WASM build of the official [Stockfish](https://stockfishchess.org/) engine; it runs in an isolated Web Worker and communicates only via the UCI text protocol.
 
 ## Security Best Practices
 
