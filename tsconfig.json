@@ -12,6 +12,12 @@
 		"skipLibCheck": true,
 		"resolveJsonModule": true
 	},
-	"include": ["src/**/*.js", "server.js"],
+	"include": [
+		"src/**/*.js",
+		"scripts/**/*.js",
+		"server.js",
+		"headers.js",
+		"*.test.js"
+	],
 	"exclude": ["node_modules", "dist"]
 }

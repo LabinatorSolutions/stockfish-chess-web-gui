@@ -9,7 +9,7 @@
 		"ignoreUnknown": false,
 		"includes": [
 			"**",
-			"!**/coi-serviceworker.js",
+			"!public/coi-serviceworker.js",
 			"!public/engine",
 			"!assets/styles/screen.css"
 		]
