@@ -2,3 +2,5 @@
 /node_modules
 /.idea
 /dist
+# Session savepoints (ephemeral — not for version control)
+.savepoint/

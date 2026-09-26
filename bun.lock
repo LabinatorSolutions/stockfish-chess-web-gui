@@ -9,7 +9,7 @@
         "bootstrap": "^5.3.8",
         "chess-console": "^6.14.1",
         "chess.mjs": "^2.3.6",
-        "cm-chess": "^3.6.3",
+        "cm-chess": "^4.0.0",
         "cm-chessboard": "^8.14.2",
         "cm-engine-runner": "^2.1.0",
         "cm-web-modules": "^2.8.1",
@@ -98,7 +98,7 @@
 
     "chess.mjs": ["chess.mjs@2.3.6", "", {}, "sha512-ZL2f8ZjQJ9Ijgldgt6Sj4TBxjHBf9RGuLQxOrxHg22m5HkpucTSUjSXeHvE0JZLY/jfum1UxRSImAqjf3Kswcg=="],
 
-    "cm-chess": ["cm-chess@3.6.3", "", { "dependencies": { "chess.mjs": "^2.3.2", "cm-pgn": "4.0.6" } }, "sha512-78ffmdsUbb+pOTf6lgTKuLvaPxrQh47xdhuGo4O00GpdgkWOiIjgpvG8vmWCDwu2MJkHHcte0oNxqbd8F9FfhA=="],
+    "cm-chess": ["cm-chess@4.0.0", "", { "dependencies": { "chess.mjs": "^2.3.2", "cm-pgn": "^5.0.0" } }, "sha512-+CyeGMeXNIDF3LQhEtsuHUMb09cItXp1M7ZhG94fV3wKF6AXrE8m/xpIQfxA4sD5kDMrC6rhuRE0KyQgAo/20Q=="],
 
     "cm-chessboard": ["cm-chessboard@8.14.2", "", {}, "sha512-AAHxN/BVy+USRHHAdTaz7Wz+eE1cAdAkw0OkJ7bQyeoAGrJdBBt412XIoqieppsfo3P27HDaB78YMsSQa9P5Xw=="],
 
@@ -118,6 +118,10 @@
 
     "undici-types": ["undici-types@8.9.0", "", {}, "sha512-KTDyRTYX8sWmKXAikPHHSyc63CRPETMctyjKFupcC6OBLXT3xsN0e9aF7m+mIXutFWpUXuedtowG7iLOzp0kQg=="],
 
-    "cm-chess/cm-pgn": ["cm-pgn@4.0.6", "", { "dependencies": { "chess.mjs": "^2.2.3" } }, "sha512-4nsWoI+vEGrLaGM2vSOng00qvIl3Oj4bx+5UfFdH8MT7DiaphVt+7vo8PuzUV+jJhmvYnV83/UNv4gyr03Rlfw=="],
+    "chess-console/cm-chess": ["cm-chess@3.6.3", "", { "dependencies": { "chess.mjs": "^2.3.2", "cm-pgn": "4.0.6" } }, "sha512-78ffmdsUbb+pOTf6lgTKuLvaPxrQh47xdhuGo4O00GpdgkWOiIjgpvG8vmWCDwu2MJkHHcte0oNxqbd8F9FfhA=="],
+
+    "cm-chess/cm-pgn": ["cm-pgn@5.0.0", "", { "dependencies": { "chess.mjs": "^2.3.2" } }, "sha512-jq82smTdfw+7VlyBPM8HkyC/wBtQUUIixRKvga9DdAkPeLEcajXOUxKmIostn3VSudIHj9TCLtcPC5D3Zc67hg=="],
+
+    "chess-console/cm-chess/cm-pgn": ["cm-pgn@4.0.6", "", { "dependencies": { "chess.mjs": "^2.2.3" } }, "sha512-4nsWoI+vEGrLaGM2vSOng00qvIl3Oj4bx+5UfFdH8MT7DiaphVt+7vo8PuzUV+jJhmvYnV83/UNv4gyr03Rlfw=="],
   }
 }

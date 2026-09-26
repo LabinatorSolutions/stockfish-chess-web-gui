@@ -6,7 +6,7 @@
 		"bootstrap": "^5.3.8",
 		"chess-console": "^6.14.1",
 		"chess.mjs": "^2.3.6",
-		"cm-chess": "^3.6.3",
+		"cm-chess": "^4.0.0",
 		"cm-chessboard": "^8.14.2",
 		"cm-engine-runner": "^2.1.0",
 		"cm-web-modules": "^2.8.1"
