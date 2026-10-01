@@ -10,7 +10,7 @@ Bun is the runtime, package manager and bundler; Biome lints and formats; `tsc` 
 
 ```bash
 bun install
-bun run dev          # bun build --watch into dist/ + copy-assets + server.js on http://localhost:3000
+bun run dev          # bun build --watch into dist/ + copy-assets + server.js on http://localhost:3737
 bun run build        # clean production build into dist/ (minify, copy-assets, inject-static-tags)
 bun run preview      # serve an existing dist/ with server.js
 bun run lint         # biome check .   (lint:fix to apply)
@@ -26,7 +26,8 @@ build runs `bun install && bun run lint && bun run test && bun run build` (not t
 
 `server.js` serves `dist/`, not the source tree, so the app only runs after a build (or with `dev`
 running). Engine features need the cross-origin isolation headers, so do not test by opening
-`index.html` from disk or with a generic static server. `PORT=<n>` overrides the default 3000.
+`index.html` from disk or with a generic static server. `PORT=<n>` overrides the default 3737 (moved off
+3000, which a local Playwright server container also binds).
 
 Biome is a pinned devDependency (`-E`); `bun run` uses that copy, not a system `biome`.
 

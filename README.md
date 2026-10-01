@@ -120,7 +120,7 @@ bun install
 bun run dev
 ```
 
-Open `http://localhost:3000`. This runs the Bun bundler in watch mode and serves the app via `server.js` to ensure the required security headers are present. Set `PORT` to use another port, e.g. `PORT=4000 bun run dev`.
+Open `http://localhost:3737`. This runs the Bun bundler in watch mode and serves the app via `server.js` to ensure the required security headers are present. Set `PORT` to use another port, e.g. `PORT=4000 bun run dev`.
 
 ### 3. Build for Production
 

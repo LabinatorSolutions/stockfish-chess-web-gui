@@ -4,7 +4,7 @@ import { file, serve } from "bun";
 // COOP/COEP + CSP, read from public/_headers (the same file Netlify serves)
 import { SECURITY_HEADERS } from "./headers.js";
 
-const PORT = Number(process.env.PORT) || 3000;
+const PORT = Number(process.env.PORT) || 3737;
 const DIST_DIR = resolve(import.meta.dir, "dist");
 
 const MIME_TYPES = {
