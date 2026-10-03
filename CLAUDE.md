@@ -6,6 +6,11 @@ Browser chess GUI for Stockfish (WASM, runs fully client-side). Plain JavaScript
 Bun is the runtime, package manager and bundler; Biome lints and formats; `tsc` type-checks the JS via
 `checkJs`.
 
+## Repo-specific Overrides
+
+- **Git commit/push:** allowed for this repo (owner, 2026-10-03), commit and push both. Keep messages
+  brief and add no `Co-Authored-By`, `Claude-Session` or other agent trailers.
+
 ## Commands
 
 ```bash
