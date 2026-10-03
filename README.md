@@ -39,6 +39,8 @@ There's no hosted public demo right now. The app itself is free — Stockfish ru
 
 Run it locally instead — see [Installation & Development](#installation--development) below, it takes two commands.
 
+More free BoldChess tools, all in the browser: [play the computer](https://boldchess.com/play/computer/), [analyze a game](https://boldchess.com/analysis/), [solve tactics](https://boldchess.com/tactics/) and [explore openings](https://boldchess.com/openings/). For Android there is also the [BoldChess Trainer app](https://boldchess.com/go/app/) (human-picked puzzles and game analysis, a one-time purchase).
+
 ---
 
 ## Mission
