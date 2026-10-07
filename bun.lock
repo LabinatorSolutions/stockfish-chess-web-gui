@@ -7,12 +7,12 @@
       "dependencies": {
         "@fortawesome/fontawesome-free": "^7.3.1",
         "bootstrap": "^5.3.8",
-        "chess-console": "^6.14.1",
-        "chess.mjs": "^2.4.1",
-        "cm-chess": "^4.0.0",
-        "cm-chessboard": "^8.15.1",
-        "cm-engine-runner": "^2.1.0",
-        "cm-web-modules": "^2.8.1",
+        "chess-console": "^7.0.0",
+        "chess.mjs": "^2.4.2",
+        "cm-chess": "^4.0.1",
+        "cm-chessboard": "^8.15.3",
+        "cm-engine-runner": "^2.2.1",
+        "cm-web-modules": "^2.8.2",
       },
       "devDependencies": {
         "@biomejs/biome": "2.5.15",
@@ -46,7 +46,7 @@
 
     "@types/bun": ["@types/bun@1.4.2", "", { "dependencies": { "bun-types": "1.4.2" } }, "sha512-GimotNn7+ZV0uVArItBbriZsR1oNf0+WTzPkdcFrzShI7k2norL0uzEaJT8T33dWr7O/c9ZDuAFQrctKCi72oQ=="],
 
-    "@types/node": ["@types/node@26.6.3", "", { "dependencies": { "undici-types": "~8.9.0" } }, "sha512-dsqMQQoeTLqu9wynDD00q573mNzso3IdQOAfHRJqLCcmCFPoGo9A1bDpUcv/9tnKpErQWv9uKeGfl37EIS02Yg=="],
+    "@types/node": ["@types/node@26.6.4", "", { "dependencies": { "undici-types": "~8.9.0" } }, "sha512-ldVPDCzj7fsaGZrLB0NuHuTvJcsNasysBAqMolr/cgxrLd1xbqxIr3XJiPnHHJUCxj5sNF1vnRj9aWnrVh5Jcg=="],
 
     "@typescript/typescript-aix-ppc64": ["@typescript/typescript-aix-ppc64@7.0.2", "", { "os": "aix", "cpu": "ppc64" }, "sha512-MTKKkWB7p/0E9xi1d1tHtZ5PiLkGEMIq88pK2CubZjOsLtYTLqhgIgi6zepFa+9GHZ6h05NMCkQxGKiPXMxXtQ=="],
 
@@ -90,25 +90,25 @@
 
     "bootstrap": ["bootstrap@5.3.8", "", { "peerDependencies": { "@popperjs/core": "^2.11.8" } }, "sha512-HP1SZDqaLDPwsNiqRqi5NcP0SSXciX2s9E+RyqJIIqGo+vJeN5AJVM98CXmW/Wux0nQ5L7jeWUdplCEf0Ee+tg=="],
 
-    "bootstrap-show-modal": ["bootstrap-show-modal@6.1.0", "", {}, "sha512-bsumuZ3zK4i2cy5tTogsGD3sABfTn+x7A9t1A0ST7V9xgcZzaUeuXpnMxQaA5NBpyNr0ZlEon90HdPdoj5Eb5w=="],
+    "bootstrap-show-modal": ["bootstrap-show-modal@6.1.1", "", {}, "sha512-2nS2W2Be34dYaXsBlQBIgIBYKDx/7Hs9lkshteWNyu6lPCFK0021hLMIWXeohYVSDreWltVBaMdturtWCfF2cQ=="],
 
     "bun-types": ["bun-types@1.4.2", "", { "dependencies": { "@types/node": "*" } }, "sha512-bxV1FgK7yBIzjRe5zBozIM4Bem11ZJcCXSrjWRG3YWLt8yFDePu4cLjpebO8OvPeIE9trbyPF4fuj3Cia4Fj3w=="],
 
-    "chess-console": ["chess-console@6.14.1", "", { "dependencies": { "bootstrap-show-modal": "^6.1.0", "chess.mjs": "^2.3.2", "cm-chess": "^3.6.3", "cm-chessboard": "^8.12.19", "cm-pgn": "^4.1.2", "cm-web-modules": "^2.8.0", "patch": "^0.0.1" } }, "sha512-sM1r0XDZLB+Xxx0d/BeBal4ceUpV8RrhzIJmWnpTzlbItIldj+v5Lt++Mg78pkOS2tSaVpmSXG2Y13iS8uJJrA=="],
+    "chess-console": ["chess-console@7.0.0", "", { "dependencies": { "bootstrap-show-modal": "^6.1.1", "chess.mjs": "^2.4.2", "cm-chess": "^4.0.1", "cm-chessboard": "^8.15.3", "cm-pgn": "^5.0.1", "cm-web-modules": "^2.8.2", "patch": "^0.0.1" } }, "sha512-2kTQJQYoA4v6d5M4/Ph+zTfUfbcunTPyppzsRd7PElOEnamcXkTvWJaluiW5p+urfrmiQIhQhwnOiwp0cP5aDQ=="],
 
-    "chess.mjs": ["chess.mjs@2.4.1", "", {}, "sha512-dILtUQMuOhQD6ccXIpdRX0MSu/2XZPbcFuTJ0JLAM1R5NLtqOLOoA6M/rNzs4eNn0ts7haIHg4L3rPJwCaY46A=="],
+    "chess.mjs": ["chess.mjs@2.4.2", "", {}, "sha512-Cb9PEgK+1T5IgctcRuZwa/lk7btV0mFvhXLUu7Yb6Y895YcjehECniGRXyHtMrcy1/acse70C/let384VUKwyA=="],
 
-    "cm-chess": ["cm-chess@4.0.0", "", { "dependencies": { "chess.mjs": "^2.3.2", "cm-pgn": "^5.0.0" } }, "sha512-+CyeGMeXNIDF3LQhEtsuHUMb09cItXp1M7ZhG94fV3wKF6AXrE8m/xpIQfxA4sD5kDMrC6rhuRE0KyQgAo/20Q=="],
+    "cm-chess": ["cm-chess@4.0.1", "", { "dependencies": { "chess.mjs": "^2.4.1", "cm-pgn": "^5.0.0" } }, "sha512-1PT350UOtuqCGsFzyDlBQRcu3Sv7B2HIPJ45XCd73iS9JS5gdU1nm7Cg1H8rdKTgrbGGTK/LxDBM4JvuFjcAhQ=="],
 
-    "cm-chessboard": ["cm-chessboard@8.15.1", "", {}, "sha512-oaRmOYskBqkVvY8cPO5J3EhWB/UTncDU8028iM2nG0PLPv9dMZTT0W4Zm7IKvTWrHVvGpc/KbKbeFAuxb8uMFg=="],
+    "cm-chessboard": ["cm-chessboard@8.15.3", "", {}, "sha512-PNoRvdpaN3kRW+ulpywglGYf/B9kp3bwUVQTE33Eujw6kcEa0XT4F+xpvHT7qTcsjaTh/u2I1fmOiHtRrdAadg=="],
 
-    "cm-engine-runner": ["cm-engine-runner@2.1.0", "", { "dependencies": { "cm-polyglot": "^1.1.0", "stockfish": "^18.0.5" } }, "sha512-x+JrPLF9Bt4Z2w43kQdFiKatJqoZBtpraHl1mdDaexCZDCLDS4LToEMBsGc0KRO24XN2pduc1H0e2T79in8haQ=="],
+    "cm-engine-runner": ["cm-engine-runner@2.2.1", "", { "dependencies": { "cm-polyglot": "^1.1.0", "stockfish": "^18.0.5" } }, "sha512-2M1Y9ZfKYUys+Tr5G6qo2o88ieKhKLzqQSpIGGhAGim9YW7yeDkKn7oYabd2tlQK7Mp1qtZLRIKA6xBi/+V73w=="],
 
-    "cm-pgn": ["cm-pgn@4.1.2", "", { "dependencies": { "chess.mjs": "^2.3.2" } }, "sha512-mDO80oTzgBCOEx2FG0VqcKZWkZdSvhjH3su0j+7l+zk91PVwRgFMcaeqYie426vOnaUrResrdI0DKqK2eYieuA=="],
+    "cm-pgn": ["cm-pgn@5.0.1", "", { "dependencies": { "chess.mjs": "^2.3.2" } }, "sha512-AvKUakUrFttUS+2kDnaOyX3s+cU8fPu6QDoXE4XELqv6t0sXqXesoJkGjmhKY5ucAY8+XgiHoBeGPG5k4LLOTw=="],
 
     "cm-polyglot": ["cm-polyglot@1.1.0", "", {}, "sha512-yKclnR2WHNgtMViYnxUJzqfR9/iTLfG0PYNVmHNbGiZrYoc7tTrGQHutzgUISFpiQ8ArbqaZKcBzZ2S2CE4/Gg=="],
 
-    "cm-web-modules": ["cm-web-modules@2.8.1", "", {}, "sha512-Ztkd6XYmCynHJOi62gRjk4fzTDwGZzUxXvkIoR4uOKmRSh/euvgJqrmnN+4mkb7/9wq3wr/yyNiNEJY9dZ5sSw=="],
+    "cm-web-modules": ["cm-web-modules@2.8.2", "", {}, "sha512-Gl+4CIs3KHxKybAIN0c1RnPlkxhRyVg5FUPN9Mhe3zdnsznyGRly2UTtP1nduMTZAIHGy2sJoyRtpZjgrWubfg=="],
 
     "patch": ["patch@0.0.1", "", {}, "sha512-+SXEoPuYhe44vUXCGAOjEISqgoo26pcSj65xK3zbKGt87CeUoIZ4cHwIkdloHHxGAEIOzMiYmRbj+t0T9pBPXw=="],
 
@@ -117,11 +117,5 @@
     "typescript": ["typescript@7.0.2", "", { "optionalDependencies": { "@typescript/typescript-aix-ppc64": "7.0.2", "@typescript/typescript-darwin-arm64": "7.0.2", "@typescript/typescript-darwin-x64": "7.0.2", "@typescript/typescript-freebsd-arm64": "7.0.2", "@typescript/typescript-freebsd-x64": "7.0.2", "@typescript/typescript-linux-arm": "7.0.2", "@typescript/typescript-linux-arm64": "7.0.2", "@typescript/typescript-linux-loong64": "7.0.2", "@typescript/typescript-linux-mips64el": "7.0.2", "@typescript/typescript-linux-ppc64": "7.0.2", "@typescript/typescript-linux-riscv64": "7.0.2", "@typescript/typescript-linux-s390x": "7.0.2", "@typescript/typescript-linux-x64": "7.0.2", "@typescript/typescript-netbsd-arm64": "7.0.2", "@typescript/typescript-netbsd-x64": "7.0.2", "@typescript/typescript-openbsd-arm64": "7.0.2", "@typescript/typescript-openbsd-x64": "7.0.2", "@typescript/typescript-sunos-x64": "7.0.2", "@typescript/typescript-win32-arm64": "7.0.2", "@typescript/typescript-win32-x64": "7.0.2" }, "bin": { "tsc": "bin/tsc" } }, "sha512-8FYau96o3NKOhbjKi/qNvG/W5jhzxkbdm5sj9AbZ/5T5sWqn3hJgLfGx27sRKZWTvyzCP8dLRBTf5tBTSRVUNA=="],
 
     "undici-types": ["undici-types@8.9.0", "", {}, "sha512-KTDyRTYX8sWmKXAikPHHSyc63CRPETMctyjKFupcC6OBLXT3xsN0e9aF7m+mIXutFWpUXuedtowG7iLOzp0kQg=="],
-
-    "chess-console/cm-chess": ["cm-chess@3.6.3", "", { "dependencies": { "chess.mjs": "^2.3.2", "cm-pgn": "4.0.6" } }, "sha512-78ffmdsUbb+pOTf6lgTKuLvaPxrQh47xdhuGo4O00GpdgkWOiIjgpvG8vmWCDwu2MJkHHcte0oNxqbd8F9FfhA=="],
-
-    "cm-chess/cm-pgn": ["cm-pgn@5.0.0", "", { "dependencies": { "chess.mjs": "^2.3.2" } }, "sha512-jq82smTdfw+7VlyBPM8HkyC/wBtQUUIixRKvga9DdAkPeLEcajXOUxKmIostn3VSudIHj9TCLtcPC5D3Zc67hg=="],
-
-    "chess-console/cm-chess/cm-pgn": ["cm-pgn@4.0.6", "", { "dependencies": { "chess.mjs": "^2.2.3" } }, "sha512-4nsWoI+vEGrLaGM2vSOng00qvIl3Oj4bx+5UfFdH8MT7DiaphVt+7vo8PuzUV+jJhmvYnV83/UNv4gyr03Rlfw=="],
   }
 }
