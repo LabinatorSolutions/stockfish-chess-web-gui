@@ -8,7 +8,7 @@
 		"chess.mjs": "^2.4.2",
 		"cm-chess": "^4.0.1",
 		"cm-chessboard": "^8.15.3",
-		"cm-engine-runner": "^2.2.1",
+		"cm-engine-runner": "^3.0.1",
 		"cm-web-modules": "^2.8.2"
 	},
 	"description": "StockfishPlayer for ChessConsole",

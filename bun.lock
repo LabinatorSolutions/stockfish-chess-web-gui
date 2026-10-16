@@ -11,7 +11,7 @@
         "chess.mjs": "^2.4.2",
         "cm-chess": "^4.0.1",
         "cm-chessboard": "^8.15.3",
-        "cm-engine-runner": "^2.2.1",
+        "cm-engine-runner": "^3.0.1",
         "cm-web-modules": "^2.8.2",
       },
       "devDependencies": {
@@ -102,7 +102,7 @@
 
     "cm-chessboard": ["cm-chessboard@8.15.3", "", {}, "sha512-PNoRvdpaN3kRW+ulpywglGYf/B9kp3bwUVQTE33Eujw6kcEa0XT4F+xpvHT7qTcsjaTh/u2I1fmOiHtRrdAadg=="],
 
-    "cm-engine-runner": ["cm-engine-runner@2.2.1", "", { "dependencies": { "cm-polyglot": "^1.1.0", "stockfish": "^18.0.5" } }, "sha512-2M1Y9ZfKYUys+Tr5G6qo2o88ieKhKLzqQSpIGGhAGim9YW7yeDkKn7oYabd2tlQK7Mp1qtZLRIKA6xBi/+V73w=="],
+    "cm-engine-runner": ["cm-engine-runner@3.0.1", "", { "dependencies": { "cm-polyglot": "^1.1.0" } }, "sha512-qSTZyZtkdryob9UJE+vdGzUXP9ZDFGXgg4WuaJjNPkNnZGbU4isyWHNym7E00AuZC3lnl38QpTlXTdRasZMuUg=="],
 
     "cm-pgn": ["cm-pgn@5.0.1", "", { "dependencies": { "chess.mjs": "^2.3.2" } }, "sha512-AvKUakUrFttUS+2kDnaOyX3s+cU8fPu6QDoXE4XELqv6t0sXqXesoJkGjmhKY5ucAY8+XgiHoBeGPG5k4LLOTw=="],
 
@@ -112,11 +112,9 @@
 
     "patch": ["patch@0.0.1", "", {}, "sha512-+SXEoPuYhe44vUXCGAOjEISqgoo26pcSj65xK3zbKGt87CeUoIZ4cHwIkdloHHxGAEIOzMiYmRbj+t0T9pBPXw=="],
 
-    "stockfish": ["stockfish@18.0.8", "", { "bin": { "stockfish": "scripts/cli.js" } }, "sha512-z+f2UMPXLylDBGjv9e9zU8QulY7hUl8MYHesLRrdddewlOXjJrUSmtNmbtID1/F72EPhq0CCkCNxgWS5MQVWtQ=="],
-
     "typescript": ["typescript@7.0.2", "", { "optionalDependencies": { "@typescript/typescript-aix-ppc64": "7.0.2", "@typescript/typescript-darwin-arm64": "7.0.2", "@typescript/typescript-darwin-x64": "7.0.2", "@typescript/typescript-freebsd-arm64": "7.0.2", "@typescript/typescript-freebsd-x64": "7.0.2", "@typescript/typescript-linux-arm": "7.0.2", "@typescript/typescript-linux-arm64": "7.0.2", "@typescript/typescript-linux-loong64": "7.0.2", "@typescript/typescript-linux-mips64el": "7.0.2", "@typescript/typescript-linux-ppc64": "7.0.2", "@typescript/typescript-linux-riscv64": "7.0.2", "@typescript/typescript-linux-s390x": "7.0.2", "@typescript/typescript-linux-x64": "7.0.2", "@typescript/typescript-netbsd-arm64": "7.0.2", "@typescript/typescript-netbsd-x64": "7.0.2", "@typescript/typescript-openbsd-arm64": "7.0.2", "@typescript/typescript-openbsd-x64": "7.0.2", "@typescript/typescript-sunos-x64": "7.0.2", "@typescript/typescript-win32-arm64": "7.0.2", "@typescript/typescript-win32-x64": "7.0.2" }, "bin": { "tsc": "bin/tsc" } }, "sha512-8FYau96o3NKOhbjKi/qNvG/W5jhzxkbdm5sj9AbZ/5T5sWqn3hJgLfGx27sRKZWTvyzCP8dLRBTf5tBTSRVUNA=="],
 
-    "undici-types": ["undici-types@8.12.1", "", {}, "sha512-nCiEcIx87oMw9u3Yzj2DuRBzv6p0e7akhy4HUPtpBiVWmAY3o6Phznst8QhmY1oLMttLgJ2tlAvsKuzCgBSoAw=="],
+    "undici-types": ["undici-types@8.12.2", "", {}, "sha512-VoMeD2O0KdHhcn+oPqOrpivN+7aDOklVSwOLD7JNjbzV1CboAFek9IFOXnreoufTUtAsCsOK0iETiERPNR/fDA=="],
 
     "@types/node/undici-types": ["undici-types@8.9.0", "", {}, "sha512-KTDyRTYX8sWmKXAikPHHSyc63CRPETMctyjKFupcC6OBLXT3xsN0e9aF7m+mIXutFWpUXuedtowG7iLOzp0kQg=="],
   }
