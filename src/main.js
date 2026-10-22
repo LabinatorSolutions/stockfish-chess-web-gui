@@ -344,7 +344,7 @@ const copyToClipboard = (text, label) => {
 const showNotification = (message) => {
 	const toastEl = document.getElementById("notificationToast");
 	const toastBody = document.getElementById("toastMessage");
-	toastBody.innerText = message;
+	toastBody.textContent = message;
 	const toast = new bootstrap.Toast(toastEl);
 	toast.show();
 };

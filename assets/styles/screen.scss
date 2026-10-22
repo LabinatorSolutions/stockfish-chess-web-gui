@@ -7,9 +7,9 @@ $spacer-small: $spacer / 2;
 @import "../../node_modules/cm-chessboard/assets/extensions/promotion-dialog/promotion-dialog.scss";
 
 html {
-  body {
-    .container-fluid {
-      max-width: 1200px;
-    }
-  }
+	body {
+		.container-fluid {
+			max-width: 1200px;
+		}
+	}
 }

@@ -82,7 +82,7 @@ export class StockfishAnalysis {
 			"d-flex justify-content-between align-items-center mb-2";
 
 		const title = document.createElement("strong");
-		title.innerText = this.i18n.t("analysis_title");
+		title.textContent = this.i18n.t("analysis_title");
 		controls.appendChild(title);
 
 		// Arrow Toggle

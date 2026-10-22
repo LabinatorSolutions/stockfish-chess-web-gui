@@ -93,21 +93,21 @@ export class StockfishStateView extends UiComponent {
 				this.statusIndicator.classList.remove("pulse-animation-ready");
 				this.progressBar.style.width = "100%";
 				this.progressBar.setAttribute("aria-valuenow", "100");
-				this.statusBadge.innerText = "Thinking";
+				this.statusBadge.textContent = "Thinking";
 				this.statusBadge.classList.remove("bg-body", "text-body");
 				this.statusBadge.classList.add("bg-primary", "text-white");
 			} else if (state === ENGINE_STATE.LOADING) {
 				this.statusIndicator.style.backgroundColor = "var(--bs-warning)";
 				this.progressBar.style.width = "30%";
 				this.progressBar.setAttribute("aria-valuenow", "30");
-				this.statusBadge.innerText = "Loading";
+				this.statusBadge.textContent = "Loading";
 			} else {
 				this.statusIndicator.style.backgroundColor = "var(--bs-success)";
 				this.statusIndicator.classList.add("pulse-animation-ready");
 				this.statusIndicator.classList.remove("pulse-animation-thinking");
 				this.progressBar.style.width = "0%";
 				this.progressBar.setAttribute("aria-valuenow", "0");
-				this.statusBadge.innerText = "Ready";
+				this.statusBadge.textContent = "Ready";
 				this.statusBadge.classList.add("bg-body", "text-body");
 				this.statusBadge.classList.remove("bg-primary", "text-white");
 			}
