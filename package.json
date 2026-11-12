@@ -3,7 +3,7 @@
 	"version": "6.2.4",
 	"dependencies": {
 		"@fortawesome/fontawesome-free": "^7.3.1",
-		"bootstrap": "^5.3.8",
+		"bootstrap": "^5.3.9",
 		"chess-console": "^7.0.0",
 		"chess.mjs": "^2.4.2",
 		"cm-chess": "^4.0.1",
@@ -28,7 +28,7 @@
 	},
 	"type": "module",
 	"devDependencies": {
-		"@biomejs/biome": "2.6.6",
+		"@biomejs/biome": "2.6.7",
 		"@types/bun": "^1.4.4",
 		"typescript": "^7.0.2"
 	},
