@@ -4,10 +4,10 @@
 	"dependencies": {
 		"@fortawesome/fontawesome-free": "^7.3.1",
 		"bootstrap": "^5.3.9",
-		"chess-console": "^7.0.0",
+		"chess-console": "^7.2.2",
 		"chess.mjs": "^2.5.1",
 		"cm-chess": "^4.0.2",
-		"cm-chessboard": "^8.15.4",
+		"cm-chessboard": "^8.15.7",
 		"cm-engine-runner": "^3.0.1",
 		"cm-web-modules": "^2.8.2"
 	},
@@ -28,7 +28,7 @@
 	},
 	"type": "module",
 	"devDependencies": {
-		"@biomejs/biome": "2.6.7",
+		"@biomejs/biome": "2.6.8",
 		"@types/bun": "^1.4.4",
 		"typescript": "^7.0.2"
 	},
