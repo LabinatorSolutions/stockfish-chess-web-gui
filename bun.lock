@@ -7,10 +7,10 @@
       "dependencies": {
         "@fortawesome/fontawesome-free": "^7.3.1",
         "bootstrap": "^5.3.9",
-        "chess-console": "^7.2.2",
+        "chess-console": "^7.2.3",
         "chess.mjs": "^2.5.1",
         "cm-chess": "^4.0.2",
-        "cm-chessboard": "^8.15.7",
+        "cm-chessboard": "^8.15.8",
         "cm-engine-runner": "^3.0.1",
         "cm-web-modules": "^2.8.2",
       },
@@ -98,13 +98,13 @@
 
     "bun-types": ["bun-types@1.4.4", "", { "dependencies": { "@types/node": "*", "undici-types": "*" } }, "sha512-yjrJh5oGX7mMPKGd19YXyIjmEuj4G4zNC30bs7PM9Az7NQ3ndF3j6hbeRdvJTRQEhJ/FYQwW0a2moweEi2hMxQ=="],
 
-    "chess-console": ["chess-console@7.2.2", "", { "dependencies": { "bootstrap-show-modal": "^6.1.1", "chess.mjs": "^2.4.2", "cm-chess": "^4.0.1", "cm-chessboard": "^8.15.5", "cm-pgn": "^5.0.1", "cm-web-modules": "^2.8.2", "patch": "^0.0.1" } }, "sha512-Nko/xEJoYtnbejUSrUiAi2cYXp+NAgwESdV/45hfe2cTDUmkeH7tUY5gVGmMaT5EeIKhP/v0tt5M77i/UjbEbA=="],
+    "chess-console": ["chess-console@7.2.3", "", { "dependencies": { "bootstrap-show-modal": "^6.1.1", "chess.mjs": "^2.5.1", "cm-chess": "^4.0.2", "cm-chessboard": "^8.15.7", "cm-pgn": "^5.0.1", "cm-web-modules": "^2.8.2", "patch": "^0.0.1" } }, "sha512-ruLY57qFE4LGjIoTAdXKUYeXrtCbujogNmvPDYfIjDwzNO2kL75RPioLByv+kd3fQ/WR3IcoozwhXjWCRaDkkA=="],
 
     "chess.mjs": ["chess.mjs@2.5.1", "", {}, "sha512-YbJU/d/MlaM4Jox6eQGFgmRyfM+QaMyxXySYDLzCnzYez0QkB2BowW3KSH+641sERUGzW5z+3bN8DdrvgITbng=="],
 
     "cm-chess": ["cm-chess@4.0.2", "", { "dependencies": { "chess.mjs": "^2.5.1", "cm-pgn": "^5.0.1" } }, "sha512-ASOyTFPRI+OVMUb6soRs1OynIP4CUjDZNqfSr+jFrBnuSzZOTYajR1hhS2QEN4H+J6kvekMQNEuNZqrFGQBQzw=="],
 
-    "cm-chessboard": ["cm-chessboard@8.15.7", "", {}, "sha512-VBugrn0wKPCvsmLciECjaoJMyOkAjXDe6I/nvSckFfe/PdgzqH4hO99gnZwFW3LJlSDxM0ftLYIc57itL16XIA=="],
+    "cm-chessboard": ["cm-chessboard@8.15.8", "", {}, "sha512-k+tjEjEjNbj7ALrMnGyCJuuVAR2U5Q8dZlS3q2e1I1fcdy2ednLdsAQ7amFb/qkKRSTOyNnY5J4iokCXw5Ku5Q=="],
 
     "cm-engine-runner": ["cm-engine-runner@3.0.1", "", { "dependencies": { "cm-polyglot": "^1.1.0" } }, "sha512-qSTZyZtkdryob9UJE+vdGzUXP9ZDFGXgg4WuaJjNPkNnZGbU4isyWHNym7E00AuZC3lnl38QpTlXTdRasZMuUg=="],
 
